@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                hostname: "mp3party.net"
+            }
+        ]
+    }
+};
 
 export default nextConfig;
