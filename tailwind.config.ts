@@ -59,7 +59,8 @@ const config: Config = {
             },
             animation: {
                 shine: "5s linear infinite shine",
-                "running-line": "8s linear infinite running-line"
+                "running-line": "8s linear infinite running-line",
+                "pop-up": "pop-up 0.5s ease-in-out forwards"
             },
             keyframes: {
                 shine: {
@@ -88,6 +89,16 @@ const config: Config = {
                     },
                     "100%": {
                         transform: "translateX(0)"
+                    }
+                },
+                "pop-up": {
+                    "0%": {
+                        transform: "translateY(0)",
+                        scale: "1"
+                    },
+                    "100%": {
+                        transform: "translateY(-10px)",
+                        scale: "1.02"
                     }
                 }
             }
