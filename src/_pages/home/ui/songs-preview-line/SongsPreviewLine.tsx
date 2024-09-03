@@ -15,8 +15,10 @@ export const SongsPreviewLine = ({ songs }: { songs: Song[] }) => {
         >
             {songs
                 .slice(sliceSongsFromIndex, sliceSongsFromIndex + 3)
-                .map((song) => (
+                .map((song, i) => (
                     <SongPreview
+                        className="animate-pop-up"
+                        style={{ animationDelay: `${i}00ms` }}
                         key={song.id}
                         song={song}
                     />

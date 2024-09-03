@@ -22,7 +22,7 @@ export const Homepage = async () => {
                     <br />
                     with a <span className="text-with-gradient">Spark</span>.
                 </h1>
-                <p className="flex flex-col text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
+                <div className="flex flex-col text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
                     <span>Listen to your favorite music with</span>
                     <ul>
                         <li>
@@ -37,7 +37,7 @@ export const Homepage = async () => {
                             restrictions
                         </li>
                     </ul>
-                </p>
+                </div>
             </div>
             <SongsPreviewLine songs={songs.trendingGlobal} />
             <div className="mt-8 flex items-center gap-2">
