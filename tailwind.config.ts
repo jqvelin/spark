@@ -68,7 +68,7 @@ const config: Config = {
                         "background-size": "100%"
                     },
                     "50%": {
-                        "background-size": "140%"
+                        "background-size": "150%"
                     },
                     "100%": {
                         "background-size": "100%"

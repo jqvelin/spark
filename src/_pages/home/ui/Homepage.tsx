@@ -1,7 +1,7 @@
 import { getHomepageSongs } from "@/shared/api";
-import { Button } from "@/shared/components/ui/button";
 import Image from "next/image";
 
+import { SignInMethods } from "./SignInMethods";
 import { SongsPreviewLine } from "./songs-preview-line/SongsPreviewLine";
 
 export const Homepage = async () => {
@@ -12,10 +12,10 @@ export const Homepage = async () => {
             <div className="mb-16 self-end pr-4 text-end">
                 <Image
                     src="logo.svg"
-                    width={600}
-                    height={600}
+                    width={1000}
+                    height={1000}
                     alt="logo"
-                    className="absolute right-0 top-1/2 -z-10 -translate-y-1/2 opacity-50"
+                    className="fixed right-0 top-1/2 -z-10 -translate-y-1/2 translate-x-1/2 opacity-50"
                 />
                 <h1 className="mb-8 text-4xl font-bold leading-relaxed text-white md:text-5xl md:leading-[64px] lg:text-6xl lg:leading-[86px]">
                     ✨ It all starts
@@ -39,13 +39,8 @@ export const Homepage = async () => {
                     </ul>
                 </div>
             </div>
-            <SongsPreviewLine songs={songs.trendingGlobal} />
-            <div className="mt-8 flex items-center gap-2">
-                <Button className="border-2 bg-transparent hover:bg-primary/20">
-                    Sign up
-                </Button>
-                <Button>Log in</Button>
-            </div>
+            <SongsPreviewLine songs={songs.fresh} />
+            <SignInMethods />
         </main>
     );
 };
