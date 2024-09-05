@@ -2,8 +2,9 @@ import { Song } from "@/shared/api";
 import { useEffect, useRef, useState } from "react";
 
 // Transition takes 150ms
-const TIME_BEFORE_VISIBILITY_CHANGE = 150 + 350;
-const SONGS_SHOULD_STAY_FOR = 4000;
+// Exporting for testing purpose
+export const TIME_BEFORE_VISIBILITY_CHANGE = 150 + 350;
+export const SONGS_SHOULD_STAY_FOR = 4000;
 
 export const useSongsPreviewSlides = (songs: Song[]) => {
     const songsPreviewLineWrapperRef = useRef<HTMLDivElement>(null);
