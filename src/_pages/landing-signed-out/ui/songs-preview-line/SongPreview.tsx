@@ -15,7 +15,7 @@ export const SongPreview: FC<
         <div
             {...props}
             className={twMerge(
-                "flex w-[250px] items-center gap-2 rounded-md bg-white px-3 py-2",
+                "flex w-[250px] items-center shadow-md gap-2 rounded-md bg-white px-3 py-2",
                 props.className
             )}
         >

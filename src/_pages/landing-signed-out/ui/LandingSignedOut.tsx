@@ -4,7 +4,7 @@ import Image from "next/image";
 import { SignInMethods } from "./SignInMethods";
 import { SongsPreviewLine } from "./songs-preview-line/SongsPreviewLine";
 
-export const Homepage = async () => {
+export const LandingSignedOut = async () => {
     const songs = await getHomepageSongs();
 
     return (
@@ -39,7 +39,7 @@ export const Homepage = async () => {
                     </ul>
                 </div>
             </div>
-            <SongsPreviewLine songs={songs.fresh} />
+            <SongsPreviewLine songs={songs.trendingGlobal} />
             <SignInMethods />
         </main>
     );

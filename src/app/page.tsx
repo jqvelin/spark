@@ -1,5 +1,5 @@
-import { Homepage } from "@/_pages/home";
+import { LandingSignedOut } from "@/_pages/landing-signed-out";
 
 export default function Page() {
-    return <Homepage />;
+    return <LandingSignedOut />;
 }
