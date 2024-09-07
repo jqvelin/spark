@@ -4,4 +4,4 @@ export const paths = {
     albums: "/albums",
     artists: "/artists",
     search: "/search"
-}
+};
