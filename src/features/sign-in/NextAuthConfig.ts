@@ -1,3 +1,4 @@
+import { paths } from "@/shared/routing";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import YandexProvider from "next-auth/providers/yandex";
@@ -17,5 +18,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
             return token;
         }
+    },
+    pages: {
+        signIn: paths.root,
+        error: paths.root
     }
 });

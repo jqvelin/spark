@@ -1,6 +1,5 @@
-import { auth } from "@/features/sign-in";
+import { ListenPage } from "@/_pages/listen";
 
-export default async function Page() {
-    const session = await auth();
-    return <div>Welcome back, {session?.user?.name}!</div>;
+export default function Page() {
+    return <ListenPage />;
 }

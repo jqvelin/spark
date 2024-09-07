@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 
 import "./globals.css";
 
-const inter = Open_Sans({ subsets: ["latin"] });
+const inter = Open_Sans({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
     title: "Spark - Listen everytime, everywhere",

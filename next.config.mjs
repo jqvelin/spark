@@ -4,6 +4,12 @@ const nextConfig = {
         remotePatterns: [
             {
                 hostname: "mp3party.net"
+            },
+            {
+                hostname: "avatars.yandex.net"
+            },
+            {
+                hostname: "*.googleusercontent.com"
             }
         ]
     }

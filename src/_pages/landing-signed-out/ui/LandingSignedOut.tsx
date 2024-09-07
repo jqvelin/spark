@@ -1,18 +1,18 @@
-import { getHomepageSongs, SongGroups } from "@/shared/api";
+import { SongGroups, getHomepageSongs } from "@/shared/api";
 import Image from "next/image";
 
+import { ProductDescription } from "./ProductDescription";
 import { SignInMethods } from "./SignInMethods";
 import { SongsPreviewLine } from "./songs-preview-line/SongsPreviewLine";
-import { ProductDescription } from "./ProductDescription";
 
 export const LandingSignedOut = async () => {
-    let songs: SongGroups | undefined
+    let songs: SongGroups | undefined;
 
     try {
         const songsData = await getHomepageSongs();
         songs = songsData;
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 
     return (
