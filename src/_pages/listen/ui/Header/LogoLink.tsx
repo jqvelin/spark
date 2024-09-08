@@ -6,7 +6,7 @@ export const LogoLink = () => {
     return (
         <Link
             href={paths.root}
-            className="rounded-full border-2 border-transparent transition-all hover:scale-105 hover:border-primary"
+            className="rounded-full transition-all"
         >
             <Image
                 src="logo.svg"
