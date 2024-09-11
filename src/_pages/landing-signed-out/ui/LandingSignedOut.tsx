@@ -1,5 +1,4 @@
 import { SongGroups, getHomepageSongs } from "@/shared/api";
-import Image from "next/image";
 
 import { ProductDescription } from "./ProductDescription";
 import { SignInMethods } from "./SignInMethods";
@@ -18,7 +17,7 @@ export const LandingSignedOut = async () => {
     return (
         <main className="flex h-screen animate-shine flex-col items-center justify-center overflow-x-hidden bg-[radial-gradient(circle_at_80%_80%,hsl(var(--primary)),transparent)]">
             <ProductDescription />
-            {songs && <SongsPreviewLine songs={songs.trendingGlobal} />}
+            {songs && <SongsPreviewLine songs={songs.bestOfToday} />}
             <SignInMethods />
         </main>
     );

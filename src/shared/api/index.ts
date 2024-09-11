@@ -1,4 +1,5 @@
 export { getHomepageSongs } from "./requests/getHomepageSongs";
+export { getHomepageAlbums } from "./requests/getHomepageAlbums";
 export { albumSchema } from "./model/album/albumSchema";
 export { type Album } from "./model/album/album.types";
 export { artistSchema } from "./model/artist/artistSchema";

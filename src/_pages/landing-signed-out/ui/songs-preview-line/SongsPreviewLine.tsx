@@ -10,7 +10,7 @@ export const SongsPreviewLine = ({ songs }: { songs: Song[] }) => {
         useSongsPreviewSlides(songs);
     return (
         <div
-            className="flex h-[250px] flex-col items-center gap-4 transition-opacity md:h-auto md:flex-row"
+            className="flex h-[220px] flex-col items-center gap-4 transition-opacity md:h-auto md:flex-row"
             ref={songsPreviewLineWrapperRef}
         >
             {songs

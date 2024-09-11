@@ -10,12 +10,12 @@ export const ProductDescription = () => {
                 alt="logo"
                 className="fixed right-0 top-1/2 -z-10 -translate-y-1/2 translate-x-1/2 opacity-50"
             />
-            <h1 className="mb-8 text-4xl font-bold leading-relaxed text-white md:text-5xl md:leading-[64px] lg:text-6xl lg:leading-[86px]">
+            <h1 className="mb-8 text-3xl font-bold leading-relaxed text-white md:text-4xl md:leading-[48px] lg:text-5xl lg:leading-[64px]">
                 ✨ It all starts
                 <br />
                 with a <span className="text-with-gradient">Spark</span>.
             </h1>
-            <div className="flex flex-col text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
+            <div className="flex flex-col text-xl font-semibold text-white md:text-2xl lg:text-4xl">
                 <span>Listen to your favorite music with</span>
                 <ul>
                     <li>

@@ -15,6 +15,6 @@ export default auth(async (req) => {
     }
 });
 
-export const config = {
-    matcher: [paths.root, paths.listen]
-};
+// Matcher is omitted due to Next.js' inability to evaluate dynamic routes 
+// (such as paths.root, paths.listen, etc.)
+// Read more: https://nextjs.org/docs/messages/invalid-page-config
