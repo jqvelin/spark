@@ -1,18 +1,24 @@
-import { AlbumPreviewCard } from "@/entities/Album";
 import { Album, SongGroups } from "@/shared/api";
-import { FreshAlbumsScrollableList } from "./FreshAlbumsScrollableList";
+
+import { FreshAlbumsCarousel } from "./FreshAlbumsCarousel";
 
 type MusicDataForMainContent = {
-    homepageSongs: SongGroups,
-    homepageAlbums: Album[]
-}
+    homepageSongs: SongGroups;
+    homepageAlbums: Album[];
+};
 
-export const MainContent = ({musicData}: {musicData: MusicDataForMainContent}) => {
-    return <main className="p-4 flex-1">
-        <h1 className="font-bold text-xl mb-8">Home</h1>
-        <section>
-            <h2 className="font-semibold mb-4">Fresh albums</h2>
-            <FreshAlbumsScrollableList albumList={musicData.homepageAlbums} />
-        </section>
-    </main>;
+export const MainContent = ({
+    musicData
+}: {
+    musicData: MusicDataForMainContent;
+}) => {
+    return (
+        <main className="flex-1 overflow-hidden p-4">
+            <h1 className="mb-8 text-xl font-bold">Home</h1>
+            <section>
+                <h2 className="mb-4 font-semibold">Fresh albums</h2>
+                <FreshAlbumsCarousel albumList={musicData.homepageAlbums} />
+            </section>
+        </main>
+    );
 };

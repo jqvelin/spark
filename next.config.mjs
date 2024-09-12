@@ -3,10 +3,10 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                hostname: "mp3party.net",
+                hostname: "mp3party.net"
             },
             {
-                hostname: "i.mp3party.net",
+                hostname: "i.mp3party.net"
             },
             {
                 hostname: "avatars.yandex.net"

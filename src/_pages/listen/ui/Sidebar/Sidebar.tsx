@@ -6,14 +6,14 @@ export const Sidebar = () => {
     // render each as an individual component (like <SidebarTab tab={paths.home}/>)
 
     return (
-        <aside className="h-[calc(100vh-var(--header-height))] py-2 px-2 md:px-4 inline-flex flex-col gap-4 border-y-0 border-l-0 border-r-primary/20 hover:border-r-primary/30 transition-all border-2">
+        <aside className="inline-flex h-[calc(100vh-var(--header-height))] flex-col gap-4 border-2 border-y-0 border-l-0 border-r-primary/20 px-2 py-2 transition-all hover:border-r-primary/30 md:px-4">
             <div className="group">
                 <Link
                     href="?tab=asd"
-                    className="transition-transform bg-primary duration-300 group-hover:-translate-y-1 flex gap-3 border-2 border-primary py-1.5 px-4 rounded-md tracking-wide"
+                    className="flex gap-3 rounded-md border-2 border-primary bg-primary px-4 py-1.5 tracking-wide transition-transform duration-300 group-hover:-translate-y-1"
                 >
                     <HomeIcon className="text-white" />
-                    <span className="hidden md:inline-flex text-primary [font-weight:500] text-white">
+                    <span className="hidden text-primary text-white [font-weight:500] md:inline-flex">
                         Home
                     </span>
                 </Link>

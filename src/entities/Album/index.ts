@@ -1,1 +1,1 @@
-export { AlbumPreviewCard} from "./ui/AlbumPreviewCard"
+export { AlbumPreviewCard } from "./ui/AlbumPreviewCard";
