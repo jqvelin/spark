@@ -1,5 +1,6 @@
 import { getHomepageAlbums, getHomepageSongs } from "@/shared/api";
 
+import { Footer } from "./Footer/Footer";
 import { Header } from "./Header/Header";
 import { MainContent } from "./MainContent/MainContent";
 import { Sidebar } from "./Sidebar/Sidebar";
@@ -19,6 +20,7 @@ export const ListenPage = async () => {
                 <Sidebar />
                 <MainContent musicData={musicData} />
             </div>
+            <Footer />
         </>
     );
 };

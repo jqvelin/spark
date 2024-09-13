@@ -2,43 +2,31 @@
 
 import { AlbumPreviewCard } from "@/entities/Album";
 import { Album } from "@/shared/api";
+import { useCarousel } from "@/shared/utils";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { RefObject } from "react";
 
 export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
-    const [scrollLeft, setScrollLeft] = useState({
-        current: 0,
-        maximum: 0
-    });
-    const carouselRef = useRef<HTMLUListElement>(null);
-
-    useEffect(() => {
-        const target = carouselRef?.current as HTMLUListElement;
-        setScrollLeft({
-            current: target?.scrollLeft ?? 0,
-            maximum: target.scrollWidth - target.clientWidth
-        });
-    }, []);
-
-    const handleScroll = (direction: "left" | "right") => {
-        const target = carouselRef?.current as HTMLUListElement;
-        target.scrollLeft += direction === "right" ? 100 : -100;
-        setScrollLeft({
-            ...scrollLeft,
-            current: target?.scrollLeft
-        });
-    };
+    const {
+        carouselRef,
+        ableToScrollBackwards,
+        scrollBackwards,
+        ableToScrollForwards,
+        scrollForwards
+    } = useCarousel();
 
     return (
         <div className="flex">
-            {scrollLeft.current !== 0 && (
-                <button>
-                    <ArrowLeftIcon />
-                </button>
-            )}
+            <button
+                onClick={scrollBackwards}
+                disabled={!ableToScrollBackwards}
+                className={`text-primary transition-[transform,opacity] duration-300 ${ableToScrollBackwards ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"}`}
+            >
+                <ArrowLeftIcon />
+            </button>
             <ul
-                className="flex overflow-hidden scroll-smooth"
-                ref={carouselRef}
+                className="flex select-none overflow-hidden scroll-smooth"
+                ref={carouselRef as RefObject<HTMLUListElement>}
             >
                 {albumList.map((album) => (
                     <AlbumPreviewCard
@@ -48,12 +36,9 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
                 ))}
             </ul>
             <button
-                onClick={() => handleScroll("right")}
-                className={
-                    scrollLeft.current === scrollLeft.maximum
-                        ? "hidden"
-                        : "inline"
-                }
+                onClick={scrollForwards}
+                disabled={!ableToScrollForwards}
+                className={`text-primary transition-[transform,opacity] duration-300 ${ableToScrollForwards ? "translate-x-0 opacity-100" : "translate-x-2 opacity-0"}`}
             >
                 <ArrowRightIcon />
             </button>
