@@ -1,3 +1,4 @@
+import { paths } from "@/shared/routing";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -6,10 +7,10 @@ export const Sidebar = () => {
     // render each as an individual component (like <SidebarTab tab={paths.home}/>)
 
     return (
-        <aside className="hidden h-[calc(100vh-var(--header-height))] flex-col gap-4 border-2 border-y-0 border-l-0 border-r-primary/20 px-2 py-2 transition-all hover:border-r-primary/30 md:inline-flex md:px-4">
+        <aside className="hidden flex-col gap-4 border-2 border-y-0 border-l-0 border-r-primary/20 px-2 py-2 transition-all hover:border-r-primary/30 md:inline-flex md:px-4">
             <div className="group">
                 <Link
-                    href="?tab=asd"
+                    href={paths.root}
                     className="flex gap-3 rounded-md border-2 border-primary bg-primary px-4 py-1.5 tracking-wide transition-transform duration-300 group-hover:-translate-y-1"
                 >
                     <HomeIcon className="text-white" />

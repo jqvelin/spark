@@ -6,6 +6,7 @@ export const AlbumPreviewCard = ({ album }: { album: Album }) => {
         <div className="flex w-[100px] flex-shrink-0 flex-col items-center overflow-hidden px-1">
             <Image
                 src={album.coverSrc ?? "logo.svg"}
+                draggable={false}
                 width={90}
                 height={90}
                 alt={album.title}

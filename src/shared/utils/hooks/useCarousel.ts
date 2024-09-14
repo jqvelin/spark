@@ -42,7 +42,6 @@ export const useCarousel = (scrollBy = 100) => {
         carousel.addEventListener("pointerup", handlePointerUp);
         function handlePointerUp(e: PointerEvent) {
             const endX = e.clientX;
-            console.log(`END X: ${endX}, START X: ${startX}`);
             handleScroll(endX > startX ? "backwards" : "forwards");
             carousel.removeEventListener("pointerup", handlePointerUp);
         }

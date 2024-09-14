@@ -1,3 +1,4 @@
+"use client"
 import { Song } from "@/shared/api";
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
