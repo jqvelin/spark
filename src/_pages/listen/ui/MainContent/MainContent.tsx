@@ -1,7 +1,7 @@
 import { Album, SongGroups } from "@/shared/api";
 
 import { FreshAlbumsCarousel } from "./FreshAlbumsCarousel";
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import { SongsCategory } from "./SongsCategory/SongsCategory";
 
 type MusicDataForMainContent = {
     homepageSongs: SongGroups;
@@ -14,7 +14,7 @@ export const MainContent = ({
     musicData: MusicDataForMainContent;
 }) => {
     return (
-        <main className="flex-1 overflow-hidden p-4">
+        <main className="flex-1 overflow-hidden p-2 pb-[var(--footer-height)] md:p-4 md:pb-0">
             <section>
                 <div className="mb-4 leading-4">
                     <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-darker tracking-wide font-bold">Fresh albums</h2>
@@ -23,49 +23,11 @@ export const MainContent = ({
                 <FreshAlbumsCarousel albumList={musicData.homepageAlbums} />
             </section>
             <hr className="my-4"/>
-            <section className="flex justify-center">
-                <div className="flex justify-center gap-8 flex-wrap">
-                    <div className="mb-4 leading-4">
-                        <div className="mb-4">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-darker tracking-wide font-bold">Fresh songs</h2>
-                        </div>
-                            <ul className="space-y-2">
-                                {musicData.homepageSongs.fresh.map((song) => (
-                                    <SongPreview key={song.id} song={song} />
-                                ))}
-                            </ul>
-                    </div>
-                    <div className="mb-4 leading-4">
-                        <div className="mb-4">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-darker tracking-wide font-bold">Today's hits</h2>
-                        </div>
-                        <ul className="space-y-2">
-                                {musicData.homepageSongs.bestOfToday.map((song) => (
-                                    <SongPreview key={song.id} song={song} />
-                                ))}
-                        </ul>
-                    </div>
-                    <div className="mb-4 leading-4">
-                        <div className="mb-4">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-darker tracking-wide font-bold">Today's hits</h2>
-                        </div>
-                        <ul className="space-y-2">
-                                {musicData.homepageSongs.trendingGlobal.map((song) => (
-                                    <SongPreview key={song.id} song={song} />
-                                ))}
-                            </ul>
-                    </div>
-                    <div className="mb-4 leading-4">
-                        <div className="mb-4">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-darker tracking-wide font-bold">Trending in Russia</h2>
-                        </div>
-                        <ul className="space-y-2">
-                                {musicData.homepageSongs.trendingRussia.map((song) => (
-                                    <SongPreview key={song.id} song={song} />
-                                ))}
-                            </ul>
-                    </div>
-                </div>
+            <section className="flex justify-between gap-8 flex-wrap">
+                <SongsCategory title="Fresh songs" songs={musicData.homepageSongs.fresh} />
+                <SongsCategory title="Today's hits" songs={musicData.homepageSongs.bestOfToday} />
+                <SongsCategory title="Trending worldwide" songs={musicData.homepageSongs.trendingGlobal} />
+                <SongsCategory title="Trending in Russia" songs={musicData.homepageSongs.trendingRussia} />
             </section>
             <hr className="my-4"/>
         </main>

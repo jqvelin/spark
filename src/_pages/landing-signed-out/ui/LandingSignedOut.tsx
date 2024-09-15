@@ -15,7 +15,7 @@ export const LandingSignedOut = async () => {
     }
 
     return (
-        <main className="flex h-screen animate-shine flex-col items-center justify-center overflow-x-hidden bg-[radial-gradient(circle_at_80%_80%,hsl(var(--primary)),transparent)]">
+        <main className="flex h-[100svh] animate-shine flex-col items-center justify-center overflow-x-hidden bg-[radial-gradient(circle_at_80%_80%,hsl(var(--primary)),transparent)]">
             <ProductDescription />
             {songs && <SongsPreviewLine songs={songs.bestOfToday} />}
             <SignInMethods />

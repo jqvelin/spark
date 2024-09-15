@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const useCarousel = (scrollBy = 100) => {
     const carouselRef = useRef<HTMLElement>(null);
+    const [carouselWidth, setCarouselWidth] = useState(1000)
     const [ableToScroll, setAbleToScroll] = useState({
         backwards: false,
         forwards: true
@@ -50,12 +51,18 @@ export const useCarousel = (scrollBy = 100) => {
     useEffect(() => {
         const carousel = carouselRef.current as HTMLElement;
         carousel.addEventListener("pointerdown", handlePointerDown);
+
+        const minWidth = Math.floor(carousel.clientWidth / 100) * 100;
+        setCarouselWidth(minWidth);
+        console.log(minWidth)
+
         return () =>
             carousel.removeEventListener("pointerdown", handlePointerDown);
     }, []);
 
     return {
         carouselRef,
+        carouselWidth,
         ableToScrollBackwards: ableToScroll.backwards,
         scrollBackwards: () => handleScroll("backwards"),
         ableToScrollForwards: ableToScroll.forwards,

@@ -9,6 +9,7 @@ import { RefObject } from "react";
 export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
     const {
         carouselRef,
+        carouselWidth,
         ableToScrollBackwards,
         scrollBackwards,
         ableToScrollForwards,
@@ -16,7 +17,7 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
     } = useCarousel();
 
     return (
-        <div className="flex">
+        <div className="flex justify-center animate-fade-in opacity-0 delay-700">
             <button
                 onClick={scrollBackwards}
                 disabled={!ableToScrollBackwards}
@@ -25,6 +26,8 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
                 <ArrowLeftIcon />
             </button>
             <ul
+                id="carousel"
+                style={{width: carouselWidth}}
                 className="flex select-none overflow-hidden scroll-smooth"
                 ref={carouselRef as RefObject<HTMLUListElement>}
             >

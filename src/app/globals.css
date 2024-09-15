@@ -32,6 +32,10 @@
         --radius: 0.5rem;
         --text-gradient-from: 333 71% 51%;
         --text-gradient-to: 292 34% 61%;
+
+        /* shared metrics */
+        --header-height: 60px;
+        --footer-height: 40px;
     }
 }
 
