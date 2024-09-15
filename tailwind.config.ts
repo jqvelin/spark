@@ -109,7 +109,7 @@ const config: Config = {
                     },
                     to: {
                         opacity: "1"
-                    }      
+                    }
                 }
             }
         }

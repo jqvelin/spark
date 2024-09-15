@@ -16,7 +16,7 @@ export const ListenPage = async () => {
     return (
         <div className="h-[100svh]">
             <Header />
-            <div className="flex pt-[var(--header-height)]">
+            <div className="flex">
                 <Sidebar />
                 <MainContent musicData={musicData} />
             </div>

@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--primary));
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--primary-darker));
+    }
     :root {
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;

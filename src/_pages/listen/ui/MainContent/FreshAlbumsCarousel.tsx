@@ -17,7 +17,7 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
     } = useCarousel();
 
     return (
-        <div className="flex justify-center animate-fade-in opacity-0 delay-700">
+        <div className="flex animate-fade-in justify-center opacity-0 delay-700">
             <button
                 onClick={scrollBackwards}
                 disabled={!ableToScrollBackwards}
@@ -27,7 +27,7 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
             </button>
             <ul
                 id="carousel"
-                style={{width: carouselWidth}}
+                style={{ width: carouselWidth }}
                 className="flex select-none overflow-hidden scroll-smooth"
                 ref={carouselRef as RefObject<HTMLUListElement>}
             >
