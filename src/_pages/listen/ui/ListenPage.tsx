@@ -14,13 +14,13 @@ export const ListenPage = async () => {
         homepageAlbums
     };
     return (
-        <>
+        <div className="h-[100svh]">
             <Header />
             <div className="flex pt-[var(--header-height)]">
                 <Sidebar />
                 <MainContent musicData={musicData} />
             </div>
             <Footer />
-        </>
+        </div>
     );
 };

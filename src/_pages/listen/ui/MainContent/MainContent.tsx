@@ -14,7 +14,7 @@ export const MainContent = ({
     musicData: MusicDataForMainContent;
 }) => {
     return (
-        <main className="flex-1 overflow-hidden p-2 md:pt-[var(--footer-height)] md:pl-[calc(var(--sidebar-width)+1rem)] md:pb-0">
+        <main className="flex-1 overflow-y-auto h-[calc(100svh-var(--header-height)-var(--footer-height))] md:h-[calc(100svh-var(--header-height))] p-2 md:pt-[var(--footer-height)] md:pl-[calc(var(--sidebar-width)+1rem)] md:pb-0">
             <section>
                 <div className="mb-4 leading-4">
                     <h2 className="text-xl md:text-2xl lg:text-3xl text-primary-darker tracking-wide font-bold">Fresh albums</h2>
