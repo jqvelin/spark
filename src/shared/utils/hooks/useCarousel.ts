@@ -38,12 +38,15 @@ export const useCarousel = (scrollBy = 100) => {
 
     function handlePointerDown(e: PointerEvent) {
         const carousel = carouselRef.current as HTMLElement;
-        carousel.setPointerCapture(e.pointerId);
         const startX = e.clientX;
         carousel.addEventListener("pointerup", handlePointerUp);
         function handlePointerUp(e: PointerEvent) {
             const endX = e.clientX;
-            handleScroll(endX > startX ? "backwards" : "forwards");
+            if (endX > startX) {
+                handleScroll("backwards");
+            } else if (endX < startX) {
+                handleScroll("forwards");
+            }
             carousel.removeEventListener("pointerup", handlePointerUp);
         }
     }
@@ -54,7 +57,6 @@ export const useCarousel = (scrollBy = 100) => {
 
         const minWidth = Math.floor(carousel.clientWidth / 100) * 100;
         setCarouselWidth(minWidth);
-        console.log(minWidth);
 
         return () =>
             carousel.removeEventListener("pointerdown", handlePointerDown);
@@ -66,6 +68,6 @@ export const useCarousel = (scrollBy = 100) => {
         ableToScrollBackwards: ableToScroll.backwards,
         scrollBackwards: () => handleScroll("backwards"),
         ableToScrollForwards: ableToScroll.forwards,
-        scrollForwards: () => handleScroll()
+        scrollForwards: () => handleScroll("forwards")
     };
 };

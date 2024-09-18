@@ -1,7 +1,7 @@
 export const paths = {
     root: "/",
     listen: "/listen",
-    albums: "/albums",
+    albums: "/listen/albums",
     artists: "/artists",
     search: "/search"
 };

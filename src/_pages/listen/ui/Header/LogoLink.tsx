@@ -9,7 +9,7 @@ export const LogoLink = () => {
             className="rounded-full transition-all"
         >
             <Image
-                src="logo.svg"
+                src="/logo.svg"
                 width={48}
                 height={48}
                 alt="logo"
