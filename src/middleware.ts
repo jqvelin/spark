@@ -1,5 +1,4 @@
-export { auth as middleware } from "@/features/sign-in";
-/* import { auth } from "@/features/sign-in";
+import { auth } from "@/features/sign-in";
 import { NextResponse } from "next/server";
 
 import { paths } from "./shared/routing";
@@ -19,4 +18,3 @@ export default auth(async (req) => {
 // Matcher is omitted due to Next.js' inability to evaluate dynamic routes
 // (such as paths.root, paths.listen, etc.)
 // Read more: https://nextjs.org/docs/messages/invalid-page-config
- */
