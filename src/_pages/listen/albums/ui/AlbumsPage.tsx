@@ -5,7 +5,7 @@ import Image from "next/image";
 export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
     const albumData = await getAlbumDataById(albumId);
     return (
-        <main className="flex h-[calc(100svh-var(--header-height)-var(--footer-height))] w-full flex-col items-center p-2 md:p-4">
+        <main className="calculated-height flex w-full flex-col items-center p-2 md:p-4">
             <div className="flex items-center gap-2 md:gap-4">
                 <Image
                     src={albumData.coverSrc ?? "/logo.svg"}

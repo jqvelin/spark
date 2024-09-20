@@ -14,7 +14,7 @@ export const MainContent = ({
     musicData: MusicDataForMainContent;
 }) => {
     return (
-        <main className="h-[calc(100svh-var(--header-height)-var(--footer-height))] flex-1 overflow-y-auto p-2 md:h-[calc(100svh-var(--header-height))] md:p-4 md:pb-0">
+        <main className="calculated-height flex-1 p-2 md:p-4 md:pb-0">
             <section>
                 <div className="mb-4 leading-4">
                     <h2 className="text-xl font-bold tracking-wide text-primary-darker md:text-2xl lg:text-3xl">

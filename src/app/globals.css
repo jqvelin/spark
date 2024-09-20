@@ -66,6 +66,10 @@
             hsl(var(--text-gradient-to))
         );
     }
+
+    .calculated-height {
+        @apply h-[calc(100svh-var(--header-height)-var(--footer-height))] overflow-y-auto md:h-[calc(100svh-var(--header-height))];
+    }
 }
 
 @layer base {
