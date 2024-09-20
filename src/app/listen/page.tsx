@@ -1,5 +1,9 @@
 import { ListenPage } from "@/_pages/listen";
 
-export default function Page() {
-    return <ListenPage />;
+export default function Page({
+    searchParams
+}: {
+    searchParams: { [key: string]: string };
+}) {
+    return <ListenPage searchParams={searchParams} />;
 }
