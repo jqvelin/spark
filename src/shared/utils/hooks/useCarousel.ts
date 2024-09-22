@@ -2,14 +2,19 @@ import { useEffect, useRef, useState } from "react";
 
 export const useCarousel = (scrollBy = 100) => {
     const carouselRef = useRef<HTMLElement>(null);
+    let carousel: HTMLElement;
+
     const [carouselWidth, setCarouselWidth] = useState(1000);
     const [ableToScroll, setAbleToScroll] = useState({
         backwards: false,
         forwards: true
     });
 
+    useEffect(() => {
+       carousel = carouselRef.current as HTMLElement; 
+    }, [])
+
     const handleScroll = (direction: "backwards" | "forwards" = "forwards") => {
-        const carousel = carouselRef.current as HTMLElement;
         const addToScroll = direction === "forwards" ? scrollBy : -scrollBy;
         const nextScrollLeft = (carousel.scrollLeft += addToScroll);
 
@@ -37,7 +42,6 @@ export const useCarousel = (scrollBy = 100) => {
     };
 
     function handlePointerDown(e: PointerEvent) {
-        const carousel = carouselRef.current as HTMLElement;
         const startX = e.clientX;
         carousel.addEventListener("pointerup", handlePointerUp);
         function handlePointerUp(e: PointerEvent) {
@@ -51,15 +55,22 @@ export const useCarousel = (scrollBy = 100) => {
         }
     }
 
-    useEffect(() => {
-        const carousel = carouselRef.current as HTMLElement;
-        carousel.addEventListener("pointerdown", handlePointerDown);
-
+    function calculateCarouselWidth() {
         const minWidth = Math.floor(carousel.clientWidth / 100) * 100;
         setCarouselWidth(minWidth);
+    }
+
+    useEffect(() => {
+        carousel.addEventListener("pointerdown", handlePointerDown);
+
+        calculateCarouselWidth()
+        window.addEventListener("resize", calculateCarouselWidth);
 
         return () =>
-            carousel.removeEventListener("pointerdown", handlePointerDown);
+            {
+                carousel.removeEventListener("pointerdown", handlePointerDown);
+                window.removeEventListener("resize", calculateCarouselWidth);
+            }
     }, []);
 
     return {
