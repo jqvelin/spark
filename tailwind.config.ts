@@ -5,6 +5,10 @@ const config: Config = {
     content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
     theme: {
         extend: {
+            height: {
+                header: "var(--header-height)",
+                footer: "var(--footer-height)"
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":

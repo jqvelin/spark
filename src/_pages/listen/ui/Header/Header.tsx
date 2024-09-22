@@ -4,7 +4,7 @@ import { SearchBox } from "./SearchBox/SearchBox";
 
 export const Header = () => {
     return (
-        <header className="flex h-[var(--header-height)] w-full items-center justify-center bg-white px-2 shadow-sm shadow-primary/20">
+        <header className="flex h-header w-full items-center justify-center bg-white px-2 shadow-sm shadow-primary/20">
             <LogoLink />
             <SearchBox />
             <Profile />
