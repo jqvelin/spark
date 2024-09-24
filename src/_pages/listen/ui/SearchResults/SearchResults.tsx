@@ -12,7 +12,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                 <h2 className="mb-2 text-lg text-primary md:mb-4 md:text-xl lg:text-2xl">
                     Songs
                 </h2>
-                <ul>
+                <ul className="flex flex-col max-h-screen flex-wrap items-center w-full gap-2">
                     {searchResultsData?.songs?.map((song) => (
                         <SongPreview
                             key={song.id}

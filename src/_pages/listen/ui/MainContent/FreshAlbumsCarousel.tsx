@@ -26,7 +26,6 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
                 <ArrowLeftIcon />
             </button>
             <ul
-                id="carousel"
                 style={{ width: carouselWidth }}
                 className="flex select-none overflow-hidden scroll-smooth"
                 ref={carouselRef as RefObject<HTMLUListElement>}

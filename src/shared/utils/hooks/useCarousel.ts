@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 export const useCarousel = (scrollBy = 100) => {
     const carouselRef = useRef<HTMLElement>(null);
-    let carousel: HTMLElement;
 
     const [carouselWidth, setCarouselWidth] = useState(1000);
     const [ableToScroll, setAbleToScroll] = useState({
@@ -10,15 +9,12 @@ export const useCarousel = (scrollBy = 100) => {
         forwards: true
     });
 
-    useEffect(() => {
-       carousel = carouselRef.current as HTMLElement; 
-    }, [])
-
     const handleScroll = (direction: "backwards" | "forwards" = "forwards") => {
+        if (!carouselRef.current) return;
         const addToScroll = direction === "forwards" ? scrollBy : -scrollBy;
-        const nextScrollLeft = (carousel.scrollLeft += addToScroll);
+        const nextScrollLeft = (carouselRef.current!.scrollLeft += addToScroll);
 
-        carousel.scrollLeft = nextScrollLeft;
+        carouselRef.current.scrollLeft = nextScrollLeft;
 
         if (nextScrollLeft <= 0) {
             setAbleToScroll({
@@ -27,7 +23,7 @@ export const useCarousel = (scrollBy = 100) => {
             });
         } else if (
             nextScrollLeft >=
-            carousel.scrollWidth - carousel.clientWidth
+            carouselRef.current!.scrollWidth - carouselRef.current!.clientWidth
         ) {
             setAbleToScroll({
                 backwards: true,
@@ -42,35 +38,46 @@ export const useCarousel = (scrollBy = 100) => {
     };
 
     function handlePointerDown(e: PointerEvent) {
+        if (!carouselRef.current) return;
         const startX = e.clientX;
-        carousel.addEventListener("pointerup", handlePointerUp);
+        carouselRef.current.addEventListener("pointerup", handlePointerUp);
         function handlePointerUp(e: PointerEvent) {
+            if (!carouselRef.current) return;
             const endX = e.clientX;
             if (endX > startX) {
                 handleScroll("backwards");
             } else if (endX < startX) {
                 handleScroll("forwards");
             }
-            carousel.removeEventListener("pointerup", handlePointerUp);
+            carouselRef.current.removeEventListener(
+                "pointerup",
+                handlePointerUp
+            );
         }
     }
 
     function calculateCarouselWidth() {
-        const minWidth = Math.floor(carousel.clientWidth / 100) * 100;
+        if (!carouselRef.current) return;
+        const minWidth =
+            Math.floor(carouselRef.current.clientWidth / 100) * 100;
         setCarouselWidth(minWidth);
     }
 
     useEffect(() => {
-        carousel.addEventListener("pointerdown", handlePointerDown);
+        if (!carouselRef.current) return;
+        carouselRef.current.addEventListener("pointerdown", handlePointerDown);
 
-        calculateCarouselWidth()
+        calculateCarouselWidth();
         window.addEventListener("resize", calculateCarouselWidth);
 
-        return () =>
-            {
-                carousel.removeEventListener("pointerdown", handlePointerDown);
-                window.removeEventListener("resize", calculateCarouselWidth);
-            }
+        return () => {
+            if (carouselRef.current)
+                carouselRef.current.removeEventListener(
+                    "pointerdown",
+                    handlePointerDown
+                );
+            window.removeEventListener("resize", calculateCarouselWidth);
+        };
     }, []);
 
     return {
