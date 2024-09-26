@@ -22,7 +22,7 @@ export const SongPreview: FC<
             )}
         >
             <Image
-                src={song.coverSrc ?? "logo.svg"}
+                src={song.coverSrc ?? "/logo.svg"}
                 width={40}
                 height={40}
                 alt={song.title}

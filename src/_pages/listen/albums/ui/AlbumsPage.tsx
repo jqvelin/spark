@@ -1,6 +1,8 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
 import { getAlbumDataById } from "@/shared/api";
+import { paths } from "@/shared/routing";
 import Image from "next/image";
+import Link from "next/link";
 
 export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
     const albumData = await getAlbumDataById(albumId);
@@ -18,9 +20,12 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                     <h1 className="mb-1 text-xl font-semibold leading-tight md:text-2xl">
                         {albumData.title}
                     </h1>
-                    <h2 className="text-sm text-gray-500 md:text-lg">
+                    <Link
+                        href={`${paths.listen.artists}/${albumData.artistId}`}
+                        className="text-sm text-gray-500 md:text-lg"
+                    >
                         {albumData.artist}
-                    </h2>
+                    </Link>
                     <div className="flex flex-wrap gap-2">
                         {albumData.genres?.map((genre) => (
                             <span
@@ -34,12 +39,15 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                 </div>
             </div>
             <hr className="my-2 w-full md:my-4" />
-            {albumData.songs?.map((song) => (
-                <SongPreview
-                    className="w-full max-w-[400px] md:w-auto"
-                    song={song}
-                />
-            ))}
+            <div className="flex flex-col gap-2 w-full max-w-[500px]">
+                {albumData.songs?.map((song) => (
+                    <SongPreview
+                        key={song.id}
+                        song={song}
+                        className="w-full"
+                    />
+                ))}
+            </div>
         </main>
     );
 };
