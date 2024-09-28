@@ -1,3 +1,4 @@
+import { paths } from "@/shared/routing";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,16 +17,15 @@ export const useDebouncedSearch = (delayMs = 1000) => {
         // Debounce
         timeout.current && clearTimeout(timeout.current);
 
-        const url = new URL(window.location.href);
         if (searchQuery === "") {
-            clearUrl(url);
+            clearUrl();
             return;
         }
 
         timeout.current = setTimeout(() => {
-            if (!searchQuery) clearUrl(url);
+            if (!searchQuery) clearUrl();
             else {
-                router.push(`${url.href.split("?")[0]}?search=${searchQuery}`);
+                router.push(`${paths.listen.root}?search=${searchQuery}`);
             }
         }, delayMs);
         return () => {
@@ -34,8 +34,8 @@ export const useDebouncedSearch = (delayMs = 1000) => {
     }, [searchQuery]);
 
     // Remove '?search=' from url if no search query provided
-    const clearUrl = (url: URL) => {
-        router.push(`${url.href.split("?")[0]}`);
+    const clearUrl = () => {
+        router.push(paths.listen.root);
     };
 
     return {

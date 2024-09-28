@@ -29,18 +29,22 @@ export const MainContent = ({
                 <SongsCategory
                     title="Fresh songs"
                     songs={musicData.homepageSongs.fresh}
+                    className="mx-auto"
                 />
                 <SongsCategory
                     title="Today's hits"
                     songs={musicData.homepageSongs.bestOfToday}
+                    className="mx-auto"
                 />
                 <SongsCategory
                     title="Trending worldwide"
                     songs={musicData.homepageSongs.trendingGlobal}
+                    className="mx-auto"
                 />
                 <SongsCategory
                     title="Trending in Russia"
                     songs={musicData.homepageSongs.trendingRussia}
+                    className="mx-auto"
                 />
             </section>
             <hr className="my-4" />

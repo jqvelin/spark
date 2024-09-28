@@ -1,5 +1,7 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
 import { getSearchResults } from "@/shared/api";
+import { paths } from "@/shared/routing";
+import Link from "next/link";
 
 export const SearchResults = async ({ query }: { query: string }) => {
     const searchResultsData = await getSearchResults(query);
@@ -42,12 +44,13 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                 Artists
                             </h2>
                             {searchResultsData?.artists?.map((artist) => (
-                                <p
+                                <Link
+                                    href={`${paths.listen.artists}/${artist.id}`}
                                     key={artist.id}
-                                    className="text-lg"
+                                    className="text-lg block"
                                 >
                                     {artist.name}
-                                </p>
+                                </Link>
                             ))}
                         </ul>
                     </section>
@@ -58,7 +61,13 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                 Albums
                             </h2>
                             {searchResultsData?.albums?.map((album) => (
-                                <p key={album.id}>{album.title}</p>
+                                <Link
+                                    href={`${paths.listen.albums}/${album.id}`}
+                                    key={album.id}
+                                    className="block"
+                                >
+                                    {album.title}
+                                </Link>
                             ))}
                         </ul>
                     </section>
