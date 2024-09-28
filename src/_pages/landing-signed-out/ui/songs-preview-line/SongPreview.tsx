@@ -1,17 +1,16 @@
 "use client";
 
 import { Song } from "@/shared/api";
+import { useTextOverflowHandler } from "@/shared/utils";
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { useSongDataOverflowHandler } from "../../utils/useSongDataOverflowHandler";
-
 export const SongPreview: FC<
     { song: Song } & HTMLAttributes<HTMLDivElement>
 > = ({ song, ...props }) => {
-    const { songDataWrapperRef, songTitleRef, songArtistRef } =
-        useSongDataOverflowHandler();
+    const titleRef = useTextOverflowHandler();
+    const artistRef = useTextOverflowHandler();
 
     return (
         <div
@@ -28,22 +27,19 @@ export const SongPreview: FC<
                 alt={song.title}
                 className="rounded-sm"
             />
-            <div
-                ref={songDataWrapperRef}
-                className="relative flex w-full flex-col overflow-hidden whitespace-nowrap"
-            >
-                <span
-                    ref={songTitleRef}
-                    className="relative text-ellipsis hover:[animation-play-state:paused]"
+            <div className="flex w-full flex-col whitespace-nowrap overflow-hidden">
+                <div
+                    ref={titleRef}
+                    className="overflow-hidden"
                 >
-                    {song.title}
-                </span>
-                <span
-                    ref={songArtistRef}
-                    className="text-sm text-gray-400"
+                    <span className="text-ellipsis">{song.title}</span>
+                </div>
+                <div
+                    ref={artistRef}
+                    className="overflow-hidden"
                 >
-                    {song.artist}
-                </span>
+                    <span className="text-sm text-gray-400">{song.artist}</span>
+                </div>
             </div>
         </div>
     );

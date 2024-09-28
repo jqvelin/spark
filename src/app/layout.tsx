@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 import "./globals.css";
 
@@ -24,7 +25,13 @@ export default function RootLayout({
                     href="/icon.ico"
                 />
             </head>
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+                <NextTopLoader
+                    color="hsl(var(--primary))"
+                    showSpinner={false}
+                />
+                {children}
+            </body>
         </html>
     );
 }
