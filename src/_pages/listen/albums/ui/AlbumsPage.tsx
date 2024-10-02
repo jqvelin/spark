@@ -3,12 +3,13 @@ import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import Image from "next/image";
 import Link from "next/link";
+import { Fragment } from "react";
 
 export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
     const albumData = await getAlbumDataById(albumId);
     return (
-        <main className="calculated-height flex w-full flex-col items-center p-2 md:p-4">
-            <div className="flex items-center gap-2 md:gap-4">
+        <Fragment>
+            <div className="flex items-center justify-center gap-2 md:gap-4">
                 <Image
                     src={albumData.coverSrc ?? "/logo.svg"}
                     width={100}
@@ -39,7 +40,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                 </div>
             </div>
             <hr className="my-2 w-full md:my-4" />
-            <div className="flex flex-col gap-2 w-full max-w-[500px]">
+            <div className="flex flex-col mx-auto items-center gap-2 w-full max-w-[500px]">
                 {albumData.songs?.map((song) => (
                     <SongPreview
                         key={song.id}
@@ -48,6 +49,6 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                     />
                 ))}
             </div>
-        </main>
+        </Fragment>
     );
 };

@@ -16,7 +16,7 @@ export const SongPreview: FC<
         <div
             {...props}
             className={twMerge(
-                "flex w-[250px] items-center gap-2 rounded-md bg-white px-3 py-2 shadow-md",
+                "flex w-song-line items-center gap-2 rounded-md bg-white px-3 py-2 shadow-md",
                 props.className
             )}
         >
@@ -32,7 +32,7 @@ export const SongPreview: FC<
                     ref={titleRef}
                     className="overflow-hidden"
                 >
-                    <span className="text-ellipsis">{song.title}</span>
+                    <span>{song.title}</span>
                 </div>
                 <div
                     ref={artistRef}

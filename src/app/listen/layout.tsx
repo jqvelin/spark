@@ -8,7 +8,9 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <Header />
                 <div className="flex">
                     <Sidebar />
-                    {children}
+                    <main className="calculated-height flex flex-col w-full p-2 md:p-4">
+                        {children}
+                    </main>
                 </div>
                 <Footer />
             </div>

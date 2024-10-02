@@ -9,6 +9,9 @@ const config: Config = {
                 header: "var(--header-height)",
                 footer: "var(--footer-height)"
             },
+            width: {
+                "song-line": "var(--song-line-width)"
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":

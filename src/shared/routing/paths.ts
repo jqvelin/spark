@@ -3,7 +3,8 @@ export const paths = {
     listen: {
         root: "/listen",
         albums: "/listen/albums",
-        artists: "/listen/artists"
+        artists: "/listen/artists",
+        categories: "/listen/categories"
     },
     artists: "/artists",
     search: "/search"

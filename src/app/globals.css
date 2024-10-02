@@ -48,6 +48,7 @@
         /* shared metrics */
         --header-height: 60px;
         --footer-height: 40px;
+        --song-line-width: 250px;
     }
 }
 

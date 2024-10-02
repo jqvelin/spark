@@ -24,8 +24,10 @@ export const useTextOverflowHandler = () => {
             if (scrollWidth > offsetWidth) {
                 textScrollingInterval = setInterval(() => {
                     const isScrolledUntilEnd =
-                        scrollWidth ===
-                        Math.round(offsetWidth + textElement.scrollLeft);
+                        Math.abs(
+                            scrollWidth -
+                                Math.floor(offsetWidth + textElement.scrollLeft)
+                        ) <= 1;
                     if (!isScrolledUntilEnd && !isScrollingBackwards) {
                         textElement.scrollLeft += 1;
                     } else {
@@ -35,7 +37,7 @@ export const useTextOverflowHandler = () => {
                             }, DELAY_BETWEEN_SCROLLS);
                             return;
                         }
-
+                        console.log("Should scroll backwards");
                         if (textElement.scrollLeft !== 0) {
                             textElement.scrollLeft -= 1;
                         } else {

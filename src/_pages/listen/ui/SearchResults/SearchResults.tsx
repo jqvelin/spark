@@ -2,11 +2,12 @@ import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/S
 import { getSearchResults } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import Link from "next/link";
+import { Fragment } from "react";
 
 export const SearchResults = async ({ query }: { query: string }) => {
     const searchResultsData = await getSearchResults(query);
     return (
-        <main className="calculated-height w-full space-y-4 p-2 md:p-4">
+        <Fragment>
             {!searchResultsData.albums.length &&
             !searchResultsData.artists.length &&
             !searchResultsData.songs.length ? (
@@ -28,16 +29,17 @@ export const SearchResults = async ({ query }: { query: string }) => {
                         <h2 className="mb-2 text-lg text-primary md:mb-4 md:text-xl lg:text-2xl">
                             Songs
                         </h2>
-                        <ul className="flex flex-col max-h-screen flex-wrap items-center w-full gap-2">
+                        <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))]">
                             {searchResultsData?.songs?.map((song) => (
                                 <SongPreview
                                     key={song.id}
                                     song={song}
+                                    className="w-full"
                                 />
                             ))}
-                        </ul>
+                        </div>
                     </section>
-                    <hr className="w-full" />
+                    <hr className="w-full my-4" />
                     <section>
                         <ul>
                             <h2 className="mb-2 text-lg text-primary md:mb-4 md:text-xl lg:text-2xl">
@@ -54,7 +56,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                             ))}
                         </ul>
                     </section>
-                    <hr className="w-full" />
+                    <hr className="w-full my-4" />
                     <section>
                         <ul>
                             <h2 className="mb-2 text-lg text-primary md:mb-4 md:text-xl lg:text-2xl">
@@ -73,6 +75,6 @@ export const SearchResults = async ({ query }: { query: string }) => {
                     </section>
                 </>
             )}
-        </main>
+        </Fragment>
     );
 };
