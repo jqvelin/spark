@@ -27,7 +27,7 @@ export const ExtendedCategoriesPage = async ({
                 )}
             </div>
             <div className="space-y-2 mx-auto w-full">
-                <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))]">
+                <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-line-width),1fr))]">
                     {categorySongs.map((song) => (
                         <SongPreview
                             song={song}
