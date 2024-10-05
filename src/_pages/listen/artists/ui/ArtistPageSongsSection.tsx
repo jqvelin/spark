@@ -2,11 +2,13 @@
 
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
 import { Artist } from "@/shared/api";
+import AnimatedNumber from "react-animated-numbers";
 
 import { useSplitSongsByPages } from "../utils/ArtistPageSongsSection/useSplitSongsByPages";
 
 export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
     const {
+        containerRef,
         page,
         pageOrder,
         isFirstPageReached,
@@ -17,7 +19,10 @@ export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
 
     return (
         <div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center mb-4">
+            <div
+                ref={containerRef}
+                className="transition-all duration-100 grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center mb-4"
+            >
                 {page?.map((song) => (
                     <SongPreview
                         song={song}
@@ -33,7 +38,13 @@ export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
                 >
                     {"<"}
                 </button>
-                <div>{pageOrder}</div>
+                <AnimatedNumber
+                    animateToNumber={pageOrder}
+                    transitions={(_) => ({
+                        type: "spring",
+                        duration: 0.15
+                    })}
+                />
                 <button
                     onClick={toNextPage}
                     disabled={isLastPageReached}
