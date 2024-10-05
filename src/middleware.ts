@@ -6,7 +6,9 @@ import { paths } from "./shared/routing";
 export default auth(async (req) => {
     const userSignedIn = !!req.auth?.user;
     const entersHomePage = req.nextUrl.pathname === paths.root;
-    const triesToAccessListenPage = req.nextUrl.pathname === paths.listen.root;
+    const triesToAccessListenPage = req.nextUrl.pathname.startsWith(
+        paths.listen.root
+    );
 
     if (!userSignedIn && triesToAccessListenPage) {
         return NextResponse.redirect(req.nextUrl.origin);

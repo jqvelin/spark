@@ -1,12 +1,14 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import { SongsPreviewLine } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongsPreviewLine";
 import { AlbumPreviewCard } from "@/entities/Album";
 import { Artist, getArtistDataById } from "@/shared/api";
 import Image from "next/image";
 import { Fragment } from "react";
 
+import { ArtistPageSongsSection } from "./ArtistPageSongsSection";
+
 export const ArtistPage = async ({ artistId }: { artistId: Artist["id"] }) => {
     const artist = await getArtistDataById(artistId);
-
     return (
         <Fragment>
             <div className="flex justify-center items-center gap-2 md:gap-4">
@@ -27,12 +29,7 @@ export const ArtistPage = async ({ artistId }: { artistId: Artist["id"] }) => {
                     <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">
                         Songs
                     </h2>
-                    {artist.songs?.map((song) => (
-                        <SongPreview
-                            song={song}
-                            key={song.id}
-                        />
-                    ))}
+                    <ArtistPageSongsSection artist={artist} />
                 </div>
                 <div className="flex flex-col">
                     <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">
