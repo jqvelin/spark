@@ -66,6 +66,7 @@ describe("SongsPreviewLine behavior testing", () => {
 
     test(
         "songs change after time",
+        { timeout: timeBetweenSongsChange },
         async () => {
             testSongs
                 .slice(0, 3)
@@ -83,7 +84,6 @@ describe("SongsPreviewLine behavior testing", () => {
                 .forEach((song) =>
                     expect(screen.getByText(song.title)).toBeDefined()
                 );
-        },
-        { timeout: timeBetweenSongsChange }
+        }
     );
 });
