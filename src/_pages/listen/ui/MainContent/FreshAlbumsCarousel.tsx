@@ -2,7 +2,7 @@
 
 import { AlbumPreviewCard } from "@/entities/Album";
 import { Album } from "@/shared/api";
-import { useCarousel } from "@/shared/utils";
+import { useCarousel } from "@/shared/utils/hooks";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { RefObject } from "react";
 

@@ -37,7 +37,7 @@ export const useCarousel = (scrollBy = 100) => {
         }
     };
 
-    function handlePointerDown(e: PointerEvent) {
+    const handlePointerDown = (e: PointerEvent) => {
         if (!carouselRef.current) return;
         const startX = e.clientX;
         carouselRef.current.addEventListener("pointerup", handlePointerUp);
@@ -54,14 +54,14 @@ export const useCarousel = (scrollBy = 100) => {
                 handlePointerUp
             );
         }
-    }
+    };
 
-    function calculateCarouselWidth() {
+    const calculateCarouselWidth = () => {
         if (!carouselRef.current) return;
         const minWidth =
             Math.floor(carouselRef.current.clientWidth / 100) * 100;
         setCarouselWidth(minWidth);
-    }
+    };
 
     useEffect(() => {
         if (!carouselRef.current) return;

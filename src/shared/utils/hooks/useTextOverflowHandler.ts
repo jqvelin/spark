@@ -37,7 +37,6 @@ export const useTextOverflowHandler = () => {
                             }, DELAY_BETWEEN_SCROLLS);
                             return;
                         }
-                        console.log("Should scroll backwards");
                         if (textElement.scrollLeft !== 0) {
                             textElement.scrollLeft -= 1;
                         } else {

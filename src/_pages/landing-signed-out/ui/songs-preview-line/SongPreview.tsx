@@ -1,7 +1,7 @@
 "use client";
 
 import { Song } from "@/shared/api";
-import { useTextOverflowHandler } from "@/shared/utils";
+import { useTextOverflowHandler } from "@/shared/utils/hooks";
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";

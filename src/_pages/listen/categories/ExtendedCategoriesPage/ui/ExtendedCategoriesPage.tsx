@@ -1,5 +1,6 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
 import { SongGroups, getHomepageSongs } from "@/shared/api";
+import { getSongsCollectionDuration } from "@/shared/utils";
 import { Fragment } from "react";
 
 type Props = {
@@ -14,6 +15,7 @@ export const ExtendedCategoriesPage = async ({
     categoryDescription
 }: Props) => {
     const { [categoryName]: categorySongs } = await getHomepageSongs();
+    const categorySongsDuration = getSongsCollectionDuration(categorySongs);
     return (
         <Fragment>
             <div className="mb-4">
@@ -26,7 +28,7 @@ export const ExtendedCategoriesPage = async ({
                     </span>
                 )}
             </div>
-            <div className="space-y-2 mx-auto w-full">
+            <div className="space-y-2 mx-auto w-full mb-2">
                 <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-line-width),1fr))]">
                     {categorySongs.map((song) => (
                         <SongPreview
@@ -36,6 +38,7 @@ export const ExtendedCategoriesPage = async ({
                     ))}
                 </div>
             </div>
+            <span className="mx-auto md:mr-0 text-gray-400">{`${categorySongs.length} songs, ${categorySongsDuration} min`}</span>
         </Fragment>
     );
 };

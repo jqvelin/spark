@@ -58,12 +58,12 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                             />
                                         ))}
                                     {searchResultsData?.songs.length > 12 && (
-                                        <span className="text-gray-400 [place-self:end_start]">
+                                        <CollapsibleTrigger className="text-gray-400 [place-self:end_start]">
                                             ...{" "}
                                             {searchResultsData?.songs.length -
                                                 5}{" "}
                                             more
-                                        </span>
+                                        </CollapsibleTrigger>
                                     )}
                                 </div>
                                 <CollapsibleContent>
@@ -122,9 +122,9 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                         </Link>
                                     ))}
                                     {sortedArtists.length > 5 && (
-                                        <span className="text-gray-400 [place-self:end_start]">
+                                        <CollapsibleTrigger className="text-gray-400 [place-self:end_start]">
                                             ... {sortedArtists.length - 5} more
-                                        </span>
+                                        </CollapsibleTrigger>
                                     )}
                                 </ul>
                                 {sortedArtists.length > 5 && (

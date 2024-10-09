@@ -1,12 +1,17 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
 import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
+import { getSongsCollectionDuration } from "@/shared/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 
 export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
     const albumData = await getAlbumDataById(albumId);
+    const albumSongsDuration = getSongsCollectionDuration(
+        albumData.songs ?? []
+    );
+
     return (
         <Fragment>
             <div className="flex items-center justify-center gap-2 md:gap-4">
@@ -40,7 +45,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                 </div>
             </div>
             <hr className="my-2 w-full md:my-4" />
-            <div className="flex flex-col mx-auto items-center gap-2 w-full max-w-[500px]">
+            <div className="flex flex-col mx-auto items-center gap-2 w-full max-w-[500px] mb-2">
                 {albumData.songs?.map((song) => (
                     <SongPreview
                         key={song.id}
@@ -49,6 +54,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                     />
                 ))}
             </div>
+            <span className="mx-auto text-gray-400">{`${albumData.songs?.length} songs, ${albumSongsDuration} min`}</span>
         </Fragment>
     );
 };

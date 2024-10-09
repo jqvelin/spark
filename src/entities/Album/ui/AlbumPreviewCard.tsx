@@ -17,7 +17,7 @@ export const AlbumPreviewCard = ({ album }: { album: Album }) => {
                     width={90}
                     height={90}
                     alt={album.title}
-                    className="mb-2 rounded-sm"
+                    className="mb-2 rounded-sm aspect-square"
                 />
                 <p
                     className="mb-1 line-clamp-5 leading-4 text-[12px] font-semibold"
