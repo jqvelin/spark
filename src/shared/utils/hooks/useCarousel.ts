@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export const useCarousel = (scrollBy = 100) => {
-    const carouselRef = useRef<HTMLElement>(null);
+    const carouselRef = useRef<HTMLUListElement>(null);
 
     const [carouselWidth, setCarouselWidth] = useState(1000);
     const [ableToScroll, setAbleToScroll] = useState({

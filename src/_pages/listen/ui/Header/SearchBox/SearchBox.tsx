@@ -6,12 +6,11 @@ import { SearchIcon } from "lucide-react";
 import { useDebouncedSearch } from "./useDebouncedSearch";
 
 export const SearchBox = () => {
-    const { isSearching, currentSearchQuery, applySearchQuery } =
-        useDebouncedSearch();
+    const { currentSearchQuery, applySearchQuery } = useDebouncedSearch();
     return (
         <search className="relative ml-auto w-1/2 max-w-[300px]">
             <Input
-                className={`pr-[28px] ${isSearching && "animate-pulse"}`}
+                className="pr-[28px]"
                 value={currentSearchQuery}
                 onChange={(e) => applySearchQuery(e.target.value)}
             />

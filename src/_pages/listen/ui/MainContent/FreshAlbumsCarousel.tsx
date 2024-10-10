@@ -6,7 +6,12 @@ import { useCarousel } from "@/shared/utils/hooks";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { RefObject } from "react";
 
-export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
+type Props = {
+    albumList: Album[];
+    testingRef?: RefObject<HTMLUListElement>;
+};
+
+export const FreshAlbumsCarousel = ({ albumList, testingRef }: Props) => {
     const {
         carouselRef,
         carouselWidth,
@@ -28,7 +33,7 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
             <ul
                 style={{ width: carouselWidth }}
                 className="flex select-none overflow-hidden scroll-smooth"
-                ref={carouselRef as RefObject<HTMLUListElement>}
+                ref={testingRef ?? carouselRef}
             >
                 {albumList.map((album) => (
                     <AlbumPreviewCard
