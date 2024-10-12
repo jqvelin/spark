@@ -1,5 +1,4 @@
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
-import { getSongsCollectionDuration } from "@/entities/Song";
+import { SongElement, getSongsCollectionDuration } from "@/entities/Song";
 import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import Image from "next/image";
@@ -47,7 +46,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
             <hr className="my-2 w-full md:my-4" />
             <div className="flex flex-col mx-auto items-center gap-2 w-full max-w-[500px] mb-2">
                 {albumData.songs?.map((song) => (
-                    <SongPreview
+                    <SongElement
                         key={song.id}
                         song={song}
                         className="w-full"

@@ -1,5 +1,5 @@
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
 import {
+    SongElement,
     getSongsCollectionDuration,
     splitSongsCollectionIntoGroups
 } from "@/entities/Song";
@@ -40,7 +40,7 @@ export const ExtendedCategoriesPage = async ({
                             key={group.toString()}
                         >
                             {group.map((song) => (
-                                <SongPreview
+                                <SongElement
                                     song={song}
                                     key={song.id}
                                 />

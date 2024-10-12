@@ -1,5 +1,3 @@
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
-import { SongsPreviewLine } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongsPreviewLine";
 import { AlbumPreviewCard } from "@/entities/Album";
 import { Artist, getArtistDataById } from "@/shared/api";
 import Image from "next/image";

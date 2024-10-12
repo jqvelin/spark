@@ -2,12 +2,12 @@
 
 import { Song } from "@/shared/api";
 
-import { useSongsPreviewSlides } from "../../utils/useSongsPreviewSlides";
-import { SongPreview } from "./SongPreview";
+import { useSongElementsPreviewSlides } from "../../utils/useSongElementsPreviewSlides";
+import { SongElement } from "./SongElement";
 
-export const SongsPreviewLine = ({ songs }: { songs: Song[] }) => {
+export const SongElementsPreview = ({ songs }: { songs: Song[] }) => {
     const { sliceSongsFromIndex, songsPreviewLineWrapperRef } =
-        useSongsPreviewSlides(songs);
+        useSongElementsPreviewSlides(songs);
     return (
         <div
             className="flex h-[220px] flex-col items-center gap-4 transition-opacity md:h-auto md:flex-row"
@@ -16,7 +16,7 @@ export const SongsPreviewLine = ({ songs }: { songs: Song[] }) => {
             {songs
                 .slice(sliceSongsFromIndex, sliceSongsFromIndex + 3)
                 .map((song, i) => (
-                    <SongPreview
+                    <SongElement
                         className="animate-pop-up"
                         style={{ animationDelay: `${i}00ms` }}
                         key={song.id}

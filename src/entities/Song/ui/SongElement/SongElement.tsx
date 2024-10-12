@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-export const SongPreview: FC<
+export const SongElement: FC<
     { song: Song } & HTMLAttributes<HTMLDivElement>
 > = ({ song, ...props }) => {
     const titleRef = useTextOverflowHandler();

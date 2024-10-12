@@ -1,4 +1,4 @@
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import { SongElement } from "@/entities/Song";
 import { getSearchResults } from "@/shared/api";
 import {
     Collapsible,
@@ -53,7 +53,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                     {searchResultsData?.songs
                                         .slice(0, 12)
                                         .map((song) => (
-                                            <SongPreview
+                                            <SongElement
                                                 key={song.id}
                                                 song={song}
                                                 className="w-full"
@@ -74,7 +74,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                         {searchResultsData?.songs
                                             .slice(12)
                                             .map((song) => (
-                                                <SongPreview
+                                                <SongElement
                                                     key={song.id}
                                                     song={song}
                                                     className="w-full"

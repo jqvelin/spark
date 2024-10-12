@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 export const TIME_BEFORE_VISIBILITY_CHANGE = 150 + 350;
 export const SONGS_SHOULD_STAY_FOR = 4000;
 
-export const useSongsPreviewSlides = (songs: Song[]) => {
+export const useSongElementsPreviewSlides = (songs: Song[]) => {
     const songsPreviewLineWrapperRef = useRef<HTMLDivElement>(null);
     const [sliceSongsFromIndex, setSliceSongsFromIndex] = useState(0);
     useEffect(() => {

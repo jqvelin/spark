@@ -1,4 +1,4 @@
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import { SongElement } from "@/entities/Song";
 import { Song } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import { ArrowRightIcon } from "lucide-react";
@@ -24,7 +24,7 @@ export const SongsCategory = ({ title, songs, link, ...props }: Props) => {
                 </Link>
                 <ul className="space-y-2 mt-4">
                     {songs.slice(0, 4).map((song) => (
-                        <SongPreview
+                        <SongElement
                             key={song.id}
                             song={song}
                         />

@@ -1,6 +1,6 @@
 "use client";
 
-import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import { SongElement } from "@/entities/Song";
 import { Artist } from "@/shared/api";
 import AnimatedNumber from "react-animated-numbers";
 
@@ -24,7 +24,7 @@ export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
                 className="transition-all duration-100 grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center mb-4"
             >
                 {page?.map((song) => (
-                    <SongPreview
+                    <SongElement
                         song={song}
                         key={song.id}
                     />
