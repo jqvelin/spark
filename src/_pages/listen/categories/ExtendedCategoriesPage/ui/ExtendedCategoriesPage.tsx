@@ -1,6 +1,9 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import {
+    getSongsCollectionDuration,
+    splitSongsCollectionIntoGroups
+} from "@/entities/Song";
 import { SongGroups, getHomepageSongs } from "@/shared/api";
-import { getSongsCollectionDuration } from "@/shared/utils";
 import { Fragment } from "react";
 
 type Props = {
@@ -15,6 +18,7 @@ export const ExtendedCategoriesPage = async ({
     categoryDescription
 }: Props) => {
     const { [categoryName]: categorySongs } = await getHomepageSongs();
+    const splittedCategorySongs = splitSongsCollectionIntoGroups(categorySongs);
     const categorySongsDuration = getSongsCollectionDuration(categorySongs);
     return (
         <Fragment>
@@ -29,14 +33,27 @@ export const ExtendedCategoriesPage = async ({
                 )}
             </div>
             <div className="space-y-2 mx-auto w-full mb-2">
-                <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-line-width),1fr))]">
-                    {categorySongs.map((song) => (
-                        <SongPreview
-                            song={song}
-                            key={song.id}
-                        />
-                    ))}
-                </div>
+                {splittedCategorySongs.map((group, groupIndex) => (
+                    <Fragment>
+                        <div
+                            className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-line-width),1fr))]"
+                            key={group.toString()}
+                        >
+                            {group.map((song) => (
+                                <SongPreview
+                                    song={song}
+                                    key={song.id}
+                                />
+                            ))}
+                        </div>
+                        {groupIndex !== splittedCategorySongs.length - 1 && (
+                            <hr
+                                className="border-primary/50"
+                                style={{ margin: "16px 0" }}
+                            />
+                        )}
+                    </Fragment>
+                ))}
             </div>
             <span className="mx-auto md:mr-0 text-gray-400">{`${categorySongs.length} songs, ${categorySongsDuration} min`}</span>
         </Fragment>

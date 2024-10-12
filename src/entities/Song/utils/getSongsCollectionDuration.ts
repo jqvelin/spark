@@ -1,4 +1,4 @@
-import { Song } from "../api";
+import { Song } from "@/shared/api";
 
 export const getSongsCollectionDuration = (songs: Song[]) => {
     const durationInSeconds = songs.reduce((acc, song) => {

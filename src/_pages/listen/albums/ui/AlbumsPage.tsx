@@ -1,7 +1,7 @@
 import { SongPreview } from "@/_pages/landing-signed-out/ui/songs-preview-line/SongPreview";
+import { getSongsCollectionDuration } from "@/entities/Song";
 import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
-import { getSongsCollectionDuration } from "@/shared/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
