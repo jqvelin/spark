@@ -13,11 +13,12 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
 
     return (
         <Fragment>
-            <div className="flex items-center justify-center gap-2 md:gap-4">
+            <div className="flex flex-col items-center text-center justify-center gap-2 md:gap-4">
                 <Image
                     src={albumData.coverSrc ?? "/logo.svg"}
-                    width={100}
-                    height={100}
+                    width={150}
+                    height={150}
+                    sizes="400px"
                     alt={albumData.title}
                     className="min-w-[100px] rounded-sm"
                 />
@@ -31,7 +32,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                     >
                         {albumData.artist}
                     </Link>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex justify-center flex-wrap gap-2">
                         {albumData.genres?.map((genre) => (
                             <span
                                 className="rounded-sm bg-gray-400 px-1 py-[2px] text-[12px] text-white md:text-[14px]"

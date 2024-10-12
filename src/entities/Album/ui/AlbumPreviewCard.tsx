@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const AlbumPreviewCard = ({ album }: { album: Album }) => {
     return (
-        <div className="flex flex-col text-center break-all shrink-0 w-[100px] items-center">
+        <div className="flex flex-col text-center break-normal shrink-0 w-[100px] items-center">
             <Link
                 href={`${paths.listen.albums}/${album.id}`}
                 draggable={false}
@@ -14,8 +14,9 @@ export const AlbumPreviewCard = ({ album }: { album: Album }) => {
                 <Image
                     src={album.coverSrc ?? "logo.svg"}
                     draggable={false}
-                    width={90}
-                    height={90}
+                    width={100}
+                    height={100}
+                    sizes="100px"
                     alt={album.title}
                     className="mb-2 rounded-sm aspect-square"
                 />
