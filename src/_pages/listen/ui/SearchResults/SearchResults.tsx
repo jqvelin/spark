@@ -15,14 +15,16 @@ import { getSortedArtists } from "../../utils/searchResults/getSortedArtists";
 
 export const SearchResults = async ({ query }: { query: string }) => {
     const searchResultsData = await getSearchResults(query);
+    const areSearchResultsEmpty =
+        !searchResultsData.albums.length &&
+        !searchResultsData.artists.length &&
+        !searchResultsData.songs.length;
 
     const sortedArtists = getSortedArtists(searchResultsData.artists);
 
     return (
         <Fragment>
-            {!searchResultsData.albums.length &&
-            !searchResultsData.artists.length &&
-            !searchResultsData.songs.length ? (
+            {areSearchResultsEmpty ? (
                 <>
                     <p className="text-xl text-primary">
                         Nothing found for "<b>{query}</b>"... 🤔
@@ -37,7 +39,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                         Search results for:{" "}
                         <span className="font-bold">{query}</span>
                     </h1>
-                    {searchResultsData?.songs.length && (
+                    {searchResultsData?.songs.length > 0 && (
                         <section>
                             <Collapsible>
                                 <CollapsibleTrigger>
@@ -89,7 +91,9 @@ export const SearchResults = async ({ query }: { query: string }) => {
                             </Collapsible>
                         </section>
                     )}
-                    <hr className="w-full my-4" />
+                    {searchResultsData?.songs.length > 0 && (
+                        <hr className="w-full my-4" />
+                    )}
                     {sortedArtists.length > 0 && (
                         <section>
                             <Collapsible>
@@ -166,7 +170,9 @@ export const SearchResults = async ({ query }: { query: string }) => {
                             </Collapsible>
                         </section>
                     )}
-                    <hr className="w-full my-4" />
+                    {searchResultsData?.artists.length > 0 && (
+                        <hr className="w-full my-4" />
+                    )}
                     {searchResultsData?.albums.length > 0 && (
                         <section>
                             <div>

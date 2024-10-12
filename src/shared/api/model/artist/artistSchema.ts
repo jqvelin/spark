@@ -7,6 +7,6 @@ export const artistSchema = z.object({
     id: z.string(),
     name: z.string(),
     songs: z.array(songSchema),
-    imageSrc: z.string().or(z.undefined()).or(z.null()),
-    albums: z.array(albumSchema).or(z.undefined()).or(z.null())
+    imageSrc: z.string().optional().or(z.null()),
+    albums: z.array(albumSchema).optional().or(z.null())
 });
