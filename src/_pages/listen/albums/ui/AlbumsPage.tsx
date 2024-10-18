@@ -50,7 +50,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                     <SongElement
                         key={song.id}
                         song={song}
-                        className="w-full"
+                        className="w-9/12"
                     />
                 ))}
             </div>

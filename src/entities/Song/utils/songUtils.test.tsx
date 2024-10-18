@@ -1,5 +1,5 @@
 import { Song } from "@/shared/api";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { afterAll, describe, expect, test } from "vitest";
 
 import { SongElementsPreview } from "../ui/SongElement/SongElementsPreview";
@@ -50,28 +50,23 @@ describe("SongElementsPreviewLine", () => {
     const timeBetweenSongsChange =
         SONGS_SHOULD_STAY_FOR + TIME_BEFORE_VISIBILITY_CHANGE * 2;
 
-    test(
-        "songs change after time",
-        { timeout: timeBetweenSongsChange },
-        async () => {
-            shortSongsCollection
-                .slice(0, 3)
-                .forEach((song) =>
-                    expect(screen.getByText(song.title)).toBeDefined()
-                );
-
-            // Waiting until animation completes
-            await new Promise((resolve) =>
-                setTimeout(resolve, timeBetweenSongsChange)
+    test("songs change after time", async () => {
+        shortSongsCollection
+            .slice(0, 3)
+            .forEach((song) =>
+                expect(screen.getByText(song.title)).toBeDefined()
             );
 
-            shortSongsCollection
-                .slice(3, 6)
-                .forEach((song) =>
-                    expect(screen.getByText(song.title)).toBeDefined()
-                );
-        }
-    );
+        await waitFor(
+            () =>
+                shortSongsCollection
+                    .slice(3, 6)
+                    .forEach((song) =>
+                        expect(screen.getByText(song.title)).toBeDefined()
+                    ),
+            { timeout: timeBetweenSongsChange }
+        );
+    });
 });
 
 describe("getSongsCollectionDuration", () => {
@@ -102,66 +97,9 @@ describe("splitSongsCollectionIntoGroups", () => {
     test("correctly splits songs into equal groups", () => {
         expect(splitSongsCollectionIntoGroups(shortSongsCollection, 3)).toEqual(
             [
-                [
-                    {
-                        id: "test1",
-                        artist: "artist",
-                        title: "title1",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test2",
-                        artist: "artist",
-                        title: "title2",
-                        duration: "00:59"
-                    },
-                    {
-                        id: "test3",
-                        artist: "artist",
-                        title: "title3",
-                        duration: "01:00"
-                    }
-                ],
-                [
-                    {
-                        id: "test4",
-                        artist: "artist",
-                        title: "title4",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test5",
-                        artist: "artist",
-                        title: "title5",
-                        duration: "00:59"
-                    },
-                    {
-                        id: "test6",
-                        artist: "artist",
-                        title: "title6",
-                        duration: "01:00"
-                    }
-                ],
-                [
-                    {
-                        id: "test7",
-                        artist: "artist",
-                        title: "title7",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test8",
-                        artist: "artist",
-                        title: "title8",
-                        duration: "00:59"
-                    },
-                    {
-                        id: "test9",
-                        artist: "artist",
-                        title: "title9",
-                        duration: "01:00"
-                    }
-                ]
+                shortSongsCollection.slice(0, 3),
+                shortSongsCollection.slice(3, 6),
+                shortSongsCollection.slice(6)
             ]
         );
     });
@@ -169,66 +107,9 @@ describe("splitSongsCollectionIntoGroups", () => {
     test("correctly splits songs into unequal groups", () => {
         expect(splitSongsCollectionIntoGroups(shortSongsCollection, 4)).toEqual(
             [
-                [
-                    {
-                        id: "test1",
-                        artist: "artist",
-                        title: "title1",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test2",
-                        artist: "artist",
-                        title: "title2",
-                        duration: "00:59"
-                    },
-                    {
-                        id: "test3",
-                        artist: "artist",
-                        title: "title3",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test4",
-                        artist: "artist",
-                        title: "title4",
-                        duration: "01:00"
-                    }
-                ],
-                [
-                    {
-                        id: "test5",
-                        artist: "artist",
-                        title: "title5",
-                        duration: "00:59"
-                    },
-                    {
-                        id: "test6",
-                        artist: "artist",
-                        title: "title6",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test7",
-                        artist: "artist",
-                        title: "title7",
-                        duration: "01:00"
-                    },
-                    {
-                        id: "test8",
-                        artist: "artist",
-                        title: "title8",
-                        duration: "00:59"
-                    }
-                ],
-                [
-                    {
-                        id: "test9",
-                        artist: "artist",
-                        title: "title9",
-                        duration: "01:00"
-                    }
-                ]
+                shortSongsCollection.slice(0, 4),
+                shortSongsCollection.slice(4, 8),
+                shortSongsCollection.slice(8)
             ]
         );
     });

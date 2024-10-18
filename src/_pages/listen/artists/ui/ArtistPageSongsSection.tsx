@@ -4,7 +4,7 @@ import { SongElement } from "@/entities/Song";
 import { Artist } from "@/shared/api";
 import AnimatedNumber from "react-animated-numbers";
 
-import { useSplitSongsByPages } from "../utils/ArtistPageSongsSection/useSplitSongsByPages";
+import { useSplitSongsByPages } from "../utils/useSplitSongsByPages";
 
 export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
     const {

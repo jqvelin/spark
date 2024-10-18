@@ -1,3 +1,4 @@
+import { getSortedArtists } from "@/entities/Artist";
 import { SongElement } from "@/entities/Song";
 import { getSearchResults } from "@/shared/api";
 import {
@@ -10,8 +11,6 @@ import { ArrowUpDownIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-
-import { getSortedArtists } from "../../utils/searchResults/getSortedArtists";
 
 export const SearchResults = async ({ query }: { query: string }) => {
     const searchResultsData = await getSearchResults(query);
