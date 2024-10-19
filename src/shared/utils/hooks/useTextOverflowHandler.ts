@@ -1,13 +1,14 @@
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 
 const SCROLL_UPDATE_RATE = 30;
 const DELAY_BETWEEN_SCROLLS = 2000;
 
-export const useTextOverflowHandler = () => {
-    const textElementRef = useRef<HTMLDivElement>(null);
+export const useTextOverflowHandler = (ref?: RefObject<HTMLDivElement>) => {
+    const textElementRef = ref ?? useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const textElement = textElementRef.current as HTMLDivElement;
+        if (!textElement) return;
 
         textElement.addEventListener("mouseover", startAnimation);
         textElement.addEventListener("mouseout", suspendAnimation);

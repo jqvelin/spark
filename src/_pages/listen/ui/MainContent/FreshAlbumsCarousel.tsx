@@ -4,14 +4,8 @@ import { AlbumPreviewCard } from "@/entities/Album";
 import { Album } from "@/shared/api";
 import { useCarousel } from "@/shared/utils/hooks";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-import { RefObject } from "react";
 
-type Props = {
-    albumList: Album[];
-    testingRef?: RefObject<HTMLUListElement>;
-};
-
-export const FreshAlbumsCarousel = ({ albumList, testingRef }: Props) => {
+export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
     const {
         carouselRef,
         carouselWidth,
@@ -22,7 +16,7 @@ export const FreshAlbumsCarousel = ({ albumList, testingRef }: Props) => {
     } = useCarousel();
 
     return (
-        <div className="flex animate-fade-in justify-center opacity-0 delay-700">
+        <div className="flex justify-center">
             <button
                 onClick={scrollBackwards}
                 disabled={!ableToScrollBackwards}
@@ -33,10 +27,12 @@ export const FreshAlbumsCarousel = ({ albumList, testingRef }: Props) => {
             <ul
                 style={{ width: carouselWidth }}
                 className="flex select-none overflow-hidden scroll-smooth"
-                ref={testingRef ?? carouselRef}
+                ref={carouselRef}
             >
-                {albumList.map((album) => (
+                {albumList.map((album, i) => (
                     <AlbumPreviewCard
+                        className="animate-fade-in opacity-0"
+                        style={{ animationDelay: `${i}00ms` }}
                         key={album.id}
                         album={album}
                     />

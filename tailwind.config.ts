@@ -74,7 +74,7 @@ const config: Config = {
             animation: {
                 shine: "5s linear infinite shine",
                 "running-line": "8s linear infinite running-line",
-                "fade-in": "1s fade-in ease-in-out forwards",
+                "fade-in": "fade-in 1s ease-in-out forwards",
                 "pop-up": "pop-up 0.5s ease-in-out forwards"
             },
             keyframes: {

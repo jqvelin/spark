@@ -1,10 +1,10 @@
 "use client";
 
 import { Song } from "@/shared/api";
+import { cn } from "@/shared/components/lib/utils";
 import { useTextOverflowHandler } from "@/shared/utils/hooks";
 import Image from "next/image";
 import { FC, HTMLAttributes } from "react";
-import { twMerge } from "tailwind-merge";
 
 export const SongElement: FC<
     { song: Song } & HTMLAttributes<HTMLDivElement>
@@ -15,7 +15,7 @@ export const SongElement: FC<
     return (
         <div
             {...props}
-            className={twMerge(
+            className={cn(
                 "flex w-song-line items-center gap-2 rounded-md bg-white px-3 py-2 shadow-md",
                 props.className
             )}

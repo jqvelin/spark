@@ -1,11 +1,23 @@
 import { Album } from "@/shared/api";
+import { cn } from "@/shared/components/lib/utils";
 import { paths } from "@/shared/routing";
 import Image from "next/image";
 import Link from "next/link";
+import { HTMLAttributes } from "react";
 
-export const AlbumPreviewCard = ({ album }: { album: Album }) => {
+type Props = {
+    album: Album;
+} & HTMLAttributes<HTMLDivElement>;
+
+export const AlbumPreviewCard = ({ album, ...props }: Props) => {
     return (
-        <div className="flex flex-col text-center break-normal shrink-0 w-[100px] items-center">
+        <div
+            {...props}
+            className={cn(
+                "flex flex-col text-center break-normal shrink-0 w-[100px] items-center",
+                props.className
+            )}
+        >
             <Link
                 href={`${paths.listen.albums}/${album.id}`}
                 draggable={false}

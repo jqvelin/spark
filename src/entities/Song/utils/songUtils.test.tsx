@@ -1,6 +1,6 @@
 import { Song } from "@/shared/api";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
-import { afterAll, describe, expect, test } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 
 import { SongElementsPreview } from "../ui/SongElement/SongElementsPreview";
 import { getSongsCollectionDuration } from "./getSongsCollectionDuration";
@@ -33,11 +33,7 @@ const noLeadingZerosSongsCollection: Song[] = [
 const SONGS_SHOULD_STAY_FOR = 4000;
 const TIME_BEFORE_VISIBILITY_CHANGE = 150 + 350;
 
-describe("SongElementsPreviewLine", () => {
-    afterAll(() => {
-        cleanup();
-    });
-
+describe("useSongElementsPreviewSlides", () => {
     test("renders initial data", () => {
         render(<SongElementsPreview songs={shortSongsCollection} />);
         shortSongsCollection
