@@ -75,7 +75,8 @@ const config: Config = {
                 shine: "5s linear infinite shine",
                 "running-line": "8s linear infinite running-line",
                 "fade-in": "fade-in 1s ease-in-out forwards",
-                "pop-up": "pop-up 0.5s ease-in-out forwards"
+                "pop-up": "pop-up 0.5s ease-in-out forwards",
+                fallback: "fallback 2s linear infinite"
             },
             keyframes: {
                 shine: {
@@ -122,6 +123,16 @@ const config: Config = {
                     },
                     to: {
                         opacity: "1"
+                    }
+                },
+                fallback: {
+                    "0%": {
+                        left: "-100%",
+                        top: "50%"
+                    },
+                    "100%": {
+                        left: "300%",
+                        top: "50%"
                     }
                 }
             }

@@ -1,7 +1,8 @@
 import { Album, SongGroups } from "@/shared/api";
 import { Fragment } from "react";
 
-import { FreshAlbumsCarousel } from "./FreshAlbumsCarousel";
+import { FreshAlbumsCarousel } from "./FreshAlbums/FreshAlbumsCarousel";
+import { FreshAlbumsSection } from "./FreshAlbums/FreshAlbumsSection";
 import { SongsCategory } from "./SongsCategory/SongsCategory";
 
 type MusicDataForMainContent = {
@@ -16,15 +17,7 @@ export const MainContent = ({
 }) => {
     return (
         <Fragment>
-            <section>
-                <div className="mb-4 leading-4">
-                    <h2 className="text-xl font-bold tracking-wide text-primary-darker md:text-2xl lg:text-3xl">
-                        Fresh albums
-                    </h2>
-                    <p className="text-gray-400">Discover weekly</p>
-                </div>
-                <FreshAlbumsCarousel albumList={musicData.homepageAlbums} />
-            </section>
+            <FreshAlbumsSection />
             <hr className="my-4" />
             <section className="flex flex-wrap items-start gap-8">
                 <SongsCategory
