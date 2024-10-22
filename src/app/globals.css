@@ -18,8 +18,8 @@
     :root {
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
-        --fallback-bg: 0 0% 60%;
-        --fallback-line: 0 0% 56%;
+        --fallback-bg: 0 0% 97%;
+        --fallback-line: 0 0% 95%;
         --card: 0 0% 100%;
         --card-foreground: 0 0% 3.9%;
         --popover: 0 0% 100%;
@@ -73,7 +73,7 @@
         @apply bg-[hsl(var(--fallback-bg))]
         overflow-hidden relative after:absolute 
         after:-left-full after:top-1/2 after:-translate-y-1/2 after:rotate-45 after:h-[400px] after:[content:'']
-        after:bg-[linear-gradient(to_right,transparent,hsl(var(--fallback-line)),transparent)] after:z-10 after:animate-fallback
+        after:bg-[linear-gradient(to_right,transparent,hsl(var(--fallback-line))_50%,transparent)] after:z-10 after:animate-fallback
         after:w-[40px]
     }
 

@@ -20,7 +20,7 @@ export const SongsCategory = ({ title, songs, link, ...props }: Props) => {
                     className="text-start text-xl group font-bold tracking-wide text-primary-darker md:text-2xl lg:text-3xl"
                 >
                     {title}
-                    <ArrowRightIcon className="inline transition-transform group-hover:translate-x-2" />
+                    <ArrowRightIcon className="ml-2 inline transition-transform group-hover:translate-x-2" />
                 </Link>
                 <ul className="space-y-2 mt-4">
                     {songs.slice(0, 4).map((song) => (

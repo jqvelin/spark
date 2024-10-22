@@ -1,13 +1,9 @@
-import {
-    fireEvent,
-    render,
-    renderHook,
-    screen,
-    waitFor
-} from "@testing-library/react";
+import { render, renderHook, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
-import { useCarousel, useTextOverflowHandler } from "./hooks";
+import { cloneComponents } from "./cloneComponents";
+import { getResolvedComponent } from "./getResolvedComponent";
+import { useCarousel } from "./hooks";
 
 describe("useCarousel", async () => {
     const SCROLL_BY = 100;
@@ -51,6 +47,45 @@ describe("useCarousel", async () => {
         expect(container?.scrollLeft).toBe(0);
         await waitFor(() =>
             expect(result.current.ableToScrollBackwards).toBe(false)
+        );
+    });
+});
+
+describe("getResolvedComponent", () => {
+    test("correctly resolves server components", async () => {
+        const ServerComponent = async () => {
+            await new Promise((r) => setTimeout(r, 1000));
+            return <h1>Server component is successfully rendered</h1>;
+        };
+
+        const ResolvedComponent = await getResolvedComponent(
+            ServerComponent,
+            {}
+        );
+        render(<ResolvedComponent />);
+        const textElement = screen.getByText(
+            "Server component is successfully rendered"
+        );
+        expect(textElement).toBeDefined();
+    });
+});
+
+describe("cloneComponents", () => {
+    test("correctly handles negative components number", () => {
+        const components = cloneComponents(-1, () => <div />);
+        expect(components).toHaveLength(0);
+    });
+
+    test("correctly handles 0 components number", () => {
+        const components = cloneComponents(0, () => <div />);
+        expect(components).toHaveLength(0);
+    });
+
+    test("correctly clones components", () => {
+        const components = cloneComponents(3, () => <div />);
+        expect(components).toHaveLength(3);
+        components.forEach((component, index) =>
+            expect(component.key).toBe(index.toString())
         );
     });
 });
