@@ -16,7 +16,8 @@ const config: Config = {
                 footer: "var(--footer-height)"
             },
             width: {
-                "song-line": "var(--song-line-width)"
+                "song-line": "var(--song-line-width)",
+                "album-card": "var(--album-card-width)"
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

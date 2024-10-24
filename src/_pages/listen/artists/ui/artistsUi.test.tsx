@@ -32,14 +32,22 @@ describe("ArtistPageSongsSection", () => {
     });
 });
 
-describe("ArtistPage", { timeout: 10000 }, () => {
+describe("ArtistPage", { timeout: 10000 }, async () => {
     test("renders correctly", async () => {
         const ArtistPageComponent = await getResolvedComponent(ArtistPage, {
-            artistId: "1258"
+            artistId: "28385"
         });
         render(<ArtistPageComponent />);
         const artistTitleElement = screen.getByRole("heading", { level: 1 });
+        expect(artistTitleElement.textContent).toBe("Лигалайз");
+    });
 
-        expect(artistTitleElement.textContent).toBe("Lana Del Rey");
+    test("doesn't display empty albums section", async () => {
+        const ArtistPageComponent = await getResolvedComponent(ArtistPage, {
+            artistId: "28385"
+        });
+        render(<ArtistPageComponent />);
+        const albumsSectionTitle = screen.queryByText("Albums");
+        expect(albumsSectionTitle).toBeNull();
     });
 });

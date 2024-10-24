@@ -14,23 +14,23 @@ export const AlbumPreviewCard = ({ album, ...props }: Props) => {
         <div
             {...props}
             className={cn(
-                "flex flex-col text-center break-normal shrink-0 w-[100px] items-center",
+                "flex flex-col text-center break-normal shrink-0 w-album-card items-center",
                 props.className
             )}
         >
             <Link
                 href={`${paths.listen.albums}/${album.id}`}
                 draggable={false}
-                className="w-[90px] overflow-hidden"
+                className="w-[calc(var(--album-card-width)-4px)] overflow-hidden"
             >
                 <Image
                     src={album.coverSrc ?? "logo.svg"}
                     draggable={false}
-                    width={100}
-                    height={100}
-                    sizes="100px"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     alt={album.title}
-                    className="mb-2 rounded-sm aspect-square"
+                    className="mb-2 rounded-sm aspect-square w-full"
                 />
                 <p
                     className="mb-1 line-clamp-5 leading-4 text-[12px] font-semibold"

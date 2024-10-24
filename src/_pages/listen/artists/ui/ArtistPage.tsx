@@ -29,19 +29,21 @@ export const ArtistPage = async ({ artistId }: { artistId: Artist["id"] }) => {
                     </h2>
                     <ArtistPageSongsSection artist={artist} />
                 </div>
-                <div className="flex flex-col">
-                    <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">
-                        Albums
-                    </h2>
-                    <div className="grid grid-cols-2 gap-4 place-items-center">
-                        {artist.albums?.map((album) => (
-                            <AlbumPreviewCard
-                                album={album}
-                                key={album.id}
-                            />
-                        ))}
+                {artist.albums?.length ? (
+                    <div className="flex flex-col">
+                        <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">
+                            Albums
+                        </h2>
+                        <div className="grid grid-cols-2 gap-4 place-items-center">
+                            {artist.albums?.map((album) => (
+                                <AlbumPreviewCard
+                                    album={album}
+                                    key={album.id}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                ) : null}
             </div>
         </Fragment>
     );
