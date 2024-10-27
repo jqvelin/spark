@@ -23,4 +23,15 @@ describe("SearchResults", () => {
         render(<SearchResultsComponent />);
         expect(screen.queryAllByText(/Yeat/).length).toBeGreaterThan(0);
     });
+
+    test("renders extra results as collapsed", { timeout: 10000 }, async () => {
+        const SearchResultsComponent = await getResolvedComponent(
+            SearchResults,
+            { query: "a" }
+        );
+
+        render(<SearchResultsComponent />);
+        const expandButtons = screen.getAllByRole("button");
+        expect(expandButtons.length).toBeGreaterThan(0);
+    });
 });

@@ -1,7 +1,8 @@
 import { getResolvedComponent } from "@/shared/utils";
-import { render, screen } from "@testing-library/react";
-import { describe, expect, test } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterAll, describe, expect, test } from "vitest";
 
+import { FreshAlbumsCarouselSkeleton } from "./FreshAlbumsCarouselSkeleton";
 import { FreshAlbumsSection } from "./FreshAlbumsSection";
 
 describe("FreshAlbums", () => {
@@ -10,11 +11,20 @@ describe("FreshAlbums", () => {
             FreshAlbumsSection,
             {}
         );
-        render(<FreshAlbumsComponent />);
+        const { unmount } = render(<FreshAlbumsComponent />);
 
-        const componentTitleElement = screen.getByText("Fresh albums");
+        const componentTitleElement = screen.queryByText("Fresh albums");
         const albumCovers = screen.getAllByRole("img");
         expect(componentTitleElement).toBeDefined();
         expect(albumCovers.length).toBeGreaterThan(0);
+        unmount();
+    });
+});
+
+describe("FreshAlbumsCarouselSkeleton", () => {
+    test("renders correctly", () => {
+        render(<FreshAlbumsCarouselSkeleton />);
+        const titleElement = screen.getByText("Fresh albums");
+        expect(titleElement).toBeDefined();
     });
 });

@@ -4,7 +4,7 @@ import { SongElement } from "@/entities/Song";
 import { Artist } from "@/shared/api";
 import AnimatedNumber from "react-animated-numbers";
 
-import { useSplitSongsByPages } from "../utils/useSplitSongsByPages";
+import { useSplitSongsIntoPages } from "../utils/useSplitSongsIntoPages";
 
 export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
     const {
@@ -15,7 +15,7 @@ export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
         isLastPageReached,
         toNextPage,
         toPrevPage
-    } = useSplitSongsByPages(artist.songs);
+    } = useSplitSongsIntoPages(artist.songs);
 
     return (
         <div>

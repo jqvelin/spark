@@ -6,7 +6,7 @@ const INVISIBILITY_DURATION = 100;
 // This variable defines how "wide" the swipe will be
 const VISIBILITY_RANGE_PX = 50;
 
-export const useSplitSongsByPages = (songs: Song[]) => {
+export const useSplitSongsIntoPages = (songs: Song[]) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [pages, setPages] = useState<Song[][]>([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -16,7 +16,7 @@ export const useSplitSongsByPages = (songs: Song[]) => {
             const nextPages: Song[][] = [];
             for (
                 let chunkNum = 0;
-                chunkNum <= songs.length / 10;
+                chunkNum < songs.length / 10;
                 chunkNum += 1
             ) {
                 nextPages.push(songs.slice(chunkNum * 10, chunkNum * 10 + 10));
