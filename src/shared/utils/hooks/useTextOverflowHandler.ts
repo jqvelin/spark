@@ -1,6 +1,8 @@
 import { RefObject, useEffect, useRef } from "react";
 
-const SCROLL_UPDATE_RATE = 30;
+import { areApproximatelyEqual } from "../areApproximatelyEqual";
+
+const SCROLL_UPDATE_RATE = 20;
 const DELAY_BETWEEN_SCROLLS = 2000;
 
 export const useTextOverflowHandler = (ref?: RefObject<HTMLDivElement>) => {
@@ -24,11 +26,13 @@ export const useTextOverflowHandler = (ref?: RefObject<HTMLDivElement>) => {
 
             if (scrollWidth > offsetWidth) {
                 textScrollingInterval = setInterval(() => {
-                    const isScrolledUntilEnd =
-                        Math.abs(
-                            scrollWidth -
-                                Math.floor(offsetWidth + textElement.scrollLeft)
-                        ) <= 1;
+                    const isScrolledUntilEnd = areApproximatelyEqual({
+                        threshold: 2,
+                        number1: scrollWidth,
+                        number2: Math.floor(
+                            offsetWidth + textElement.scrollLeft
+                        )
+                    });
                     if (!isScrolledUntilEnd && !isScrollingBackwards) {
                         textElement.scrollLeft += 1;
                     } else {

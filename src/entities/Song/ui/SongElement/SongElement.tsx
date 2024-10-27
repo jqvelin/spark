@@ -32,13 +32,15 @@ export const SongElement: FC<
                     ref={titleRef}
                     className="overflow-hidden"
                 >
-                    <span>{song.title}</span>
+                    <span className="pr-[1px]">{song.title}</span>
                 </div>
                 <div
                     ref={artistRef}
                     className="overflow-hidden"
                 >
-                    <span className="text-sm text-gray-400">{song.artist}</span>
+                    <span className="text-sm text-gray-400 pr-[1px]">
+                        {song.artist}
+                    </span>
                 </div>
             </div>
         </div>

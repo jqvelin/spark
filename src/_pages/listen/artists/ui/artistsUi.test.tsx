@@ -1,7 +1,7 @@
 import { Artist } from "@/shared/api";
 import "@/shared/mocks/intersectionObserverMock";
 import { getResolvedComponent } from "@/shared/utils";
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
 import { ArtistPage } from "./ArtistPage";
@@ -35,19 +35,24 @@ describe("ArtistPageSongsSection", () => {
 describe("ArtistPage", { timeout: 10000 }, async () => {
     test("renders correctly", async () => {
         const ArtistPageComponent = await getResolvedComponent(ArtistPage, {
-            artistId: "28385"
+            artistId: "626"
         });
         render(<ArtistPageComponent />);
         const artistTitleElement = screen.getByRole("heading", { level: 1 });
-        expect(artistTitleElement.textContent).toBe("Лигалайз");
+        expect(artistTitleElement.textContent).toBe("Skrillex");
     });
 
-    test("doesn't display empty albums section", async () => {
-        const ArtistPageComponent = await getResolvedComponent(ArtistPage, {
-            artistId: "28385"
-        });
-        render(<ArtistPageComponent />);
-        const albumsSectionTitle = screen.queryByText("Albums");
-        expect(albumsSectionTitle).toBeNull();
-    });
+    test(
+        "doesn't display empty albums section",
+        { timeout: 10000 },
+        async () => {
+            const ArtistPageComponent = await getResolvedComponent(ArtistPage, {
+                artistId: "28385"
+            });
+            render(<ArtistPageComponent />);
+            const albumSectionTitles = screen.queryAllByText("Albums");
+            // one of them was mountet by previous test with artistId 626
+            expect(albumSectionTitles.length).toBe(1);
+        }
+    );
 });

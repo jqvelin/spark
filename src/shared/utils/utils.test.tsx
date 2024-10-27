@@ -1,6 +1,7 @@
 import { render, renderHook, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
+import { areApproximatelyEqual } from "./areApproximatelyEqual";
 import { cloneComponents } from "./cloneComponents";
 import { getResolvedComponent } from "./getResolvedComponent";
 import { useCarousel } from "./hooks";
@@ -87,6 +88,20 @@ describe("cloneComponents", () => {
         components.forEach((component, index) =>
             expect(component.key).toBe(index.toString())
         );
+    });
+});
+
+describe("areApproximatelyEqual", () => {
+    test("correctly compares numbers", () => {
+        expect(
+            areApproximatelyEqual({ number1: 0, number2: 0, threshold: 2 })
+        ).toBe(true);
+        expect(
+            areApproximatelyEqual({ number1: 0, number2: 1, threshold: 2 })
+        ).toBe(true);
+        expect(
+            areApproximatelyEqual({ number1: 3, number2: 0, threshold: 2 })
+        ).toBe(false);
     });
 });
 

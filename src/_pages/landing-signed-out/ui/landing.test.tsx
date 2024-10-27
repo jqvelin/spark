@@ -1,18 +1,18 @@
+import { getResolvedComponent } from "@/shared/utils";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
-import { ProductDescription } from "./ProductDescription";
-import { SignInMethods } from "./SignInMethods";
+import { LandingSignedOut } from "./LandingSignedOut";
 
-describe("ProductDescription", () => {
-    test("renders correctly", () => {
-        render(<ProductDescription />);
+describe("landing-signed-out", () => {
+    test("renders correctly", async () => {
+        const LandingSignedOutComponent = await getResolvedComponent(
+            LandingSignedOut,
+            {}
+        );
+        render(<LandingSignedOutComponent />);
         expect(screen.getByText("Spark")).toBeDefined();
     });
-});
-
-describe("SignInMethods", () => {
-    render(<SignInMethods />);
 
     test("renders correctly", () => {
         expect(screen.getByText("Sign in with")).toBeDefined();

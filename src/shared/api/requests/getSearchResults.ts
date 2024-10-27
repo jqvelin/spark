@@ -7,7 +7,9 @@ import { songSchema } from "../model/song/songSchema";
 const BASE_API_URL = process.env.BASE_API_URL ?? "http://localhost:4000";
 
 export const getSearchResults = async (searchQuery: string) => {
-    const response = await fetch(`${BASE_API_URL}/search?q=${searchQuery}`);
+    const response = await fetch(`${BASE_API_URL}/search?q=${searchQuery}`, {
+        cache: "no-store"
+    });
     if (!response.ok) {
         throw new Error("Failed to fetch search results");
     }
