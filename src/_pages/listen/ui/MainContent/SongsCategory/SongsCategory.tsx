@@ -1,4 +1,4 @@
-import { SongElement } from "@/entities/Song";
+import { AddAndSave, SongElement } from "@/entities/Song";
 import { Song } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import { ArrowRightIcon } from "lucide-react";
@@ -27,7 +27,9 @@ export const SongsCategory = ({ title, songs, link, ...props }: Props) => {
                         <SongElement
                             key={song.id}
                             song={song}
-                        />
+                        >
+                            <AddAndSave song={song} />
+                        </SongElement>
                     ))}
                 </ul>
             </div>

@@ -3,6 +3,7 @@ import { describe, expect, test } from "vitest";
 
 import { areApproximatelyEqual } from "./areApproximatelyEqual";
 import { cloneComponents } from "./cloneComponents";
+import { composeComponents } from "./composeComponents";
 import { getResolvedComponent } from "./getResolvedComponent";
 import { useCarousel } from "./hooks";
 
@@ -102,6 +103,33 @@ describe("areApproximatelyEqual", () => {
         expect(
             areApproximatelyEqual({ number1: 3, number2: 0, threshold: 2 })
         ).toBe(false);
+    });
+});
+
+describe("composeComponents", () => {
+    test("correctly composes components", () => {
+        const InnerComponent = ({
+            children
+        }: {
+            children: React.ReactNode;
+        }) => {
+            return <div>{children}</div>;
+        };
+
+        const OuterComponent = ({
+            children
+        }: {
+            children: React.ReactNode;
+        }) => {
+            return <div>{children}</div>;
+        };
+
+        const ComposedComponent = composeComponents(
+            InnerComponent,
+            OuterComponent
+        );
+        render(<ComposedComponent>Test</ComposedComponent>);
+        expect(screen.getByText("Test")).toBeDefined();
     });
 });
 

@@ -23,12 +23,14 @@ export const ArtistPage = async ({ artistId }: { artistId: Artist["id"] }) => {
             </div>
             <hr className="my-2 w-full md:my-4" />
             <div className="flex flex-col mx-auto md:flex-row gap-8 md:gap-16 flex-wrap">
-                <div className="flex flex-col gap-2">
-                    <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">
-                        Songs
-                    </h2>
-                    <ArtistPageSongsSection artist={artist} />
-                </div>
+                {artist.songs?.length ? (
+                    <div className="flex flex-col gap-2">
+                        <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">
+                            Songs
+                        </h2>
+                        <ArtistPageSongsSection artist={artist} />
+                    </div>
+                ) : null}
                 {artist.albums?.length ? (
                     <div className="flex flex-col">
                         <h2 className="text-xl text-primary md:text-2xl lg:text-3xl font-semibold mb-2 md:mb-4">

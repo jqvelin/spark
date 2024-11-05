@@ -62,7 +62,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                         <CollapsibleTrigger className="text-gray-400 [place-self:end_start]">
                                             ...{" "}
                                             {searchResultsData?.songs.length -
-                                                5}{" "}
+                                                12}{" "}
                                             more
                                         </CollapsibleTrigger>
                                     )}

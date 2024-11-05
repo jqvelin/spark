@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 export const useCarousel = (scrollBy = 100) => {
     const carouselRef = useRef<HTMLUListElement>(null);
 
-    const [carouselWidth, setCarouselWidth] = useState(1000);
     const [ableToScroll, setAbleToScroll] = useState({
         backwards: false,
         forwards: true
@@ -59,11 +58,11 @@ export const useCarousel = (scrollBy = 100) => {
     const calculateCarouselWidth = () => {
         if (!carouselRef.current) return;
         const minWidth =
-            Math.floor(carouselRef.current.clientWidth / 100) * 100;
-        setCarouselWidth(minWidth);
+            Math.floor(carouselRef.current.clientWidth / scrollBy) * scrollBy;
+        carouselRef.current.style.width = minWidth + "px";
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!carouselRef.current) return;
         carouselRef.current.addEventListener("pointerdown", handlePointerDown);
 
@@ -82,7 +81,6 @@ export const useCarousel = (scrollBy = 100) => {
 
     return {
         carouselRef,
-        carouselWidth,
         ableToScrollBackwards: ableToScroll.backwards,
         scrollBackwards: () => handleScroll("backwards"),
         ableToScrollForwards: ableToScroll.forwards,
