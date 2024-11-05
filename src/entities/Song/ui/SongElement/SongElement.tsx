@@ -4,11 +4,12 @@ import { Song } from "@/shared/api";
 import { cn } from "@/shared/components/lib/utils";
 import { useTextOverflowHandler } from "@/shared/utils/hooks";
 import Image from "next/image";
-import { FC, HTMLAttributes } from "react";
 
-export const SongElement: FC<
-    { song: Song } & HTMLAttributes<HTMLDivElement>
-> = ({ song, ...props }) => {
+type Props = {
+    song: Song;
+} & React.ComponentPropsWithoutRef<"div">;
+
+export const SongElement = ({ song, ...props }: Props) => {
     const titleRef = useTextOverflowHandler();
     const artistRef = useTextOverflowHandler();
 
@@ -16,7 +17,7 @@ export const SongElement: FC<
         <div
             {...props}
             className={cn(
-                "flex w-song-line items-center gap-2 rounded-md bg-white px-3 py-2 shadow-md",
+                "flex w-song-line items-center gap-2 rounded-md bg-white px-3 py-2 shadow-md relative",
                 props.className
             )}
         >
@@ -43,6 +44,7 @@ export const SongElement: FC<
                     </span>
                 </div>
             </div>
+            {props.children}
         </div>
     );
 };

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Open_Sans } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 
+import { WithProviders } from "./_providers";
 import "./globals.css";
 
 const inter = Open_Sans({ subsets: ["latin", "cyrillic"] });
@@ -26,11 +28,13 @@ export default function RootLayout({
                 />
             </head>
             <body className={inter.className}>
-                <NextTopLoader
-                    color="hsl(var(--primary))"
-                    showSpinner={false}
-                />
-                {children}
+                <WithProviders>
+                    <NextTopLoader
+                        color="hsl(var(--primary))"
+                        showSpinner={false}
+                    />
+                    {children}
+                </WithProviders>
             </body>
         </html>
     );

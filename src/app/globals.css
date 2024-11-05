@@ -4,17 +4,17 @@
 
 @layer base {
     ::-webkit-scrollbar {
-        width: 10px;
+        @apply w-[10px]
     }
 
     ::-webkit-scrollbar-thumb {
-        background: hsl(var(--primary));
-        border-radius: 4px;
+        @apply bg-[hsl(var(--primary))] rounded-[4px]
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: hsl(var(--primary-darker));
+        @apply bg-[hsl(var(--primary-darker))]
     }
+
     :root {
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
@@ -80,6 +80,19 @@
 
     .calculated-height {
         @apply h-[calc(100svh-var(--header-height)-var(--footer-height))] overflow-y-auto md:h-[calc(100svh-var(--header-height))];
+    }
+
+    .visible-on-hover {
+        @apply opacity-0 transition-opacity
+        hover:opacity-100;
+    }
+
+    .visible-on-hover > * {
+        @apply pointer-events-none;
+    }
+
+    .visible-on-hover:hover > * {
+        @apply pointer-events-auto;
     }
 }
 

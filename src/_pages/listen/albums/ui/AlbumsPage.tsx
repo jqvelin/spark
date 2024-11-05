@@ -1,4 +1,8 @@
-import { SongElement, getSongsCollectionDuration } from "@/entities/Song";
+import {
+    AddAndSave,
+    SongElement,
+    getSongsCollectionDuration
+} from "@/entities/Song";
 import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import Image from "next/image";
@@ -51,7 +55,9 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                         key={song.id}
                         song={song}
                         className="w-9/12"
-                    />
+                    >
+                        <AddAndSave song={song} />
+                    </SongElement>
                 ))}
             </div>
             <span className="mx-auto text-gray-400">{`${albumData.songs?.length} songs, ${albumSongsDuration} min`}</span>

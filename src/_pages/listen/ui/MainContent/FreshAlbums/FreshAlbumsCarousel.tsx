@@ -8,7 +8,6 @@ import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
     const {
         carouselRef,
-        carouselWidth,
         ableToScrollBackwards,
         scrollBackwards,
         ableToScrollForwards,
@@ -25,14 +24,11 @@ export const FreshAlbumsCarousel = ({ albumList }: { albumList: Album[] }) => {
                 <ArrowLeftIcon />
             </button>
             <ul
-                style={{ width: carouselWidth }}
                 className="flex select-none overflow-hidden scroll-smooth"
                 ref={carouselRef}
             >
-                {albumList.map((album, i) => (
+                {albumList.map((album) => (
                     <AlbumPreviewCard
-                        className="animate-fade-in opacity-0"
-                        style={{ animationDelay: `${i}00ms` }}
                         key={album.id}
                         album={album}
                     />
