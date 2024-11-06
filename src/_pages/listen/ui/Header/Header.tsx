@@ -6,7 +6,7 @@ export const Header = () => {
     return (
         <header className="flex h-header w-full items-center justify-center bg-white px-2 shadow-sm shadow-primary/20">
             <LogoLink />
-            <SearchBox />
+            <SearchBox className="ml-auto mr-auto" />
             <Profile />
         </header>
     );
