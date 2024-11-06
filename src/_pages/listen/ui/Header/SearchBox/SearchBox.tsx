@@ -1,14 +1,18 @@
 "use client";
 
 import { Input } from "@/shared/components";
+import { cn } from "@/shared/components/lib/utils";
 import { SearchIcon } from "lucide-react";
 
 import { useDebouncedSearch } from "./useDebouncedSearch";
 
-export const SearchBox = () => {
+export const SearchBox = (props: React.ComponentPropsWithoutRef<"div">) => {
     const { currentSearchQuery, applySearchQuery } = useDebouncedSearch();
     return (
-        <div className="relative ml-auto w-1/2 max-w-[300px]">
+        <div
+            {...props}
+            className={cn("relative w-1/2 max-w-[300px]", props.className)}
+        >
             <Input
                 className="pr-[28px]"
                 value={currentSearchQuery}

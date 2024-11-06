@@ -28,7 +28,7 @@ export const AddAndSave = ({ song }: { song: Song }) => {
                     <DropdownMenuTrigger className="text-primary">
                         <BsThreeDots />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="text-primary flex justify-center gap-2">
+                    <DropdownMenuContent className="text-primary flex justify-center gap-2 min-w-fit">
                         <Dialog>
                             <DialogTrigger>
                                 <PlusIcon />
