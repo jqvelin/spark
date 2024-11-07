@@ -50,7 +50,10 @@
         /* shared metrics */
         --header-height: 60px;
         --footer-height: 40px;
-        --song-line-width: 250px;
+
+        --song-element-height: 64px;
+        --song-element-width: 282px;
+
         --album-card-width: 100px;
     }
 }

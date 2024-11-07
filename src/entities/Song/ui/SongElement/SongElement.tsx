@@ -17,7 +17,7 @@ export const SongElement = ({ song, ...props }: Props) => {
         <div
             {...props}
             className={cn(
-                "flex w-song-line items-center gap-2 rounded-md bg-white px-3 py-2 shadow-md relative",
+                "flex w-song-element h-song-element px-3 items-center gap-2 rounded-md bg-white shadow-md relative",
                 props.className
             )}
         >
@@ -28,7 +28,7 @@ export const SongElement = ({ song, ...props }: Props) => {
                 alt={song.title}
                 className="rounded-sm"
             />
-            <div className="flex w-full flex-col whitespace-nowrap overflow-hidden">
+            <div className="flex flex-1 flex-col whitespace-nowrap overflow-hidden">
                 <div
                     ref={titleRef}
                     className="overflow-hidden"

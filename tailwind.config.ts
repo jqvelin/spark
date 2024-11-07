@@ -13,10 +13,11 @@ const config: Config = {
         extend: {
             height: {
                 header: "var(--header-height)",
-                footer: "var(--footer-height)"
+                footer: "var(--footer-height)",
+                "song-element": "var(--song-element-height)"
             },
             width: {
-                "song-line": "var(--song-line-width)",
+                "song-element": "var(--song-element-width)",
                 "album-card": "var(--album-card-width)"
             },
             backgroundImage: {

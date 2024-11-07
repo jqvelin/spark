@@ -9,20 +9,23 @@ export const SongElementsPreview = ({ songs }: { songs: Song[] }) => {
     const { sliceSongsFromIndex, songsPreviewLineWrapperRef } =
         useSongElementsPreviewSlides(songs);
     return (
-        <div
-            className="flex h-[220px] flex-col items-center gap-4 transition-opacity md:h-auto md:flex-row"
+        <ul
+            className="flex min-h-[calc((var(--song-element-height)+16px)*3)] flex-col items-center gap-4 transition-opacity md:h-auto md:flex-row"
             ref={songsPreviewLineWrapperRef}
         >
             {songs
                 .slice(sliceSongsFromIndex, sliceSongsFromIndex + 3)
                 .map((song, i) => (
-                    <SongElement
+                    <li
                         className="animate-pop-up"
-                        style={{ animationDelay: `${i}00ms` }}
                         key={song.id}
-                        song={song}
-                    />
+                    >
+                        <SongElement
+                            style={{ animationDelay: `${i}00ms` }}
+                            song={song}
+                        />
+                    </li>
                 ))}
-        </div>
+        </ul>
     );
 };
