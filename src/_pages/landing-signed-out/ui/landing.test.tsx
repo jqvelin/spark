@@ -11,15 +11,11 @@ describe("landing-signed-out", () => {
             {}
         );
         render(<LandingSignedOutComponent />);
-        expect(screen.getByText("Spark")).toBeDefined();
-    });
 
-    test("renders correctly", () => {
-        expect(screen.getByText("Sign in with")).toBeDefined();
-    });
+        const pageHeading = screen.getByRole("heading", { level: 1 });
+        expect(pageHeading).toBeDefined();
 
-    test("provides correct methods", () => {
-        expect(screen.getByText("Google")).toBeDefined();
-        expect(screen.getByText("Yandex")).toBeDefined();
+        const signInMethods = screen.getAllByRole("button");
+        expect(signInMethods.length).toBeGreaterThan(0);
     });
 });

@@ -21,7 +21,7 @@ export const Profile = () => {
                             className="ml-auto flex h-[40px] w-[40px] items-center justify-center rounded-full border-2 border-primary font-bold text-primary shadow-sm shadow-primary"
                             title={username ?? ""}
                         >
-                            {username?.slice(0, 1)}
+                            {username?.[0]}
                         </div>
                     </div>
                 </DropdownMenuTrigger>

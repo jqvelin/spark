@@ -35,7 +35,7 @@ export const ExtendedCategoriesPage = async ({
             <div className="space-y-2 mx-auto w-full mb-2">
                 {splittedCategorySongs.map((group, groupIndex) => (
                     <Fragment key={group.toString()}>
-                        <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-line-width),1fr))]">
+                        <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-element-width),1fr))]">
                             {group.map((song) => (
                                 <SongElement
                                     song={song}

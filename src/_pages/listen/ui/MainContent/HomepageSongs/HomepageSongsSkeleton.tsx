@@ -6,11 +6,11 @@ export const HomepageSongsSkeleton = () => {
             {cloneComponents(
                 4,
                 <div className="mx-auto space-y-2">
-                    <div className="w-song-line h-[32px] mb-4 loading-animation"></div>
-                    <div className="h-[56px] w-song-line loading-animation rounded-sm"></div>
-                    <div className="h-[56px] w-song-line loading-animation rounded-sm"></div>
-                    <div className="h-[56px] w-song-line loading-animation rounded-sm"></div>
-                    <div className="h-[56px] w-song-line loading-animation rounded-sm"></div>
+                    <div className="w-song-element h-[32px] mb-4 loading-animation"></div>
+                    <div className="h-[56px] w-song-element loading-animation rounded-sm"></div>
+                    <div className="h-[56px] w-song-element loading-animation rounded-sm"></div>
+                    <div className="h-[56px] w-song-element loading-animation rounded-sm"></div>
+                    <div className="h-[56px] w-song-element loading-animation rounded-sm"></div>
                 </div>
             )}
         </section>

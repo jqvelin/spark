@@ -7,10 +7,12 @@ export const TIME_BEFORE_VISIBILITY_CHANGE = 150 + 350;
 export const SONGS_SHOULD_STAY_FOR = 4000;
 
 export const useSongElementsPreviewSlides = (songs: Song[]) => {
-    const songsPreviewLineWrapperRef = useRef<HTMLDivElement>(null);
+    const songsPreviewLineWrapperRef = useRef<
+        HTMLDivElement & HTMLUListElement
+    >(null);
     const [sliceSongsFromIndex, setSliceSongsFromIndex] = useState(0);
     useEffect(() => {
-        const target = songsPreviewLineWrapperRef.current as HTMLDivElement;
+        const target = songsPreviewLineWrapperRef.current as HTMLElement;
 
         const changeSongsInterval = setInterval(() => {
             target.classList.add("opacity-0");
