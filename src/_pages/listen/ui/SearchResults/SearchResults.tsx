@@ -59,7 +59,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                             />
                                         ))}
                                     {searchResultsData?.songs.length > 12 && (
-                                        <CollapsibleTrigger className="text-gray-400 [place-self:end_start]">
+                                        <CollapsibleTrigger className="text-gray-400 [place-self:end] md:[place-self:end_start]">
                                             ...{" "}
                                             {searchResultsData?.songs.length -
                                                 12}{" "}
@@ -81,12 +81,6 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                             ))}
                                     </div>
                                 </CollapsibleContent>
-                                {searchResultsData?.songs.length > 12 && (
-                                    <CollapsibleTrigger className="flex md:hidden w-full relative">
-                                        <hr className="w-full my-4 border-primary" />
-                                        <ArrowUpDownIcon className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-darker bg-white" />
-                                    </CollapsibleTrigger>
-                                )}
                             </Collapsible>
                         </section>
                     )}
@@ -97,11 +91,10 @@ export const SearchResults = async ({ query }: { query: string }) => {
                         <section>
                             <Collapsible>
                                 <CollapsibleTrigger>
-                                    <h2 className="mb-2 text-lg text-primary md:mb-4 md:text-xl flex items-center gap-2 lg:text-2xl">
+                                    <h2 className="mb-2 text-lg text-primary md:mb-4 md:text-xl lg:text-2xl flex items-center gap-2">
                                         Artists
-                                        {sortedArtists.length > 5 && (
-                                            <ArrowUpDownIcon />
-                                        )}
+                                        {searchResultsData?.songs.length >
+                                            5 && <ArrowUpDownIcon />}
                                     </h2>
                                 </CollapsibleTrigger>
                                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -125,7 +118,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                         </Link>
                                     ))}
                                     {sortedArtists.length > 5 && (
-                                        <CollapsibleTrigger className="text-gray-400 [place-self:end_start]">
+                                        <CollapsibleTrigger className="text-gray-400 ml-auto md:ml-0 [place-self:end_start]">
                                             ... {sortedArtists.length - 5} more
                                         </CollapsibleTrigger>
                                     )}
@@ -159,12 +152,6 @@ export const SearchResults = async ({ query }: { query: string }) => {
                                                 ))}
                                         </ul>
                                     </CollapsibleContent>
-                                )}
-                                {sortedArtists.length > 5 && (
-                                    <CollapsibleTrigger className="flex md:hidden w-full relative">
-                                        <hr className="w-full my-4 border-primary" />
-                                        <ArrowUpDownIcon className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-darker bg-white" />
-                                    </CollapsibleTrigger>
                                 )}
                             </Collapsible>
                         </section>
