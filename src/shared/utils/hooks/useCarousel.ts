@@ -63,21 +63,19 @@ export const useCarousel = (scrollBy = 100) => {
     };
 
     useLayoutEffect(() => {
-        if (!carouselRef.current) return;
-        carouselRef.current.addEventListener("pointerdown", handlePointerDown);
+        carouselRef.current?.addEventListener("pointerdown", handlePointerDown);
 
         calculateCarouselWidth();
         window.addEventListener("resize", calculateCarouselWidth);
 
         return () => {
-            if (carouselRef.current)
-                carouselRef.current.removeEventListener(
-                    "pointerdown",
-                    handlePointerDown
-                );
+            carouselRef.current?.removeEventListener(
+                "pointerdown",
+                handlePointerDown
+            );
             window.removeEventListener("resize", calculateCarouselWidth);
         };
-    }, []);
+    }, [calculateCarouselWidth, handlePointerDown]);
 
     return {
         carouselRef,

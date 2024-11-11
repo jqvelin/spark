@@ -1,4 +1,3 @@
-import { getSongsCollectionDuration } from "@/entities/Song";
 import { auth } from "@/features/sign-in";
 import { getPlaylists } from "@/shared/api";
 import {
@@ -8,7 +7,6 @@ import {
     DialogTrigger
 } from "@/shared/components/ui/dialog";
 import { PlusIcon } from "lucide-react";
-import Image from "next/image";
 
 import { AddPlaylistForm } from "./AddPlaylistForm/AddPlaylistForm";
 import { PlaylistLink } from "./PlaylistLink/PlaylistLink";
@@ -24,7 +22,7 @@ export const PlaylistsPage = async () => {
                     You have no playlists yet
                 </p>
                 <p className="text-xl md:text-2xl lg:text-3xl text-primary mb-4">
-                    ...let's fix it by creating some!
+                    ...let&apos;s fix it by creating some!
                 </p>
                 <Dialog>
                     <DialogTrigger className="flex items-center text-primary text-xl border-2 border-primary py-2 px-3 rounded-sm">

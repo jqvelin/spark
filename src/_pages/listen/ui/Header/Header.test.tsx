@@ -32,8 +32,7 @@ describe("Header", () => {
     });
 
     test("renders Profile correctly", async () => {
-        const ProfileComponent = await getResolvedComponent(Profile, {});
-        render(<ProfileComponent />);
+        render(<Profile />);
         expect(screen.getByTitle("")).toBeDefined();
     });
 

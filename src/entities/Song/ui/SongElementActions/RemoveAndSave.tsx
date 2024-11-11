@@ -59,8 +59,8 @@ export const RemoveAndSave = ({
                                         This action is irreversible.
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
-                                Are you sure you want to remove "{song.title}"
-                                from your playlist?
+                                Are you sure you want to remove &quot;
+                                {song.title}&quot; from your playlist?
                                 <AlertDialogFooter>
                                     <div className="self-end space-x-1">
                                         <AlertDialogAction
@@ -100,8 +100,8 @@ export const RemoveAndSave = ({
                                     This action is irreversible.
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
-                            Are you sure you want to remove "{song.title}" from
-                            your playlist?
+                            Are you sure you want to remove &quot;{song.title}
+                            &quot; from your playlist?
                             <AlertDialogFooter>
                                 <AlertDialogAction
                                     className="text-white border-2 border-primary px-3 py-2 rounded-sm w-fit self-center"

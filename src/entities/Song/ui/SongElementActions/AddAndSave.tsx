@@ -39,11 +39,12 @@ export const AddAndSave = ({ song }: { song: Song }) => {
                                         Add to playlist
                                     </DialogTitle>
                                     <DialogDescription className="text-gray-400 text-sm">
-                                        Select one of your playlists to add "
+                                        Select one of your playlists to add
+                                        &quot;
                                         <span className="text-black">
                                             {song.title}
                                         </span>
-                                        " to:
+                                        &quot; to:
                                     </DialogDescription>
                                 </DialogHeader>
                                 <AddSongTo song={song} />
@@ -70,11 +71,11 @@ export const AddAndSave = ({ song }: { song: Song }) => {
                                     Add to playlist
                                 </DialogTitle>
                                 <DialogDescription className="text-gray-400 text-sm">
-                                    Select one of your playlists to add "
+                                    Select one of your playlists to add &quot;
                                     <span className="text-black">
                                         {song.title}
                                     </span>
-                                    " to:
+                                    &quot; to:
                                 </DialogDescription>
                             </DialogHeader>
                             <AddSongTo song={song} />

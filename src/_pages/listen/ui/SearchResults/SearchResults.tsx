@@ -26,7 +26,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
             {areSearchResultsEmpty ? (
                 <>
                     <p className="text-xl text-primary">
-                        Nothing found for "<b>{query}</b>"... 🤔
+                        Nothing found for &quot;<b>{query}</b>&quot;... 🤔
                     </p>
                     <p className="text-md text-primary">
                         Check your query for typos and try again!
