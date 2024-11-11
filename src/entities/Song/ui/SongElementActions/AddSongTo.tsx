@@ -33,7 +33,7 @@ export const AddSongTo = ({ song }: { song: Song }) => {
             );
             setPlaylistOptions(playlists);
         })();
-    }, []);
+    }, [session.data?.user?.id]);
     return (
         <div>
             <ul className="flex flex-col gap-2 mb-2 max-h-[400px] overflow-y-auto">

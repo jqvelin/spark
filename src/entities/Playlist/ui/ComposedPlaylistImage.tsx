@@ -24,6 +24,7 @@ export const ComposedPlaylistImage = (props: Props) => {
             >
                 {props.playlist.songs?.slice(0, 4).map((song) => (
                     <Image
+                        key={song.id}
                         src={song.coverSrc ?? "/logo.svg"}
                         width={0}
                         height={0}

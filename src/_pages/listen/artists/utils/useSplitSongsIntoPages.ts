@@ -25,7 +25,7 @@ export const useSplitSongsIntoPages = (songs: Song[]) => {
         } else {
             setPages([songs]);
         }
-    }, []);
+    }, [songs]);
 
     function toPrevPage() {
         if (!containerRef.current) return;

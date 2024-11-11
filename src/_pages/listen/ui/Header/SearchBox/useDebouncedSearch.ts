@@ -1,6 +1,6 @@
 import { paths } from "@/shared/routing";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useDebouncedSearch = (delayMs = 1000) => {
     const [isSearching, setIsSearching] = useState(false);
@@ -12,6 +12,11 @@ export const useDebouncedSearch = (delayMs = 1000) => {
     const searchParams = useSearchParams();
     useEffect(() => {
         setSearchQuery(searchParams.get("search") ?? "");
+    }, []);
+
+    // Remove '?search=' from url if no search query provided
+    const clearUrl = useCallback(function () {
+        router.push(paths.listen.root);
     }, []);
 
     useEffect(() => {
@@ -35,12 +40,7 @@ export const useDebouncedSearch = (delayMs = 1000) => {
         return () => {
             timeout.current && clearTimeout(timeout.current);
         };
-    }, [searchQuery]);
-
-    // Remove '?search=' from url if no search query provided
-    const clearUrl = () => {
-        router.push(paths.listen.root);
-    };
+    }, [searchQuery, clearUrl, delayMs, router]);
 
     return {
         isSearching,

@@ -5,8 +5,8 @@ import { areApproximatelyEqual } from "../areApproximatelyEqual";
 const SCROLL_UPDATE_RATE = 20;
 const DELAY_BETWEEN_SCROLLS = 2000;
 
-export const useTextOverflowHandler = (ref?: RefObject<HTMLDivElement>) => {
-    const textElementRef = ref ?? useRef<HTMLDivElement>(null);
+export const useTextOverflowHandler = () => {
+    const textElementRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const textElement = textElementRef.current as HTMLDivElement;
@@ -65,7 +65,7 @@ export const useTextOverflowHandler = (ref?: RefObject<HTMLDivElement>) => {
 
             suspendAnimation();
         };
-    }, []);
+    }, [textElementRef]);
 
     return textElementRef;
 };
