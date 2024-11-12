@@ -66,22 +66,32 @@ describe("useSongElementsPreviewSlides", () => {
 });
 
 describe("getSongsCollectionDuration", () => {
-    test("returns 0 if collection is empty", () => {
-        expect(getSongsCollectionDuration([])).toBe(0);
+    test("correctly handles empty collections", () => {
+        const { songsCount, duration } = getSongsCollectionDuration([]);
+        expect(songsCount).toBe("0 songs");
+        expect(duration).toBe("0 minutes");
     });
 
     test("correctly calculates and rounds short songs' total duration", () => {
-        expect(getSongsCollectionDuration(shortSongsCollection)).toBe(9);
+        const { songsCount, duration } =
+            getSongsCollectionDuration(shortSongsCollection);
+        expect(songsCount).toBe("9 songs");
+        expect(duration).toBe("9 minutes");
     });
 
     test("correctly calculates and rounds long songs' total duration", () => {
-        expect(getSongsCollectionDuration(longSongsCollection)).toBe(180);
+        const { songsCount, duration } =
+            getSongsCollectionDuration(longSongsCollection);
+        expect(songsCount).toBe("3 songs");
+        expect(duration).toBe("180 minutes");
     });
 
     test("correctly calculates and rounds songs with different duration types' total duration", () => {
-        expect(getSongsCollectionDuration(noLeadingZerosSongsCollection)).toBe(
-            68
+        const { songsCount, duration } = getSongsCollectionDuration(
+            noLeadingZerosSongsCollection
         );
+        expect(songsCount).toBe("3 songs");
+        expect(duration).toBe("68 minutes");
     });
 });
 

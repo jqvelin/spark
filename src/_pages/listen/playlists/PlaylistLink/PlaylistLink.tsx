@@ -15,6 +15,9 @@ export const PlaylistLink = ({ playlist }: { playlist: Playlist }) => {
             console.error("Error deleting playlist:", error);
         }
     };
+    const { songsCount, duration } = getSongsCollectionDuration(
+        playlist.songs ?? []
+    );
 
     return (
         <div className="flex items-center justify-between">
@@ -32,7 +35,9 @@ export const PlaylistLink = ({ playlist }: { playlist: Playlist }) => {
                     </h2>
                     <p className="text-gray-400">{playlist.description}</p>
                     {playlist.songs?.length ? (
-                        <p className="text-gray-400">{`${playlist.songs.length} songs, ${getSongsCollectionDuration(playlist.songs)} mins`}</p>
+                        <p className="text-gray-400">
+                            {songsCount}, {duration}
+                        </p>
                     ) : null}
                 </div>
             </Link>

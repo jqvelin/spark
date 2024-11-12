@@ -19,7 +19,7 @@ export const ExtendedCategoriesPage = async ({
 }: Props) => {
     const { [categoryName]: categorySongs } = await getHomepageSongs();
     const splittedCategorySongs = splitSongsCollectionIntoGroups(categorySongs);
-    const categorySongsDuration = getSongsCollectionDuration(categorySongs);
+    const { songsCount, duration } = getSongsCollectionDuration(categorySongs);
     return (
         <Fragment>
             <div className="mb-4">
@@ -52,7 +52,9 @@ export const ExtendedCategoriesPage = async ({
                     </Fragment>
                 ))}
             </div>
-            <span className="mx-auto md:mr-0 text-gray-400">{`${categorySongs.length} songs, ${categorySongsDuration} min`}</span>
+            <span className="mx-auto md:mr-0 text-gray-400">
+                {songsCount}, {duration}
+            </span>
         </Fragment>
     );
 };

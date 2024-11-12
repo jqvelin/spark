@@ -20,6 +20,9 @@ export const DedicatedPlaylistPage = async ({
         session?.user?.id as string,
         playlistId
     );
+    const { songsCount, duration } = getSongsCollectionDuration(
+        playlist.songs ?? []
+    );
     return (
         <Fragment>
             <div className="flex flex-col items-center text-center justify-center gap-2 md:gap-4">
@@ -47,7 +50,9 @@ export const DedicatedPlaylistPage = async ({
                 ))}
             </div>
             {playlist.songs?.length ? (
-                <span className="mx-auto text-gray-400">{`${playlist.songs?.length} songs, ${getSongsCollectionDuration(playlist.songs)} min`}</span>
+                <span className="mx-auto text-gray-400">
+                    {songsCount}, {duration}
+                </span>
             ) : null}
         </Fragment>
     );

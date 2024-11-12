@@ -11,7 +11,7 @@ import { Fragment } from "react";
 
 export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
     const albumData = await getAlbumDataById(albumId);
-    const albumSongsDuration = getSongsCollectionDuration(
+    const { songsCount, duration } = getSongsCollectionDuration(
         albumData.songs ?? []
     );
 
@@ -60,7 +60,9 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                     </SongElement>
                 ))}
             </div>
-            <span className="mx-auto text-gray-400">{`${albumData.songs?.length} songs, ${albumSongsDuration} min`}</span>
+            <span className="mx-auto text-gray-400">
+                {songsCount}, {duration}
+            </span>
         </Fragment>
     );
 };
