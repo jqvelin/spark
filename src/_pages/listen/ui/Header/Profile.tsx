@@ -27,7 +27,10 @@ export const Profile = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="inline-flex min-w-fit justify-center">
                     <button onClick={() => signOut()}>
-                        <DoorOpenIcon className="text-primary" />
+                        <span className="hidden md:inline mr-1 text-primary">
+                            Logout
+                        </span>
+                        <DoorOpenIcon className="text-primary inline" />
                     </button>
                 </DropdownMenuContent>
             </DropdownMenu>
