@@ -15,8 +15,11 @@ describe("getSortedArtists", () => {
     });
 
     test("returns artists with no images sorted alphabetically", () => {
+        const ruCollator = new Intl.Collator("ru-RU");
         expect(getSortedArtists(artists.slice(0, 2))).toEqual(
-            artists.slice(0, 2).sort((a, b) => a.name.localeCompare(b.name))
+            artists
+                .slice(0, 2)
+                .sort((a, b) => ruCollator.compare(a.name, b.name))
         );
     });
 
