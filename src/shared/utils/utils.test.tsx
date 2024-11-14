@@ -1,4 +1,10 @@
-import { render, renderHook, screen, waitFor } from "@testing-library/react";
+import {
+    act,
+    render,
+    renderHook,
+    screen,
+    waitFor
+} from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
 import { areApproximatelyEqual } from "./areApproximatelyEqual";
@@ -37,7 +43,7 @@ describe("useCarousel", async () => {
     });
 
     test("correctly scrolls forwards and handles state", async () => {
-        result.current.scrollForwards();
+        act(() => result.current.scrollForwards());
         expect(container?.scrollLeft).toBe(SCROLL_BY);
         await waitFor(() =>
             expect(result.current.ableToScrollBackwards).toBe(true)
@@ -45,7 +51,7 @@ describe("useCarousel", async () => {
     });
 
     test("correctly scrolls backwards and handles state", async () => {
-        result.current.scrollBackwards();
+        act(() => result.current.scrollBackwards());
         expect(container?.scrollLeft).toBe(0);
         await waitFor(() =>
             expect(result.current.ableToScrollBackwards).toBe(false)

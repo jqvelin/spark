@@ -25,14 +25,14 @@ describe("useSplitSongsIntoPages", () => {
             useSplitSongsIntoPages(testSongs.slice(0, 10))
         );
         render(<div ref={result.current.containerRef}></div>);
-        result.current.toNextPage();
+        act(() => result.current.toNextPage());
         expect(result.current.isLastPageReached).toBe(true);
     });
 
     test("returns correct values for more than 10 pages", () => {
         const { result } = renderHook(() => useSplitSongsIntoPages(testSongs));
         render(<div ref={result.current.containerRef}></div>);
-        result.current.toPrevPage();
+        act(() => result.current.toPrevPage());
         expect(result.current.isFirstPageReached).toBe(true);
     });
 });
