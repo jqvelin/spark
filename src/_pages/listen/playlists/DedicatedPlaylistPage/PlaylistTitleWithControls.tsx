@@ -1,8 +1,8 @@
 "use client";
 
-import { Playlist, patchPlaylist } from "@/shared/api";
+import { Playlist, downloadSongsCollection, patchPlaylist } from "@/shared/api";
 import { Input } from "@/shared/components";
-import { CheckIcon, EditIcon, PencilIcon } from "lucide-react";
+import { CheckIcon, DownloadIcon, EditIcon, PencilIcon } from "lucide-react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -74,6 +74,13 @@ export const PlaylistTitleWithControls = ({
                         <PencilIcon className="size-5" />
                     </button>
                 )}
+                <button
+                    onClick={() =>
+                        downloadSongsCollection(playlist.songs ?? [])
+                    }
+                >
+                    <DownloadIcon />
+                </button>
             </div>
         </div>
     );

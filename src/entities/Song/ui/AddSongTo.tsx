@@ -12,7 +12,7 @@ export const AddSongTo = ({ song }: { song: Song }) => {
             const playlist = playlistOptions.find(
                 (playlist) => playlist.id === selectedPlaylistId
             ) as Playlist;
-            const response = await patchPlaylist({
+            await patchPlaylist({
                 ...playlist,
                 songs: [...(playlist.songs ?? []), song]
             });

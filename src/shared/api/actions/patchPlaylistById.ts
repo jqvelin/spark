@@ -15,5 +15,5 @@ export const patchPlaylist = async (playlist: Playlist) => {
         body: JSON.stringify(playlist)
     });
     revalidateTag("playlists");
-    return response;
+    return JSON.stringify(response);
 };

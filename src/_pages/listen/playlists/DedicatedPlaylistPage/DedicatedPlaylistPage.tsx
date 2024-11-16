@@ -1,9 +1,5 @@
 import { ComposedPlaylistImage } from "@/entities/Playlist";
-import {
-    RemoveAndSave,
-    SongElement,
-    getSongsCollectionDuration
-} from "@/entities/Song";
+import { SongElement, getSongsCollectionDuration } from "@/entities/Song";
 import { auth } from "@/features/sign-in";
 import { getPlaylistById } from "@/shared/api";
 import { Fragment } from "react";
@@ -40,13 +36,9 @@ export const DedicatedPlaylistPage = async ({
                     <SongElement
                         key={song.id}
                         song={song}
+                        belongsToPlaylist={playlist}
                         className="w-9/12"
-                    >
-                        <RemoveAndSave
-                            playlist={playlist}
-                            song={song}
-                        />
-                    </SongElement>
+                    />
                 ))}
             </div>
             {playlist.songs?.length ? (
