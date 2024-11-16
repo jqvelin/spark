@@ -2,7 +2,7 @@ import { Song } from "@/shared/api";
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
-import { SongElementsPreview } from "../ui/SongElement/SongElementsPreview";
+import { SongElementsPreview } from "../ui/SongElementsPreview";
 import { getSongsCollectionDuration } from "./getSongsCollectionDuration";
 import { splitSongsCollectionIntoGroups } from "./splitSongsCollectionIntoGroups";
 

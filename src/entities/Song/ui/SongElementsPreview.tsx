@@ -2,7 +2,7 @@
 
 import { Song } from "@/shared/api";
 
-import { useSongElementsPreviewSlides } from "../../utils/useSongElementsPreviewSlides";
+import { useSongElementsPreviewSlides } from "../utils/useSongElementsPreviewSlides";
 import { SongElement } from "./SongElement";
 
 export const SongElementsPreview = ({ songs }: { songs: Song[] }) => {
@@ -21,6 +21,7 @@ export const SongElementsPreview = ({ songs }: { songs: Song[] }) => {
                         key={song.id}
                     >
                         <SongElement
+                            noActions
                             style={{ animationDelay: `${i}00ms` }}
                             song={song}
                         />

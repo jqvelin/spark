@@ -9,6 +9,7 @@ export { getPlaylistById } from "./requests/getPlaylistById";
 export { addPlaylistOnServerSide } from "./actions/addPlaylistOnServerSide";
 export { patchPlaylist } from "./actions/patchPlaylistById";
 export { deletePlaylist } from "./actions/deletePlaylist";
+export { downloadSongsCollection } from "./requests/downloadSongsCollection";
 export { albumSchema } from "./model/album/albumSchema";
 export { type Album } from "./model/album/album.types";
 export { artistSchema } from "./model/artist/artistSchema";
