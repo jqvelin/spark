@@ -7,20 +7,6 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 export const AddSongTo = ({ song }: { song: Song }) => {
-    const handleAdd = async () => {
-        try {
-            const playlist = playlistOptions.find(
-                (playlist) => playlist.id === selectedPlaylistId
-            ) as Playlist;
-            await patchPlaylist({
-                ...playlist,
-                songs: [...(playlist.songs ?? []), song]
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     const [playlistOptions, setPlaylistOptions] = useState<Playlist[]>([]);
     const [selectedPlaylistId, setSelectedPlaylistId] = useState<
         Playlist["id"] | null
@@ -34,6 +20,22 @@ export const AddSongTo = ({ song }: { song: Song }) => {
             setPlaylistOptions(playlists);
         })();
     }, [session.data?.user?.id]);
+
+    const handleAdd = async () => {
+        const playlist = playlistOptions.find(
+            (playlist) => playlist.id === selectedPlaylistId
+        ) as Playlist;
+
+        const response = await patchPlaylist({
+            ...playlist,
+            songs: [...(playlist.songs ?? []), song]
+        });
+
+        if (response) {
+            // process error
+        }
+    };
+
     return (
         <div>
             <ul className="flex flex-col gap-2 mb-2 max-h-[400px] overflow-y-auto">

@@ -9,6 +9,13 @@ export const deletePlaylist = async (playlistId: Playlist["id"]) => {
         `${process.env.BASE_API_URL}/playlists/${playlistId}`,
         { method: "DELETE" }
     );
+
+    if (!response.ok) {
+        return {
+            message: response.statusText,
+            code: response.status
+        };
+    }
+
     revalidateTag("playlists");
-    return response;
 };
