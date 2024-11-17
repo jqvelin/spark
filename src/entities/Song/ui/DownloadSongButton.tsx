@@ -1,9 +1,18 @@
-import { Song } from "@/shared/api";
 import { getSongDownloadURL } from "@/shared/api/requests/getSongDownloadURL";
 import { DownloadIcon } from "lucide-react";
 import Link from "next/link";
+import { useContext } from "react";
 
-export const DownloadSongButton = ({ song }: { song: Song }) => {
+import { SongContext } from "./SongElement";
+
+export const DownloadSongButton = () => {
+    const songContext = useContext(SongContext);
+    if (!songContext) {
+        throw new Error("Song context not found");
+    }
+
+    const { song } = songContext;
+
     return (
         <Link
             download

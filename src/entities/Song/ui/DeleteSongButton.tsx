@@ -1,7 +1,6 @@
 "use client";
 
-import { Playlist, Song, patchPlaylist } from "@/shared/api";
-import { addTodo } from "@/shared/api/requests/addTodo";
+import { patchPlaylist } from "@/shared/api";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -14,15 +13,21 @@ import {
     AlertDialogTrigger
 } from "@/shared/components/ui/alert-dialog";
 import { TrashIcon } from "lucide-react";
+import { useContext } from "react";
 
-type Props = {
-    song: Song;
-    playlist: Playlist;
-    // deleteHandler: (song: Song, ...args: unknown[]) => void;
-};
+import { SongContext } from "./SongElement";
 
-export const DeleteSongButton = ({ song, playlist }: Props) => {
+export const DeleteSongButton = () => {
+    const songContext = useContext(SongContext);
+    if (!songContext) {
+        throw new Error("Song context not found");
+    }
+
+    const { song, belongsToPlaylist: playlist } = songContext;
+
     const handleRemove = async () => {
+        if (!playlist) return;
+
         patchPlaylist({
             ...playlist,
             songs: playlist.songs?.filter((s) => s.id !== song.id)
