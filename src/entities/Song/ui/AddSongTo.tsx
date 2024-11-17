@@ -1,12 +1,21 @@
 "use client";
 
 import { ComposedPlaylistImage } from "@/entities/Playlist";
-import { Playlist, Song, getPlaylists, patchPlaylist } from "@/shared/api";
+import { Playlist, getPlaylists, patchPlaylist } from "@/shared/api";
 import { DialogClose } from "@/shared/components/ui/dialog";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-export const AddSongTo = ({ song }: { song: Song }) => {
+import { SongContext } from "./SongElement";
+
+export const AddSongTo = () => {
+    const songContext = useContext(SongContext);
+    if (!songContext) {
+        throw new Error("Song context not found");
+    }
+
+    const { song } = songContext;
+
     const [playlistOptions, setPlaylistOptions] = useState<Playlist[]>([]);
     const [selectedPlaylistId, setSelectedPlaylistId] = useState<
         Playlist["id"] | null

@@ -2,25 +2,22 @@
 
 import { Playlist, Song } from "@/shared/api";
 import { cn } from "@/shared/components/lib/utils";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuTrigger
-} from "@/shared/components/ui/dropdown-menu";
 import { useTextOverflowHandler } from "@/shared/utils/hooks";
 import Image from "next/image";
-import { Fragment } from "react";
-import { BsThreeDots } from "react-icons/bs";
+import { createContext } from "react";
 
-import { DeleteSongButton } from "./DeleteSongButton";
-import { DownloadSongButton } from "./DownloadSongButton";
-import { SaveSongButton } from "./SaveSongButton";
+import { SongElementActions } from "./SongElementActions";
 
 type Props = {
     noActions?: boolean;
     belongsToPlaylist?: Playlist;
     song: Song;
 } & React.ComponentPropsWithoutRef<"div">;
+
+export const SongContext = createContext<Pick<
+    Props,
+    "song" | "belongsToPlaylist"
+> | null>(null);
 
 export const SongElement = ({
     noActions = false,
@@ -30,20 +27,6 @@ export const SongElement = ({
 }: Props) => {
     const titleRef = useTextOverflowHandler(),
         artistRef = useTextOverflowHandler();
-
-    const actionButtons = noActions ? null : (
-        <Fragment>
-            {belongsToPlaylist ? (
-                <DeleteSongButton
-                    song={song}
-                    playlist={belongsToPlaylist}
-                />
-            ) : (
-                <SaveSongButton song={song} />
-            )}
-            <DownloadSongButton song={song} />
-        </Fragment>
-    );
 
     return (
         <div
@@ -77,23 +60,10 @@ export const SongElement = ({
                 </div>
             </div>
             {!noActions && (
-                <div className="hidden md:inline text-primary">
-                    <BsThreeDots />
-                </div>
+                <SongContext.Provider value={{ song, belongsToPlaylist }}>
+                    <SongElementActions />
+                </SongContext.Provider>
             )}
-            <div className="absolute h-full right-1 text-primary overflow-hidden flex items-center group visible-on-hover before:[content:''] before:h-full before:w-0 before:absolute before:right-0 before:top-0 before:bg-[linear-gradient(to_right,transparent,white_25%)] hover:before:w-full before:transition-[width] cursor-pointer">
-                <div className="z-10 hidden md:flex items-center transition-transform translate-x-4 group-hover:translate-x-0">
-                    {actionButtons}
-                </div>
-            </div>
-            <DropdownMenu>
-                <DropdownMenuTrigger className="md:hidden text-primary">
-                    <BsThreeDots />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="text-primary flex justify-center gap-2">
-                    {actionButtons}
-                </DropdownMenuContent>
-            </DropdownMenu>
         </div>
     );
 };
