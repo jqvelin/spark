@@ -9,12 +9,12 @@ import Link from "next/link";
 
 export const PlaylistLink = ({ playlist }: { playlist: Playlist }) => {
     const handleDelete = async (playlistId: string) => {
-        try {
-            const response = await deletePlaylist(playlistId);
-        } catch (error) {
-            console.error("Error deleting playlist:", error);
+        const response = await deletePlaylist(playlistId);
+        if (response) {
+            // process error
         }
     };
+
     const { songsCount, duration } = getSongsCollectionDuration(
         playlist.songs ?? []
     );
@@ -23,7 +23,7 @@ export const PlaylistLink = ({ playlist }: { playlist: Playlist }) => {
         <div className="flex items-center justify-between">
             <Link
                 href={`${paths.listen.playlists}/${playlist.id}`}
-                className="flex items-center gap-2"
+                className="flex flex-grow items-center gap-2"
             >
                 <ComposedPlaylistImage
                     className="[width:clamp(60px,12vw,100px)]"
@@ -35,7 +35,7 @@ export const PlaylistLink = ({ playlist }: { playlist: Playlist }) => {
                     </h2>
                     <p className="text-gray-400">{playlist.description}</p>
                     {playlist.songs?.length ? (
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 text-sm">
                             {songsCount}, {duration}
                         </p>
                     ) : null}

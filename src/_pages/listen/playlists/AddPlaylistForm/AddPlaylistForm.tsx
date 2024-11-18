@@ -2,6 +2,7 @@
 
 import { addPlaylistOnServerSide } from "@/shared/api";
 import { Input } from "@/shared/components";
+import { DialogClose } from "@/shared/components/ui/dialog";
 import { useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -52,9 +53,11 @@ export const AddPlaylistForm = () => {
                 {...register("description")}
                 placeholder="description (optional)"
             />
-            <button className="text-primary font-semibold border-2 border-primary py-2 px-3 rounded-sm">
-                Submit
-            </button>
+            <DialogClose>
+                <button className="text-primary font-semibold border-2 border-primary py-2 px-3 rounded-sm">
+                    Submit
+                </button>
+            </DialogClose>
         </form>
     );
 };

@@ -52,14 +52,12 @@ export const PlaylistsPage = async () => {
                         <AddPlaylistForm />
                     </DialogContent>
                 </Dialog>
-                <div className="flex flex-col gap-2">
-                    {playlists.map((playlist) => (
-                        <PlaylistLink
-                            key={playlist.id}
-                            playlist={playlist}
-                        />
-                    ))}
-                </div>
+                {playlists.map((playlist) => (
+                    <PlaylistLink
+                        key={playlist.id}
+                        playlist={playlist}
+                    />
+                ))}
             </div>
         );
     }
