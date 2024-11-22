@@ -1,5 +1,1 @@
-import { PlaylistsPage } from "@/_pages/listen/playlists";
-
-export default function Page() {
-    return <PlaylistsPage />;
-}
+export { PlaylistsPage as default } from "@/_pages/listen/playlists";

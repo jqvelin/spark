@@ -7,14 +7,16 @@ import { Fragment } from "react";
 import { PlaylistTitleWithControls } from "./PlaylistTitleWithControls";
 
 export const DedicatedPlaylistPage = async ({
-    playlistId
+    params
 }: {
-    playlistId: string;
+    params: {
+        id: string;
+    };
 }) => {
     const session = await auth();
     const playlist = await getPlaylistById(
         session?.user?.id as string,
-        playlistId
+        params.id
     );
     const { songsCount, duration } = getSongsCollectionDuration(
         playlist.songs ?? []
