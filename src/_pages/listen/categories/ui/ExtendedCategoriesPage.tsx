@@ -4,7 +4,11 @@ import {
     splitSongsCollectionIntoGroups
 } from "@/entities/Song";
 import { SongGroups, getHomepageSongs } from "@/shared/api";
+import { paths } from "@/shared/routing";
+import { redirect } from "next/navigation";
 import { Fragment } from "react";
+
+import { getCategoryData } from "../utlis/getCategoryData";
 
 type Props = {
     categoryName: keyof SongGroups;
@@ -13,22 +17,24 @@ type Props = {
 };
 
 export const ExtendedCategoriesPage = async ({
-    categoryName,
-    categoryLocaleName,
-    categoryDescription
-}: Props) => {
-    const { [categoryName]: categorySongs } = await getHomepageSongs();
+    params
+}: {
+    params: { categoryName: string };
+}) => {
+    const { requestName, displayedName, description } =
+        getCategoryData(params.categoryName) ?? redirect(paths.listen.root);
+    const { [requestName]: categorySongs } = await getHomepageSongs();
     const splittedCategorySongs = splitSongsCollectionIntoGroups(categorySongs);
     const { songsCount, duration } = getSongsCollectionDuration(categorySongs);
     return (
         <Fragment>
             <div className="mb-4">
                 <h1 className="text-primary-darker font-bold text-2xl md:text-3xl lg:text-4xl">
-                    {categoryLocaleName}
+                    {displayedName}
                 </h1>
-                {categoryDescription && (
+                {description && (
                     <span className="text-lg md:text-xl lg:text-2xl text-gray-400">
-                        {categoryDescription}
+                        {description}
                     </span>
                 )}
             </div>

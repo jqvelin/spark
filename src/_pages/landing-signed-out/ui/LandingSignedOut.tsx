@@ -5,14 +5,7 @@ import Image from "next/image";
 import { SignInMethods } from "./SignInMethods";
 
 export const LandingSignedOut = async () => {
-    let songs: SongGroups | undefined;
-
-    try {
-        const songsData = await getHomepageSongs();
-        songs = songsData;
-    } catch (e) {
-        console.log(e);
-    }
+    const songs = (await getHomepageSongs()) ?? [];
 
     return (
         <main className="flex h-[100svh] animate-shine flex-col items-center justify-center overflow-x-hidden bg-[radial-gradient(circle_at_80%_80%,hsl(var(--primary)),transparent)]">

@@ -1,16 +1,12 @@
-import {
-    AddAndSave,
-    SongElement,
-    getSongsCollectionDuration
-} from "@/entities/Song";
+import { SongElement, getSongsCollectionDuration } from "@/entities/Song";
 import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 
-export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
-    const albumData = await getAlbumDataById(albumId);
+export const AlbumsPage = async ({ params }: { params: { id: string } }) => {
+    const albumData = await getAlbumDataById(params.id);
     const { songsCount, duration } = getSongsCollectionDuration(
         albumData.songs ?? []
     );
@@ -55,9 +51,7 @@ export const AlbumsPage = async ({ albumId }: { albumId: string }) => {
                         key={song.id}
                         song={song}
                         className="w-9/12"
-                    >
-                        <AddAndSave song={song} />
-                    </SongElement>
+                    />
                 ))}
             </div>
             <span className="mx-auto text-gray-400">

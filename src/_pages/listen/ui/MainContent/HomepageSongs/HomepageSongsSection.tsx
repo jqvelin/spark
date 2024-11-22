@@ -20,7 +20,7 @@ export const HomepageSongsSection = async () => {
             />
             <SongsCategory
                 title="Trending worldwide"
-                songs={homepageSongs.trendingGlobal}
+                songs={homepageSongs.trendingWorldwide}
                 link="trending-worldwide"
                 className="mx-auto"
             />

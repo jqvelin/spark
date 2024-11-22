@@ -8,6 +8,7 @@ export const getHomepageSongs = async () => {
     const response = await fetch(`${BASE_API_URL}/songs`, {
         cache: "no-store"
     });
+
     if (!response.ok) {
         throw new Error("Failed to fetch songs");
     }
@@ -16,7 +17,7 @@ export const getHomepageSongs = async () => {
     return z
         .object({
             fresh: songSchema.array(),
-            trendingGlobal: songSchema.array(),
+            trendingWorldwide: songSchema.array(),
             bestOfToday: songSchema.array(),
             trendingRussia: songSchema.array()
         })
