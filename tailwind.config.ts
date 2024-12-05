@@ -14,7 +14,8 @@ const config: Config = {
             height: {
                 header: "var(--header-height)",
                 footer: "var(--footer-height)",
-                "song-element": "var(--song-element-height)"
+                "song-element": "var(--song-element-height)",
+                "audio-player": "var(--audio-player-height)"
             },
             width: {
                 "song-element": "var(--song-element-width)",

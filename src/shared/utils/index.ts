@@ -5,3 +5,4 @@ export { getResolvedComponent } from "./getResolvedComponent";
 export { cloneComponents } from "./cloneComponents";
 export { areApproximatelyEqual } from "./areApproximatelyEqual";
 export { composeComponents } from "./composeComponents";
+export { throttle } from "./throttle";

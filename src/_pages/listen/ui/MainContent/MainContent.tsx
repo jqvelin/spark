@@ -1,4 +1,4 @@
-import { Fragment, Suspense } from "react";
+import { Suspense } from "react";
 
 import { FreshAlbumsCarouselSkeleton } from "./FreshAlbums/FreshAlbumsCarouselSkeleton";
 import { FreshAlbumsSection } from "./FreshAlbums/FreshAlbumsSection";
@@ -7,7 +7,7 @@ import { HomepageSongsSkeleton } from "./HomepageSongs/HomepageSongsSkeleton";
 
 export const MainContent = () => {
     return (
-        <Fragment>
+        <div className="pb-[var(--audio-player-height)]">
             <Suspense fallback={<FreshAlbumsCarouselSkeleton />}>
                 <FreshAlbumsSection />
             </Suspense>
@@ -15,6 +15,6 @@ export const MainContent = () => {
             <Suspense fallback={<HomepageSongsSkeleton />}>
                 <HomepageSongsSection />
             </Suspense>
-        </Fragment>
+        </div>
     );
 };

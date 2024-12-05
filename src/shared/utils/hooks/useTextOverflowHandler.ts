@@ -27,7 +27,7 @@ export const useTextOverflowHandler = () => {
             if (scrollWidth > offsetWidth) {
                 textScrollingInterval = setInterval(() => {
                     const isScrolledUntilEnd = areApproximatelyEqual({
-                        threshold: 2,
+                        threshold: 1,
                         number1: scrollWidth,
                         number2: Math.floor(
                             offsetWidth + textElement.scrollLeft

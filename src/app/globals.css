@@ -3,18 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-    ::-webkit-scrollbar {
-        @apply w-[10px]
-    }
-
-    ::-webkit-scrollbar-thumb {
-        @apply bg-[hsl(var(--primary))] rounded-[4px]
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        @apply bg-[hsl(var(--primary-darker))]
-    }
-
     :root {
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
@@ -55,6 +43,37 @@
         --song-element-width: 250px;
 
         --album-card-width: 100px;
+
+        --audio-player-height: 64px;
+    }
+
+    ::-webkit-scrollbar {
+        @apply w-[10px];
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-[4px] bg-[hsl(var(--primary))];
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-[hsl(var(--primary-darker))];
+    }
+
+    input[type="range"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        @apply h-1 rounded-full bg-gray-400;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+        @apply aspect-square w-3 rounded-full bg-primary;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        border: none;
+        @apply aspect-square h-3 w-3 rounded-full bg-primary;
     }
 }
 
@@ -74,11 +93,7 @@
     }
 
     .loading-animation {
-        @apply bg-[hsl(var(--fallback-bg))]
-        overflow-hidden relative after:absolute 
-        after:-left-full after:top-1/2 after:-translate-y-1/2 after:rotate-45 after:h-[400px] after:[content:'']
-        after:bg-[linear-gradient(to_right,transparent,hsl(var(--fallback-line))_50%,transparent)] after:z-10 after:animate-fallback
-        after:w-[40px]
+        @apply relative overflow-hidden bg-[hsl(var(--fallback-bg))] after:absolute after:-left-full after:top-1/2 after:z-10 after:h-[400px] after:w-[40px] after:-translate-y-1/2 after:rotate-45 after:animate-fallback after:bg-[linear-gradient(to_right,transparent,hsl(var(--fallback-line))_50%,transparent)] after:[content:''];
     }
 
     .calculated-height {
@@ -86,8 +101,7 @@
     }
 
     .visible-on-hover {
-        @apply opacity-0 transition-opacity
-        hover:opacity-100;
+        @apply opacity-0 transition-opacity hover:opacity-100;
     }
 
     .visible-on-hover > * {
