@@ -7,7 +7,7 @@ import { HomepageSongsSkeleton } from "./HomepageSongs/HomepageSongsSkeleton";
 
 export const MainContent = () => {
     return (
-        <div className="pb-[var(--audio-player-height)]">
+        <div className="pb-[calc(var(--audio-player-height)+var(--footer-height))] md:pb-[var(--audio-player-height)]">
             <Suspense fallback={<FreshAlbumsCarouselSkeleton />}>
                 <FreshAlbumsSection />
             </Suspense>

@@ -18,7 +18,8 @@ import { AudioPlayer as Player } from "./AudioPlayer";
 
 export const AudioPlayerContext = createContext<AudioPlayer | null>(null);
 
-const BASE_API_URL = process.env.BASE_API_URL ?? "http://localhost:4000";
+const BASE_API_URL =
+    process.env.NEXT_PUBLIC_BASE_API_URL ?? "http://localhost:4000";
 
 export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     const AudioElementRef = useRef<HTMLAudioElement>(null);
@@ -142,10 +143,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
                 ref={AudioElementRef}
                 src={`${BASE_API_URL}/songs/${currentSong?.id}`}
                 preload="auto"
-                autoPlay
-            >
-                Audio element is not supported in your browser
-            </audio>
+            />
         </Fragment>
     );
 };

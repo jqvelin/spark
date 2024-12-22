@@ -1,7 +1,9 @@
 import { Song } from "@/shared/api";
 
+const BASE_API_URL =
+    process.env.NEXT_PUBLIC_BASE_API_URL ?? "http://localhost:4000";
+
 export const getSongDownloadURL = ({ id, title, artist }: Song) => {
-    const BASE_API_URL = process.env.BASE_API_URL ?? "http://localhost:4000";
     const searchParams = new URLSearchParams({
         title,
         artist

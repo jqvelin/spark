@@ -24,16 +24,16 @@ export const SearchResults = async ({ query }: { query: string }) => {
     return (
         <Fragment>
             {areSearchResultsEmpty ? (
-                <>
+                <Fragment>
                     <p className="text-xl text-primary">
                         Nothing found for &quot;<b>{query}</b>&quot;... 🤔
                     </p>
                     <p className="text-md text-primary">
                         Check your query for typos and try again!
                     </p>
-                </>
+                </Fragment>
             ) : (
-                <>
+                <main className="pb-[calc(var(--audio-player-height)+var(--footer-height))] md:pb-[var(--audio-player-height)]">
                     <h1 className="text-xl mb-4 font-semibold text-primary md:mb-8 md:text-2xl lg:text-3xl">
                         Search results for:{" "}
                         <span className="font-bold">{query}</span>
@@ -189,7 +189,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                             </div>
                         </section>
                     )}
-                </>
+                </main>
             )}
         </Fragment>
     );
