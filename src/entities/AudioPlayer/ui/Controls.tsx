@@ -59,7 +59,7 @@ export const Controls = ({
                 type="range"
                 min={0}
                 max={parseLocaleDuration(currentSong?.duration ?? "01:00")}
-                className="w-20 md:w-32"
+                className="w-24 md:w-32"
                 step={1}
             />
             <button

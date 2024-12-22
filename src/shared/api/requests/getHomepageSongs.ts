@@ -2,7 +2,8 @@ import { z } from "zod";
 
 import { songSchema } from "../model/song/songSchema";
 
-const BASE_API_URL = process.env.BASE_API_URL ?? "http://localhost:4000";
+const BASE_API_URL =
+    process.env.NEXT_PUBLIC_BASE_API_URL ?? "http://localhost:4000";
 
 export const getHomepageSongs = async () => {
     const response = await fetch(`${BASE_API_URL}/songs`, {

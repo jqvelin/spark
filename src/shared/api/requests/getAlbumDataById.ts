@@ -1,6 +1,7 @@
 import { albumSchema } from "../model/album/albumSchema";
 
-const BASE_API_URL = process.env.BASE_API_URL ?? "http://localhost:4000";
+const BASE_API_URL =
+    process.env.NEXT_PUBLIC_BASE_API_URL ?? "http://localhost:4000";
 
 export const getAlbumDataById = async (albumId: string) => {
     const response = await fetch(`${BASE_API_URL}/albums/${albumId}`, {
