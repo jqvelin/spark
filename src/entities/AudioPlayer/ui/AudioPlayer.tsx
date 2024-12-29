@@ -1,8 +1,14 @@
+import { ForwardedRef, RefObject, forwardRef } from "react";
+
 import { useAudioPlayer } from "../lib/useAudioPlayer";
 import { Controls } from "./Controls";
 import { SongInfo } from "./SongInfo";
 
-export const AudioPlayer = () => {
+export const AudioPlayer = ({
+    audioElement
+}: {
+    audioElement: HTMLAudioElement;
+}) => {
     const AudioPlayer = useAudioPlayer();
 
     return (
@@ -12,7 +18,10 @@ export const AudioPlayer = () => {
             {AudioPlayer.currentSong && (
                 <SongInfo song={AudioPlayer.currentSong} />
             )}
-            <Controls {...AudioPlayer} />
+            <Controls
+                {...AudioPlayer}
+                audioElement={audioElement}
+            />
         </div>
     );
 };

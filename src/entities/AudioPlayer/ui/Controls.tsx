@@ -9,20 +9,30 @@ export const Controls = ({
     currentSong,
     play,
     pause,
-    currentTime,
     setCurrentTime,
     volume,
-    setVolume
-}: AudioPlayer) => {
+    setVolume,
+    audioElement
+}: AudioPlayer & { audioElement: HTMLAudioElement }) => {
     const timeSliderRef = useRef<HTMLInputElement>(null);
     const volumeSliderRef = useRef<HTMLInputElement>(null);
     const [ignoreTimeUpdate, setIgnoreTimeUpdate] = useState(false);
     const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
     useEffect(() => {
-        if (!timeSliderRef.current || ignoreTimeUpdate) return;
-        timeSliderRef.current.value = currentTime.toString();
-    }, [timeSliderRef.current, currentTime, ignoreTimeUpdate]);
+        function updateTimeSlider() {
+            if (ignoreTimeUpdate) return;
+
+            const timeSlider = timeSliderRef.current;
+            if (timeSlider) {
+                timeSlider.value = audioElement.currentTime.toString();
+            }
+        }
+
+        audioElement.addEventListener("timeupdate", updateTimeSlider);
+        return () =>
+            audioElement.removeEventListener("timeupdate", updateTimeSlider);
+    });
 
     useEffect(() => {
         const controller = new AbortController();
@@ -44,7 +54,7 @@ export const Controls = ({
         );
 
         return () => controller.abort();
-    }, [timeSliderRef.current]);
+    }, []);
 
     return (
         <div className="flex items-center gap-1 relative">
