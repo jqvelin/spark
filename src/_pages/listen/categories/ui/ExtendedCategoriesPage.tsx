@@ -3,7 +3,7 @@ import {
     getSongsCollectionDuration,
     splitSongsCollectionIntoGroups
 } from "@/entities/Song";
-import { SongGroups, getHomepageSongs } from "@/shared/api";
+import { SongGroups, getHomepageData } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
@@ -23,7 +23,9 @@ export const ExtendedCategoriesPage = async ({
 }) => {
     const { requestName, displayedName, description } =
         getCategoryData(params.categoryName) ?? redirect(paths.listen.root);
-    const { [requestName]: categorySongs } = await getHomepageSongs();
+    const {
+        songGroups: { [requestName]: categorySongs }
+    } = await getHomepageData();
     const splittedCategorySongs = splitSongsCollectionIntoGroups(categorySongs);
     const { songsCount, duration } = getSongsCollectionDuration(categorySongs);
     return (
