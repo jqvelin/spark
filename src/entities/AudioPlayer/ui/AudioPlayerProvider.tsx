@@ -11,9 +11,11 @@ import {
     useRef,
     useState
 } from "react";
+import { Z } from "vitest/dist/chunks/reporters.DAfKSDh5.js";
 
 import { type AudioPlayer } from "../model/AudioPlayer.types";
 import { PlaybackDataSchema } from "../model/PlaybackData.schema";
+import { PlaybackData } from "../model/PlaybackData.types";
 import { AudioPlayer as Player } from "./AudioPlayer";
 
 export const AudioPlayerContext = createContext<AudioPlayer | null>(null);
@@ -25,23 +27,18 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     const AudioElementRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentSong, setCurrentSong] = useState<Song | null>(null);
-    const [currentTime, _setCurrentTime] = useState(0);
     const [volume, _setVolume] = useState(0.5);
 
     useEffect(() => {
         const controller = new AbortController();
-        const updateTimeThrottled = throttle(
-            () => _setCurrentTime(AudioElementRef.current?.currentTime ?? 0),
-            1000
-        );
 
-        AudioElementRef.current?.addEventListener(
-            "timeupdate",
-            updateTimeThrottled,
-            {
-                signal: controller.signal
-            }
-        );
+        AudioElementRef.current?.addEventListener("play", () => play(), {
+            signal: controller.signal
+        });
+
+        AudioElementRef.current?.addEventListener("pause", pause, {
+            signal: controller.signal
+        });
 
         AudioElementRef.current?.addEventListener(
             "ended",
@@ -76,7 +73,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
         window.addEventListener("beforeunload", savePlaybackData);
         return () =>
             window.removeEventListener("beforeunload", savePlaybackData);
-    }, [currentSong, currentTime, AudioElementRef.current?.volume]);
+    }, [currentSong, AudioElementRef.current?.volume]);
 
     const setVolume = useCallback(
         (volume: number) => {
@@ -88,18 +85,17 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     );
 
     const savePlaybackData = useCallback(() => {
-        const playbackData = {
+        const playbackData: PlaybackData = {
             currentSong,
-            currentTime,
+            currentTime: AudioElementRef.current?.currentTime ?? 0,
             volume
         };
         localStorage.setItem("playbackData", JSON.stringify(playbackData));
-    }, [currentSong, currentTime, volume]);
+    }, [currentSong, volume]);
 
     const play = useCallback(
         async (song?: Song) => {
             if (song && AudioElementRef.current) {
-                _setCurrentTime(0);
                 setCurrentSong(song);
                 AudioElementRef.current.src = `${BASE_API_URL}/songs/${song.id}`;
                 AudioElementRef.current.currentTime = 0;
@@ -122,10 +118,10 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
         },
         [AudioElementRef.current]
     );
+
     const contextValue: AudioPlayer = {
         isPlaying,
         currentSong,
-        currentTime,
         volume,
         setVolume,
         setCurrentTime,
@@ -137,7 +133,9 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
         <Fragment>
             <AudioPlayerContext.Provider value={contextValue}>
                 {children}
-                <Player />
+                {AudioElementRef.current && (
+                    <Player audioElement={AudioElementRef.current} />
+                )}
             </AudioPlayerContext.Provider>
             <audio
                 ref={AudioElementRef}
