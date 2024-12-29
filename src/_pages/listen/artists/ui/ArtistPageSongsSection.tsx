@@ -2,7 +2,6 @@
 
 import { SongElement } from "@/entities/Song";
 import { Artist } from "@/shared/api";
-import AnimatedNumber from "react-animated-numbers";
 
 import { useSplitSongsIntoPages } from "../utils/useSplitSongsIntoPages";
 
@@ -38,13 +37,7 @@ export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
                 >
                     {"<"}
                 </button>
-                <AnimatedNumber
-                    animateToNumber={pageOrder}
-                    transitions={(_) => ({
-                        type: "spring",
-                        duration: 0.15
-                    })}
-                />
+                <span>{pageOrder}</span>
                 <button
                     onClick={toNextPage}
                     disabled={isLastPageReached}

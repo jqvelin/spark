@@ -1,32 +1,35 @@
-import { getHomepageSongs } from "@/shared/api";
+import { SongGroups } from "@/shared/api";
 
 import { SongsCategory } from "../SongsCategory/SongsCategory";
 
-export const HomepageSongsSection = async () => {
-    const homepageSongs = await getHomepageSongs();
+export const HomepageSongsSection = ({
+    songGroups
+}: {
+    songGroups: SongGroups;
+}) => {
     return (
         <section className="flex flex-wrap items-start gap-8">
             <SongsCategory
                 title="Fresh songs"
-                songs={homepageSongs.fresh}
+                songs={songGroups.fresh}
                 link="fresh"
                 className="mx-auto"
             />
             <SongsCategory
                 title="Today's hits"
-                songs={homepageSongs.bestOfToday}
+                songs={songGroups.bestOfToday}
                 link="best-of-today"
                 className="mx-auto"
             />
             <SongsCategory
                 title="Trending worldwide"
-                songs={homepageSongs.trendingWorldwide}
+                songs={songGroups.trendingWorldwide}
                 link="trending-worldwide"
                 className="mx-auto"
             />
             <SongsCategory
                 title="Trending in Russia"
-                songs={homepageSongs.trendingRussia}
+                songs={songGroups.trendingRussia}
                 link="trending-russia"
                 className="mx-auto"
             />
