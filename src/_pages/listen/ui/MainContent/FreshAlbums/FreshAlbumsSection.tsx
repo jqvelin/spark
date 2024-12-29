@@ -1,21 +1,8 @@
-import { getHomepageAlbums } from "@/shared/api";
-import dynamic from "next/dynamic";
+import { Album } from "@/shared/api";
 
-import { FreshAlbumsCarousel as StaticFreshAlbumsCarousel } from "./FreshAlbumsCarousel";
+import { FreshAlbumsCarousel } from "./FreshAlbumsCarousel";
 
-// Force client-side only rendering to make useLayoutEffect work with FreshAlbumsCarousel
-const FreshAlbumsCarousel = dynamic<
-    React.ComponentPropsWithoutRef<typeof StaticFreshAlbumsCarousel>
->(
-    () =>
-        import("./FreshAlbumsCarousel").then((mod) => mod.FreshAlbumsCarousel),
-    {
-        ssr: false
-    }
-);
-
-export const FreshAlbumsSection = async () => {
-    const homepageAlbums = await getHomepageAlbums();
+export const FreshAlbumsSection = ({ albums }: { albums: Album[] }) => {
     return (
         <section>
             <div className="mb-4 leading-4">
@@ -24,7 +11,7 @@ export const FreshAlbumsSection = async () => {
                 </h2>
                 <p className="text-gray-400">Discover weekly</p>
             </div>
-            <FreshAlbumsCarousel albumList={homepageAlbums} />
+            <FreshAlbumsCarousel albumList={albums} />
         </section>
     );
 };

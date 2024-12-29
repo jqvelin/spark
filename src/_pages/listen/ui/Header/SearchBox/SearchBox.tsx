@@ -7,7 +7,7 @@ import { SearchIcon } from "lucide-react";
 import { useDebouncedSearch } from "./useDebouncedSearch";
 
 export const SearchBox = (props: React.ComponentPropsWithoutRef<"div">) => {
-    const { currentSearchQuery, applySearchQuery } = useDebouncedSearch();
+    const { query, setQuery, forceSearch } = useDebouncedSearch();
     return (
         <div
             {...props}
@@ -15,10 +15,15 @@ export const SearchBox = (props: React.ComponentPropsWithoutRef<"div">) => {
         >
             <Input
                 className="pr-[28px]"
-                value={currentSearchQuery}
-                onChange={(e) => applySearchQuery(e.target.value)}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
             />
-            <SearchIcon className="absolute right-2 top-1/2 aspect-square h-[20px] -translate-y-1/2 text-primary" />
+            <button
+                onClick={forceSearch}
+                className="absolute right-2 top-1/2 aspect-square h-[20px] -translate-y-1/2 text-primary"
+            >
+                <SearchIcon />
+            </button>
         </div>
     );
 };

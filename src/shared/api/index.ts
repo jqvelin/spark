@@ -1,6 +1,5 @@
 export { playlistSchema } from "./model/playlist/playlistSchema";
-export { getHomepageSongs } from "./requests/getHomepageSongs";
-export { getHomepageAlbums } from "./requests/getHomepageAlbums";
+export { getHomepageData } from "./requests/getHomepageData";
 export { getAlbumDataById } from "./requests/getAlbumDataById";
 export { getArtistDataById } from "./requests/getArtistDataById";
 export { getSearchResults } from "./requests/getSearchResults";

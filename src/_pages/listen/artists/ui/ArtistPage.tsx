@@ -1,7 +1,6 @@
 import { AlbumPreviewCard } from "@/entities/Album";
-import { Artist, getArtistDataById } from "@/shared/api";
+import { getArtistDataById } from "@/shared/api";
 import Image from "next/image";
-import { Fragment } from "react";
 
 import { ArtistPageSongsSection } from "./ArtistPageSongsSection";
 
@@ -9,7 +8,7 @@ export const ArtistPage = async ({ params }: { params: { id: string } }) => {
     const artist = await getArtistDataById(params.id);
     if (artist)
         return (
-            <Fragment>
+            <main className="pb-[calc(var(--audio-player-height)+var(--footer-height))] w-full flex flex-col items-center">
                 <div className="flex justify-center items-center gap-2 md:gap-4">
                     <Image
                         src={artist.imageSrc ?? "/logo.svg"}
@@ -48,6 +47,6 @@ export const ArtistPage = async ({ params }: { params: { id: string } }) => {
                         </div>
                     ) : null}
                 </div>
-            </Fragment>
+            </main>
         );
 };

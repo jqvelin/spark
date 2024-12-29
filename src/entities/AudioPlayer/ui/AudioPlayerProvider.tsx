@@ -143,6 +143,7 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
                 ref={AudioElementRef}
                 src={`${BASE_API_URL}/songs/${currentSong?.id}`}
                 preload="auto"
+                autoPlay
             />
         </Fragment>
     );
