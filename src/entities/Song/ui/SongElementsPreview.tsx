@@ -3,7 +3,7 @@
 import { Song } from "@/shared/api";
 
 import { useSongElementsPreviewSlides } from "../utils/useSongElementsPreviewSlides";
-import { SongElement } from "./SongElement";
+import { DisabledSongElement } from "./DisabledSongElement";
 
 export const SongElementsPreview = ({ songs }: { songs: Song[] }) => {
     const { sliceSongsFromIndex, songsPreviewLineWrapperRef } =
@@ -20,8 +20,7 @@ export const SongElementsPreview = ({ songs }: { songs: Song[] }) => {
                         className="animate-pop-up"
                         key={song.id}
                     >
-                        <SongElement
-                            noActions
+                        <DisabledSongElement
                             style={{ animationDelay: `${i}00ms` }}
                             song={song}
                         />
