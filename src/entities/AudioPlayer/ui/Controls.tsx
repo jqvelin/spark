@@ -113,7 +113,7 @@ export const Controls = ({
                     />
                 </DropdownMenuContent>
             </DropdownMenu>
-            <div className="flex items-center md:flex gap-1">
+            <div className="hidden items-center md:flex gap-1">
                 <Volume2Icon className="text-primary fill-primary" />
                 <input
                     ref={volumeSliderRef}
