@@ -1,11 +1,11 @@
 import { SongElementsPreview } from "@/entities/Song";
-import { SongGroups, getHomepageSongs } from "@/shared/api";
+import { getHomepageData } from "@/shared/api";
 import Image from "next/image";
 
 import { SignInMethods } from "./SignInMethods";
 
 export const LandingSignedOut = async () => {
-    const songs = (await getHomepageSongs()) ?? [];
+    const songsGroups = (await getHomepageData()).songGroups;
 
     return (
         <main className="flex h-[100svh] animate-shine flex-col items-center justify-center overflow-x-hidden bg-[radial-gradient(circle_at_80%_80%,hsl(var(--primary)),transparent)]">
@@ -29,7 +29,7 @@ export const LandingSignedOut = async () => {
                     <span>- no restrictions</span>
                 </h2>
             </div>
-            {songs && <SongElementsPreview songs={songs.bestOfToday} />}
+            <SongElementsPreview songs={songsGroups.bestOfToday} />
             <SignInMethods />
         </main>
     );
