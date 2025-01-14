@@ -1,5 +1,6 @@
 "use client";
 
+import { Song } from "@/shared/api";
 import {
     Dialog,
     DialogContent,
@@ -9,23 +10,14 @@ import {
     DialogTrigger
 } from "@/shared/components/ui/dialog";
 import { PlusIcon } from "lucide-react";
-import { useContext } from "react";
 
-import { AddSongTo } from "./AddSongTo";
-import { SongContext } from "./SongElement";
+import { AddSongModal } from "./AddSongModal";
 
-export const AddSongButton = () => {
-    const songContext = useContext(SongContext);
-    if (!songContext) {
-        throw new Error("Song context not found");
-    }
-
-    const { song } = songContext;
-
+export const AddSongButton = ({ song }: { song: Song }) => {
     return (
         <Dialog>
             <DialogTrigger>
-                <PlusIcon />
+                <PlusIcon className="text-primary" />
             </DialogTrigger>
             <DialogContent className="flex flex-col">
                 <DialogHeader>
@@ -38,7 +30,7 @@ export const AddSongButton = () => {
                         &quot; to:
                     </DialogDescription>
                 </DialogHeader>
-                <AddSongTo />
+                <AddSongModal song={song} />
             </DialogContent>
         </Dialog>
     );

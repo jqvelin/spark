@@ -1,50 +1,29 @@
-"use client";
-
 import { ComposedPlaylistImage } from "@/entities/Playlist";
-import { Playlist, getPlaylists, patchPlaylist } from "@/shared/api";
+import { Playlist, Song, getPlaylists, patchPlaylist } from "@/shared/api";
 import { DialogClose } from "@/shared/components/ui/dialog";
 import { useSession } from "next-auth/react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { SongContext } from "./SongElement";
-
-export const AddSongTo = () => {
-    const songContext = useContext(SongContext);
-    if (!songContext) {
-        throw new Error("Song context not found");
-    }
-
-    const { song } = songContext;
-
+export function AddSongModal({ song }: { song: Song }) {
     const [playlistOptions, setPlaylistOptions] = useState<Playlist[]>([]);
     const [selectedPlaylistId, setSelectedPlaylistId] = useState<
         Playlist["id"] | null
     >(null);
     const session = useSession();
     useEffect(() => {
-        (async () => {
-            const playlists = await getPlaylists(
-                session.data?.user?.id as string
-            );
-            setPlaylistOptions(playlists);
-        })();
-    }, [session.data?.user?.id]);
+        getPlaylists(session.data?.user?.id as string).then(setPlaylistOptions);
+    }, []);
 
     const handleAdd = async () => {
         const playlist = playlistOptions.find(
             (playlist) => playlist.id === selectedPlaylistId
         ) as Playlist;
 
-        const response = await patchPlaylist({
+        await patchPlaylist({
             ...playlist,
             songs: [...(playlist.songs ?? []), song]
         });
-
-        if (response) {
-            // process error
-        }
     };
-
     return (
         <div>
             <ul className="flex flex-col gap-2 mb-2 max-h-[400px] overflow-y-auto">
@@ -73,4 +52,4 @@ export const AddSongTo = () => {
             </DialogClose>
         </div>
     );
-};
+}

@@ -6,7 +6,7 @@ export const SongInfo = ({ song }: { song: Song }) => {
     const titleRef = useRunningLine(),
         artistRef = useRunningLine();
     return (
-        <div className="flex items-center overflow-hidden">
+        <div className="flex items-center overflow-hidden max-w-64">
             <Image
                 src={song.coverSrc ?? "logo.svg"}
                 className="rounded-sm mr-1 flex-shrink-0"

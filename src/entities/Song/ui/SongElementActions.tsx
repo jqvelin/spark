@@ -19,12 +19,16 @@ export const SongElementActions = () => {
         throw new Error("Song context not found");
     }
 
-    const { belongsToPlaylist } = songContext;
+    const { song, belongsToPlaylist } = songContext;
 
     const ActionButtons = () => (
         <Fragment>
-            {belongsToPlaylist ? <DeleteSongButton /> : <AddSongButton />}
-            <DownloadSongButton />
+            {belongsToPlaylist ? (
+                <DeleteSongButton />
+            ) : (
+                <AddSongButton song={song} />
+            )}
+            <DownloadSongButton song={song} />
         </Fragment>
     );
 

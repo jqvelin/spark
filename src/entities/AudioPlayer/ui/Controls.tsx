@@ -86,7 +86,7 @@ export const Controls = ({
                     type="range"
                     min={0}
                     max={parseLocaleDuration(currentSong?.duration ?? "01:00")}
-                    className="w-24 md:w-32"
+                    className="w-full"
                     step={1}
                 />
                 <div className="w-full flex justify-between">
