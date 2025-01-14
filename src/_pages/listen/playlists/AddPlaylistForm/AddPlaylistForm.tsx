@@ -53,10 +53,11 @@ export const AddPlaylistForm = () => {
                 {...register("description")}
                 placeholder="description (optional)"
             />
-            <DialogClose>
-                <button className="text-primary font-semibold border-2 border-primary py-2 px-3 rounded-sm">
-                    Submit
-                </button>
+            <DialogClose
+                className="text-primary font-semibold border-2 border-primary py-2 px-3 rounded-sm"
+                type="submit"
+            >
+                Submit
             </DialogClose>
         </form>
     );
