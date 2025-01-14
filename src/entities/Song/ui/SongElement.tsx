@@ -3,7 +3,7 @@
 import { useAudioPlayer } from "@/entities/AudioPlayer";
 import { Playlist, Song } from "@/shared/api";
 import { cn } from "@/shared/components/lib/utils";
-import { useTextOverflowHandler } from "@/shared/utils/hooks";
+import { useRunningLine } from "@/shared/utils/hooks";
 import { PlayIcon } from "lucide-react";
 import Image from "next/image";
 import { ComponentPropsWithoutRef, createContext } from "react";
@@ -21,8 +21,8 @@ export const SongContext = createContext<Pick<
 > | null>(null);
 
 export const SongElement = ({ belongsToPlaylist, song, ...props }: Props) => {
-    const titleRef = useTextOverflowHandler(),
-        artistRef = useTextOverflowHandler();
+    const titleRef = useRunningLine(),
+        artistRef = useRunningLine();
     const { play } = useAudioPlayer();
 
     return (
@@ -49,20 +49,18 @@ export const SongElement = ({ belongsToPlaylist, song, ...props }: Props) => {
                 </button>
             </div>
             <div className="flex flex-1 flex-col whitespace-nowrap overflow-hidden">
-                <div
+                <span
+                    className="pr-[1px]"
                     ref={titleRef}
-                    className="overflow-hidden"
                 >
-                    <span className="pr-[1px]">{song.title}</span>
-                </div>
-                <div
+                    {song.title}
+                </span>
+                <span
+                    className="text-sm text-gray-400 pr-[1px]"
                     ref={artistRef}
-                    className="overflow-hidden"
                 >
-                    <span className="text-sm text-gray-400 pr-[1px]">
-                        {song.artist}
-                    </span>
-                </div>
+                    {song.artist}
+                </span>
             </div>
             <SongContext.Provider value={{ song, belongsToPlaylist }}>
                 <SongElementActions />
