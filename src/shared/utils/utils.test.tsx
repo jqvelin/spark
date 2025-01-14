@@ -139,9 +139,9 @@ describe("composeComponents", () => {
     });
 });
 
-// describe("useTextOverflowHandler", () => {
+// describe("useRunningLine", () => {
 //     test("correctly scrolls text", async () => {
-//         const { result } = renderHook(useTextOverflowHandler);
+//         const { result } = renderHook(useRunningLine);
 
 //         render(<div style={{width: "100px", whiteSpace: "nowrap", overflow: "hidden"}} data-testid={1} ref={result.current}>
 //             <span>Text that should flow over</span>

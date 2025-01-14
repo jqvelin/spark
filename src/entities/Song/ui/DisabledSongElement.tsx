@@ -1,6 +1,6 @@
 import { Song } from "@/shared/api";
 import { cn } from "@/shared/components/lib/utils";
-import { useTextOverflowHandler } from "@/shared/utils/hooks";
+import { useRunningLine } from "@/shared/utils/hooks";
 import Image from "next/image";
 import { ComponentPropsWithoutRef } from "react";
 
@@ -12,8 +12,8 @@ export const DisabledSongElement = ({
     song,
     ...props
 }: DisabledSongElementProps) => {
-    const titleRef = useTextOverflowHandler(),
-        artistRef = useTextOverflowHandler();
+    const titleRef = useRunningLine(),
+        artistRef = useRunningLine();
 
     return (
         <div
@@ -32,20 +32,18 @@ export const DisabledSongElement = ({
                 />
             </div>
             <div className="flex flex-1 flex-col whitespace-nowrap overflow-hidden">
-                <div
+                <span
+                    className="pr-[1px]"
                     ref={titleRef}
-                    className="overflow-hidden"
                 >
-                    <span className="pr-[1px]">{song.title}</span>
-                </div>
-                <div
+                    {song.title}
+                </span>
+                <span
+                    className="text-sm text-gray-400 pr-[1px]"
                     ref={artistRef}
-                    className="overflow-hidden"
                 >
-                    <span className="text-sm text-gray-400 pr-[1px]">
-                        {song.artist}
-                    </span>
-                </div>
+                    {song.artist}
+                </span>
             </div>
         </div>
     );

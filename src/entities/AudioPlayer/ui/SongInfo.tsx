@@ -1,36 +1,27 @@
 import { Song } from "@/shared/api";
-import { useTextOverflowHandler } from "@/shared/utils/hooks";
+import { useRunningLine } from "@/shared/utils/hooks";
 import Image from "next/image";
 
 export const SongInfo = ({ song }: { song: Song }) => {
-    const titleRef = useTextOverflowHandler(),
-        artistRef = useTextOverflowHandler();
+    const titleRef = useRunningLine(),
+        artistRef = useRunningLine();
     return (
-        <div className="flex items-center">
+        <div className="flex items-center overflow-hidden">
             <Image
                 src={song.coverSrc ?? "logo.svg"}
-                className="rounded-sm mr-1"
+                className="rounded-sm mr-1 flex-shrink-0"
                 width={40}
                 height={40}
                 alt="song"
             />
-            <div className="flex flex-col">
-                <div
-                    className="whitespace-nowrap overflow-hidden"
-                    ref={titleRef}
-                >
-                    <h3 className="w-32 overflow-hidden text-ellipsis md:overflow-visible">
-                        {song.title}
-                    </h3>
-                </div>
-                <div
-                    className="whitespace-nowrap overflow-hidden"
+            <div className="flex flex-col overflow-hidden">
+                <h3 ref={titleRef}>{song.title}</h3>
+                <h4
+                    className="text-gray-400"
                     ref={artistRef}
                 >
-                    <h4 className="text-gray-400 w-32 overflow-hidden text-ellipsis md:overflow-visible text-sm">
-                        {song.artist}
-                    </h4>
-                </div>
+                    {song.artist}
+                </h4>
             </div>
         </div>
     );
