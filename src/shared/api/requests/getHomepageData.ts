@@ -8,7 +8,9 @@ const BASE_API_URL =
 
 export const getHomepageData = async () => {
     const response = await fetch(`${BASE_API_URL}/homepage`, {
-        cache: "no-store"
+        next: {
+            revalidate: 60 * 60
+        }
     });
 
     if (!response.ok) {
