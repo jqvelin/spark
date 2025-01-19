@@ -1,7 +1,6 @@
 "use client";
 
 import { Song } from "@/shared/api";
-import { throttle } from "@/shared/utils";
 import {
     Fragment,
     ReactNode,
@@ -11,7 +10,6 @@ import {
     useRef,
     useState
 } from "react";
-import { Z } from "vitest/dist/chunks/reporters.DAfKSDh5.js";
 
 import { type AudioPlayer } from "../model/AudioPlayer.types";
 import { PlaybackDataSchema } from "../model/PlaybackData.schema";
