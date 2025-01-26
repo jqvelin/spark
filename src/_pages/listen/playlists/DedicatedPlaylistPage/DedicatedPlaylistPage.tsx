@@ -38,7 +38,7 @@ export const DedicatedPlaylistPage = async ({
                     <SongElement
                         key={song.id}
                         song={song}
-                        belongsToPlaylist={playlist}
+                        playlist={playlist}
                         className="w-9/12"
                     />
                 ))}
