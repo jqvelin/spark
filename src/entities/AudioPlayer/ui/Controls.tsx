@@ -4,7 +4,13 @@ import {
     DropdownMenuTrigger
 } from "@/shared/components/ui/dropdown-menu";
 import { throttle } from "@/shared/utils";
-import { PauseIcon, PlayIcon, Volume2Icon } from "lucide-react";
+import {
+    PauseIcon,
+    PlayIcon,
+    SkipBackIcon,
+    SkipForwardIcon,
+    Volume2Icon
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { parseLocaleDuration } from "../lib/parseLocaleDuration";
@@ -12,9 +18,12 @@ import { type AudioPlayer } from "../model/AudioPlayer.types";
 
 export const Controls = ({
     isPlaying,
-    currentSong,
+    playbackQueue,
+    currentSongId,
     play,
     pause,
+    skipBack,
+    skipForward,
     setCurrentTime,
     volume,
     setVolume,
@@ -26,6 +35,8 @@ export const Controls = ({
     const [currentTime, _setCurrentTime] = useState(
         audioElement.currentTime ?? 0
     );
+
+    const currentSong = playbackQueue[currentSongId];
 
     const minutesElapsed = Math.floor(currentTime / 60)
         .toString()
@@ -74,12 +85,28 @@ export const Controls = ({
 
     return (
         <div className="flex items-center gap-1 relative">
+            {playbackQueue.length > 1 && (
+                <button
+                    className="text-primary [&>*]:fill-primary"
+                    onClick={skipBack}
+                >
+                    <SkipBackIcon />
+                </button>
+            )}
             <button
                 onClick={isPlaying ? pause : () => play()}
                 className="text-primary [&>*]:fill-primary"
             >
                 {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </button>
+            {playbackQueue.length > 1 && (
+                <button
+                    className="text-primary [&>*]:fill-primary"
+                    onClick={skipForward}
+                >
+                    <SkipForwardIcon />
+                </button>
+            )}
             <div className="flex flex-col">
                 <input
                     ref={timeSliderRef}

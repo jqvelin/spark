@@ -24,8 +24,12 @@ const BASE_API_URL =
 export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
     const AudioElementRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [currentSong, setCurrentSong] = useState<Song | null>(null);
+    const [playbackQueue, setPlaybackQueue] = useState<Song[]>([]);
+    const [currentSongId, setCurrentSongId] = useState(0);
+    // const [currentSong, setCurrentSong] = useState<Song | null>(null);
     const [volume, _setVolume] = useState(0.5);
+
+    const currentSong = playbackQueue[currentSongId];
 
     useEffect(() => {
         const controller = new AbortController();
@@ -38,30 +42,43 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
             signal: controller.signal
         });
 
-        AudioElementRef.current?.addEventListener(
-            "ended",
-            () => setIsPlaying(false),
-            { signal: controller.signal }
-        );
-
         window.addEventListener("beforeunload", savePlaybackData, {
             signal: controller.signal
         });
 
-        const playbackDataItem = localStorage.getItem("playbackData");
-        if (playbackDataItem) {
-            const playbackData = PlaybackDataSchema.parse(
-                JSON.parse(playbackDataItem)
-            );
-            playbackData.currentSong &&
-                setCurrentSong(playbackData.currentSong);
+        const playbackData = localStorage.getItem("playbackData");
+        if (playbackData) {
+            const { playbackQueue, currentSongId, currentTime, volume } =
+                PlaybackDataSchema.parse(JSON.parse(playbackData));
+            playbackQueue && setPlaybackQueue(playbackQueue);
+            currentSongId && setCurrentSongId(currentSongId);
 
-            setCurrentTime(playbackData.currentTime);
-            setVolume(playbackData.volume);
+            setCurrentTime(currentTime);
+            setVolume(volume);
         }
 
         return () => controller.abort();
-    }, [AudioElementRef.current]);
+    }, []);
+
+    useEffect(() => {
+        AudioElementRef.current?.addEventListener("ended", playNextOrStop);
+
+        function playNextOrStop() {
+            if (
+                playbackQueue.length > 1 &&
+                currentSongId < playbackQueue.length - 1
+            ) {
+                setCurrentSongId(currentSongId + 1);
+                play();
+            } else setIsPlaying(false);
+        }
+
+        return () =>
+            AudioElementRef.current?.removeEventListener(
+                "ended",
+                playNextOrStop
+            );
+    }, [playbackQueue, currentSongId]);
 
     useEffect(() => {
         if (AudioElementRef.current) AudioElementRef.current.volume = volume;
@@ -71,58 +88,83 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
         window.addEventListener("beforeunload", savePlaybackData);
         return () =>
             window.removeEventListener("beforeunload", savePlaybackData);
-    }, [currentSong, AudioElementRef.current?.volume]);
+    }, [JSON.stringify(playbackQueue), currentSongId, volume]);
 
-    const setVolume = useCallback(
-        (volume: number) => {
-            if (AudioElementRef.current)
-                AudioElementRef.current.volume = volume;
-            _setVolume(volume);
-        },
-        [AudioElementRef.current]
-    );
+    const setVolume = useCallback((volume: number) => {
+        if (AudioElementRef.current) AudioElementRef.current.volume = volume;
+        _setVolume(volume);
+    }, []);
 
     const savePlaybackData = useCallback(() => {
         const playbackData: PlaybackData = {
-            currentSong,
+            playbackQueue,
+            currentSongId,
             currentTime: AudioElementRef.current?.currentTime ?? 0,
             volume
         };
         localStorage.setItem("playbackData", JSON.stringify(playbackData));
-    }, [currentSong, volume]);
+    }, [JSON.stringify(playbackQueue), currentSongId, volume]);
 
     const play = useCallback(
-        async (song?: Song) => {
-            if (song && AudioElementRef.current) {
-                setCurrentSong(song);
-                AudioElementRef.current.src = `${BASE_API_URL}/songs/${song.id}`;
-                AudioElementRef.current.currentTime = 0;
+        async (playOptions?: {
+            song?: Song;
+            collection?: Song[];
+            collectionSongId?: number;
+        }) => {
+            if (!AudioElementRef.current) return;
+            if (!playOptions) {
+                AudioElementRef.current.play().catch((e) => console.log(e));
+                setIsPlaying(true);
+                return;
             }
-            AudioElementRef.current?.play().catch((e) => console.log(e));
+
+            const { song, collection, collectionSongId } = playOptions;
+
+            if (song) {
+                setCurrentSongId(0);
+                setPlaybackQueue([song]);
+                AudioElementRef.current.src = `${BASE_API_URL}/songs/${song.id}`;
+            } else if (collection && typeof collectionSongId === "number") {
+                setCurrentSongId(collectionSongId);
+                setPlaybackQueue(collection);
+                AudioElementRef.current.src = `${BASE_API_URL}/songs/${collection[collectionSongId].id}`;
+            }
+            AudioElementRef.current.currentTime = 0;
+            AudioElementRef.current.play().catch((e) => console.log(e));
             setIsPlaying(true);
         },
-        [AudioElementRef.current, isPlaying]
+        [isPlaying]
     );
 
     const pause = useCallback(() => {
         AudioElementRef.current?.pause();
         setIsPlaying(false);
-    }, [AudioElementRef.current, isPlaying]);
+    }, [isPlaying]);
 
-    const setCurrentTime = useCallback(
-        (currentTime: number) => {
-            if (AudioElementRef.current)
-                AudioElementRef.current.currentTime = currentTime;
-        },
-        [AudioElementRef.current]
-    );
+    const setCurrentTime = useCallback((currentTime: number) => {
+        if (AudioElementRef.current)
+            AudioElementRef.current.currentTime = currentTime;
+    }, []);
+
+    const skipForward = useCallback(() => {
+        if (currentSongId === playbackQueue.length - 1) setCurrentSongId(0);
+        else setCurrentSongId(currentSongId + 1);
+    }, [JSON.stringify(playbackQueue), currentSongId]);
+
+    const skipBack = useCallback(() => {
+        if (currentSongId === 0) setCurrentSongId(playbackQueue.length - 1);
+        else setCurrentSongId(currentSongId - 1);
+    }, [JSON.stringify(playbackQueue), currentSongId]);
 
     const contextValue: AudioPlayer = {
         isPlaying,
-        currentSong,
         volume,
         setVolume,
         setCurrentTime,
+        playbackQueue,
+        currentSongId,
+        skipBack,
+        skipForward,
         play,
         pause
     };

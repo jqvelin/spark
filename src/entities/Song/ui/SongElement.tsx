@@ -1,29 +1,45 @@
 "use client";
 
 import { useAudioPlayer } from "@/entities/AudioPlayer";
-import { Playlist, Song } from "@/shared/api";
+import { Album, Playlist, Song } from "@/shared/api";
 import { cn } from "@/shared/components/lib/utils";
 import { useRunningLine } from "@/shared/utils/hooks";
 import { PlayIcon } from "lucide-react";
 import Image from "next/image";
-import { ComponentPropsWithoutRef, createContext } from "react";
+import { ComponentPropsWithoutRef, createContext, useCallback } from "react";
 
 import { SongElementActions } from "./SongElementActions";
 
 type Props = {
-    belongsToPlaylist?: Playlist;
+    playlist?: Playlist;
+    album?: Album;
     song: Song;
 } & ComponentPropsWithoutRef<"div">;
 
 export const SongContext = createContext<Pick<
     Props,
-    "song" | "belongsToPlaylist"
+    "song" | "playlist"
 > | null>(null);
 
-export const SongElement = ({ belongsToPlaylist, song, ...props }: Props) => {
+export const SongElement = ({ playlist, album, song, ...props }: Props) => {
     const titleRef = useRunningLine(),
         artistRef = useRunningLine();
-    const { play } = useAudioPlayer();
+    const { play: playOverload } = useAudioPlayer();
+
+    const play = useCallback(() => {
+        if (playlist ?? album) {
+            const collection = (playlist ?? album)?.songs;
+            if (!collection) return;
+
+            const songInCollection = collection?.find((s) => s.id === song.id);
+            if (!songInCollection) return;
+
+            const collectionSongId = collection?.indexOf(songInCollection);
+            playOverload({ collection, collectionSongId });
+        } else {
+            playOverload({ song });
+        }
+    }, [playlist, album, song]);
 
     return (
         <div
@@ -42,7 +58,7 @@ export const SongElement = ({ belongsToPlaylist, song, ...props }: Props) => {
                     className="rounded-sm"
                 />
                 <button
-                    onClick={() => play(song)}
+                    onClick={play}
                     className="bg-white/90 rounded-full absolute p-1 transition-opacity opacity-0 hover:opacity-100"
                 >
                     <PlayIcon className="text-primary fill-primary" />
@@ -62,7 +78,7 @@ export const SongElement = ({ belongsToPlaylist, song, ...props }: Props) => {
                     {song.artist}
                 </span>
             </div>
-            <SongContext.Provider value={{ song, belongsToPlaylist }}>
+            <SongContext.Provider value={{ song, playlist }}>
                 <SongElementActions />
             </SongContext.Provider>
         </div>
