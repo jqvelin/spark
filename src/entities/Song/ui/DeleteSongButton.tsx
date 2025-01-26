@@ -23,7 +23,7 @@ export const DeleteSongButton = () => {
         throw new Error("Song context not found");
     }
 
-    const { song, belongsToPlaylist: playlist } = songContext;
+    const { song, playlist } = songContext;
 
     const handleRemove = async () => {
         if (!playlist) return;
