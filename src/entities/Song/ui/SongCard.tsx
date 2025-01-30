@@ -21,7 +21,7 @@ export const SongContext = createContext<Pick<
     "song" | "playlist"
 > | null>(null);
 
-export const SongElement = ({ playlist, album, song, ...props }: Props) => {
+export const SongCard = ({ playlist, album, song, ...props }: Props) => {
     const titleRef = useRunningLine(),
         artistRef = useRunningLine();
     const { play: playOverload } = useAudioPlayer();

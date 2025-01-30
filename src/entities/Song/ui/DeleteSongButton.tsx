@@ -15,7 +15,7 @@ import {
 import { TrashIcon } from "lucide-react";
 import { useContext } from "react";
 
-import { SongContext } from "./SongElement";
+import { SongContext } from "./SongCard";
 
 export const DeleteSongButton = () => {
     const songContext = useContext(SongContext);

@@ -1,4 +1,4 @@
-import { SongElement, getSongsCollectionDuration } from "@/entities/Song";
+import { SongCard, getSongsCollectionDuration } from "@/entities/Song";
 import { getAlbumDataById } from "@/shared/api";
 import { paths } from "@/shared/routing";
 import Image from "next/image";
@@ -47,7 +47,7 @@ export const AlbumsPage = async ({ params }: { params: { id: string } }) => {
             <hr className="my-2 w-full md:my-4" />
             <div className="flex flex-col mx-auto items-center gap-2 w-full max-w-[500px] mb-2">
                 {album.songs?.map((song) => (
-                    <SongElement
+                    <SongCard
                         key={song.id}
                         song={song}
                         className="w-9/12"
