@@ -11,7 +11,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { AddSongButton } from "./AddSongButton";
 import { DeleteSongButton } from "./DeleteSongButton";
 import { DownloadSongButton } from "./DownloadSongButton";
-import { SongContext } from "./SongElement";
+import { SongContext } from "./SongCard";
 
 export const SongElementActions = () => {
     const songContext = useContext(SongContext);

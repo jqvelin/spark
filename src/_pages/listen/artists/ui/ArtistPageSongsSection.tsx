@@ -1,6 +1,6 @@
 "use client";
 
-import { SongElement } from "@/entities/Song";
+import { SongCard } from "@/entities/Song";
 import { Artist } from "@/shared/api";
 
 import { useSplitSongsIntoPages } from "../utils/useSplitSongsIntoPages";
@@ -23,7 +23,7 @@ export const ArtistPageSongsSection = ({ artist }: { artist: Artist }) => {
                 className="transition-all duration-100 grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center mb-4"
             >
                 {page?.map((song) => (
-                    <SongElement
+                    <SongCard
                         song={song}
                         key={song.id}
                     />

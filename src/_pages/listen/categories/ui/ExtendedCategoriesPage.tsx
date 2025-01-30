@@ -1,5 +1,5 @@
 import {
-    SongElement,
+    SongCard,
     getSongsCollectionDuration,
     splitSongsCollectionIntoGroups
 } from "@/entities/Song";
@@ -45,7 +45,7 @@ export const ExtendedCategoriesPage = async ({
                     <Fragment key={group.toString()}>
                         <div className="grid place-items-center w-full gap-2 [grid-template-columns:repeat(auto-fill,minmax(var(--song-element-width),1fr))]">
                             {group.map((song) => (
-                                <SongElement
+                                <SongCard
                                     song={song}
                                     key={song.id}
                                 />

@@ -1,5 +1,5 @@
 import { ComposedPlaylistImage } from "@/entities/Playlist";
-import { SongElement, getSongsCollectionDuration } from "@/entities/Song";
+import { SongCard, getSongsCollectionDuration } from "@/entities/Song";
 import { auth } from "@/features/sign-in";
 import { getPlaylistById } from "@/shared/api";
 import { Fragment } from "react";
@@ -35,7 +35,7 @@ export const DedicatedPlaylistPage = async ({
             <hr className="my-2 w-full md:my-4" />
             <div className="flex flex-col mx-auto items-center gap-2 w-full max-w-[500px] mb-2">
                 {playlist.songs?.map((song) => (
-                    <SongElement
+                    <SongCard
                         key={song.id}
                         song={song}
                         playlist={playlist}
