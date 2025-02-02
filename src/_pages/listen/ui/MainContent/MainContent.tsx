@@ -2,7 +2,6 @@ import { getHomepageData } from "@/shared/api";
 
 import { FreshAlbumsSection } from "./FreshAlbums/FreshAlbumsSection";
 import { HomepageSongsSection } from "./HomepageSongs/HomepageSongsSection";
-import { HomepageSongsSkeleton } from "./HomepageSongs/HomepageSongsSkeleton";
 
 export const MainContent = async () => {
     const homepageData = await getHomepageData();
