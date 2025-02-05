@@ -1,6 +1,6 @@
 import { Song } from "@/shared/api";
 import { act, render, renderHook, waitFor } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { useSplitSongsIntoPages } from "./useSplitSongsIntoPages";
 
