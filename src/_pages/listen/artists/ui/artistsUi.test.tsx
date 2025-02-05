@@ -1,7 +1,7 @@
 import { Artist } from "@/shared/api";
 import "@/shared/mocks/intersectionObserverMock";
 import { getResolvedComponent } from "@/shared/utils";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
 import { ArtistPage } from "./ArtistPage";
