@@ -33,7 +33,7 @@ export const SearchResults = async ({ query }: { query: string }) => {
                     </p>
                 </Fragment>
             ) : (
-                <main className="pb-[calc(var(--audio-player-height)+var(--footer-height))] md:pb-[var(--audio-player-height)]">
+                <main>
                     <h1 className="text-xl mb-4 font-semibold text-primary md:mb-8 md:text-2xl lg:text-3xl">
                         Search results for:{" "}
                         <span className="font-bold">{query}</span>

@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                     <Header />
                     <div className="flex">
                         <Sidebar />
-                        <main className="calculated-height flex flex-col w-full p-2 md:p-4">
+                        <main className="calculated-height flex flex-col w-full p-2 pb-[calc(var(--audio-player-height)+0.2rem)]">
                             {children}
                         </main>
                     </div>
