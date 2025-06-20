@@ -1,16 +1,87 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import pluginNext from '@next/eslint-plugin-next';
+import stylistic from '@stylistic/eslint-plugin';
+import parser from '@typescript-eslint/parser';
+import importPlugin from 'eslint-plugin-import';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+export default [
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    languageOptions: {
+      parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
+    plugins: {
+      '@next/next': pluginNext,
+      '@stylistic': stylistic,
+      'import': importPlugin
+    },
+    rules: {
+      ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/max-len': ['error', {
+        code: 80
+      }],
+      '@stylistic/no-trailing-spaces': 'error',
+      '@stylistic/comma-dangle': ['error', 'never'],
+      '@stylistic/eol-last': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/object-curly-spacing': ['error', 'always'],
+      '@stylistic/object-curly-newline': ['error', {
+        'ObjectExpression': 'always'
+      }],
+      '@stylistic/object-curly-newline': ['error', {
+        'ObjectExpression': 'always'
+      }],
+      '@stylistic/object-property-newline': ['error'],
+      '@stylistic/key-spacing': ['error', {
+        afterColon: true
+      }],
+      '@stylistic/padded-blocks': ['error', {
+        blocks: 'never'
+      }],
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+      '@stylistic/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
+      '@stylistic/jsx-max-props-per-line': ['error', {
+        maximum: 1,
+        when: 'multiline'
+      }],
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+      'import/newline-after-import': ['error'],
+      'import/order': ['error', {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          ['parent', 'sibling', 'index'],
+          'object',
+          'type'
+        ],
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: '@/**',
+            group: 'internal'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['react'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true
+        }
+      }]
+    }
+  }
 ];
-
-export default eslintConfig;
