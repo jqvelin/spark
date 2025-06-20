@@ -40,7 +40,6 @@
     "lint-staged": "^16.1.2"
   },
   "lint-staged": {
-    "*.js": "eslint --fix",
-    "*.ts": "eslint --fix"
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
   }
 }
