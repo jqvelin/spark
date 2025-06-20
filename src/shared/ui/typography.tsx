@@ -66,12 +66,12 @@ export const H4 = (
 export const P = (
   { className, children, ...props }: TypographyProps<'p'>) => {
   return (
-    <h4
+    <p
       className={
         cn('leading-7 [&:not(:first-child)]:mt-6', className)}
       {...props}
     >
       {children}
-    </h4>
+    </p>
   );
 };
