@@ -26,9 +26,6 @@ export default [
       ...pluginNext.configs['core-web-vitals'].rules,
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
-      '@stylistic/max-len': ['error', {
-        code: 80
-      }],
       '@stylistic/no-trailing-spaces': 'error',
       '@stylistic/comma-dangle': ['error', 'never'],
       '@stylistic/eol-last': ['error', 'always'],
