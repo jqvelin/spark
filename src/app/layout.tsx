@@ -1,5 +1,7 @@
 import { Geist } from 'next/font/google';
 
+import { Header } from '@/widgets/header';
+
 import type { Metadata } from 'next';
 
 import './globals.css';
@@ -25,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang='ru'>
       <body className={geist.className}>
+        <Header />
         {children}
       </body>
     </html>
