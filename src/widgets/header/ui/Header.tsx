@@ -7,7 +7,7 @@ import { Navbar } from './Navbar';
 
 export const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 border-b">
+    <header className="fixed top-0 left-0 right-0 h-header flex items-center border-b z-header bg-background/90 backdrop-blur-xs">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <HeaderLeft />

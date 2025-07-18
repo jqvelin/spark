@@ -28,7 +28,9 @@ export default function RootLayout({
     <html lang='ru'>
       <body className={geist.className}>
         <Header />
-        {children}
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   );
