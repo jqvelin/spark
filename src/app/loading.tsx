@@ -1,5 +1,10 @@
-import { FreshAlbumsCarouselSkeleton } from '@/pages/home';
+import { Fragment } from 'react';
+
+import { CategoryTrackListsSkeleton, FreshAlbumsCarouselSkeleton } from '@/pages/home';
 
 export default function Loading() {
-  return <FreshAlbumsCarouselSkeleton />;
+  return <Fragment>
+    <FreshAlbumsCarouselSkeleton />
+    <CategoryTrackListsSkeleton />
+  </Fragment>;
 }

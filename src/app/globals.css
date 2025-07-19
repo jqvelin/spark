@@ -42,6 +42,7 @@
 
   --spacing-header: 5rem;
   --z-index-header: 100;
+  --z-index-sheet: 101;
 }
 
 :root {

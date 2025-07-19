@@ -10,7 +10,7 @@ type Props = {
 export const FreshAlbumsCarousel = ({ albums }: Props) => {
   return (
     <div>
-      <H2>Новые альбомы</H2>
+      <H2 className='mb-2'>Новые альбомы</H2>
       <Carousel
         opts={{
           dragFree: true,
