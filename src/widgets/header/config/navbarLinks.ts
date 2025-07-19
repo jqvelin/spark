@@ -6,7 +6,7 @@ export const NAVBAR_LINKS = [
     label: 'Главная'
   },
   {
-    link: PAGES.myPlaylists,
+    link: PAGES.myPlaylists.root,
     label: 'Плейлисты'
   }
 ] as const;
