@@ -90,6 +90,6 @@
   }
 
   main {
-    @apply min-h-screen pt-[calc(var(--spacing-header)+1rem)] p-4 container mx-auto;
+    @apply min-h-screen pt-[calc(var(--spacing-header)+1rem)] p-4 container mx-auto relative;
   }
 }
