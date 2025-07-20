@@ -2,6 +2,7 @@ import pluginNext from '@next/eslint-plugin-next';
 import stylistic from '@stylistic/eslint-plugin';
 import parser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
+import pluginPreferArrow from 'eslint-plugin-prefer-arrow';
 
 export default [
   {
@@ -19,12 +20,19 @@ export default [
     plugins: {
       '@next/next': pluginNext,
       '@stylistic': stylistic,
-      'import': importPlugin
+      'import': importPlugin,
+      'prefer-arrow': pluginPreferArrow
     },
     rules: {
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs['core-web-vitals'].rules,
       'no-unused-vars': ['error'],
+      'prefer-arrow/prefer-arrow-functions': [
+        'error',
+        {
+          'singleReturnOnly': true
+        }
+      ],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/no-trailing-spaces': 'error',
