@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { CategoryTrackListsSkeleton, FreshAlbumsCarouselSkeleton } from '@/pages/home';
+import { CategoryTrackListsSkeleton, FreshAlbumsCarouselSkeleton } from '@/(pages)/home';
 
 const Loading = () => (
   <Fragment>
