@@ -19,19 +19,19 @@ const geist = Geist({
   display: 'swap'
 });
 
-export default function RootLayout({
+const RootLayout = ({
   children
 }: {
   children: React.ReactNode;
-}) {
-  return (
-    <html lang='ru'>
-      <body className={geist.className}>
-        <Header />
-        <main>
-          {children}
-        </main>
-      </body>
-    </html>
-  );
-}
+}) => (
+  <html lang='ru'>
+    <body className={geist.className}>
+      <Header />
+      <main>
+        {children}
+      </main>
+    </body>
+  </html>
+);
+
+export default RootLayout;
