@@ -2,6 +2,7 @@ export { Badge } from './badge';
 export { Button } from './button';
 export * from './card';
 export * from './carousel';
+export * from './collapsible';
 export { Input } from './input';
 export { Logo } from './Logo';
 export * from './sheet';
