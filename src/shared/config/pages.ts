@@ -10,5 +10,6 @@ export const PAGES = {
   trendingInRussia: '/trending-in-russia',
   trendingWorldwide: '/trending-worldwide',
   album: (albumId: number) => `/albums/${albumId}`,
+  artist: (artistId: string) => `/artists/${artistId}`,
   search: (query: string) => `/search?query=${query}`
 } as const;

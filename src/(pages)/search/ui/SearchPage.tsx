@@ -7,11 +7,11 @@ import { H1, H2 } from '@/shared/ui';
 
 import { getSearchResults } from '../api/getSearchResults';
 
-type SearchPageProps = {
+type Props = {
   searchParams: Promise<{ query: string }>
 };
 
-export const SearchPage = async ({ searchParams }: SearchPageProps) => {
+export const SearchPage = async ({ searchParams }: Props) => {
   const { query } = await searchParams;
   const { albums, artists, tracks } = await getSearchResults(query);
 

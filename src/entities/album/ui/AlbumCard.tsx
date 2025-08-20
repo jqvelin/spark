@@ -1,7 +1,9 @@
 import type { ComponentPropsWithRef } from 'react';
 
 import { PlayIcon } from 'lucide-react';
+import Link from 'next/link';
 
+import { PAGES } from '@/shared/config';
 import { Button, Card, CardContent, P } from '@/shared/ui';
 import { cn } from '@/shared/utils';
 
@@ -32,7 +34,9 @@ export const AlbumCard = ({ album, className, ...props }: Props) => (
         </Button>
       </div>
       <b className="truncate" title={album.title}>{album.title}</b>
-      <P className="text-muted-foreground truncate" title={album.artist}>{album.artist}</P>
+      <Link href={PAGES.artist(album.artistId)}>
+        <P className="text-muted-foreground truncate" title={album.artist}>{album.artist}</P>
+      </Link>
     </CardContent>
   </Card>
 );

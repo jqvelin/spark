@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/shared/ui';
 
 export const TrackCardSkeleton = () => (
-  <Card>
+  <Card className='animate-pulse'>
     <CardContent className="p-2">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-3 flex-1 min-w-0">
