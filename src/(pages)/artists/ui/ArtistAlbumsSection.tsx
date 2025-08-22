@@ -5,7 +5,7 @@ type Props = {
   albums: Album[]
 };
 
-export const ArtistAlbumsCollapsible = ({ albums }: Props) => (
+export const ArtistAlbumsSection = ({ albums }: Props) => (
   <div className='mb-4'>
     <H2 className='mb-2'>Альбомы</H2>
     <div className='flex gap-2 flex-wrap'>

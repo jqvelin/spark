@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Artist } from '@/entities/artist';
 import { Button, H1, P } from '@/shared/ui';
 
-import { ArtistAlbumsCollapsible } from './ArtistAlbumsCollapsible';
+import { ArtistAlbumsSection } from './ArtistAlbumsSection';
 import { ArtistImage } from './ArtistImage';
 import { ArtistTracksCollapsible } from './ArtistTracksCollapsible';
 import { getArtist } from '../api/getArtist';
@@ -43,6 +43,6 @@ export const ArtistPage = async ({ params }: Props) => {
       </div>
     </div>
     {tracks.length > 0 && <ArtistTracksCollapsible tracks={tracks} />}
-    {albums.length > 0 && <ArtistAlbumsCollapsible albums={albums} />}
+    {albums.length > 0 && <ArtistAlbumsSection albums={albums} />}
   </div>;
 };
