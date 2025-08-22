@@ -22,10 +22,12 @@ export const AlbumCard = ({ album, className, ...props }: Props) => (
   >
     <CardContent className="flex flex-col p-4">
       <div className="relative mb-2">
-        <AlbumCover
-          coverSrc={album.coverSrc}
-          alt={album.title}
-        />
+        <Link href={PAGES.album(album.id)}>
+          <AlbumCover
+            coverSrc={album.coverSrc}
+            alt={album.title}
+          />
+        </Link>
         <Button
           size="icon"
           className={'absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity'}
@@ -33,7 +35,9 @@ export const AlbumCard = ({ album, className, ...props }: Props) => (
           <PlayIcon />
         </Button>
       </div>
-      <b className="truncate" title={album.title}>{album.title}</b>
+      <Link href={PAGES.album(album.id)} className="truncate" title={album.title}>
+        <b>{album.title}</b>
+      </Link>
       <Link href={PAGES.artist(album.artistId)}>
         <P className="text-muted-foreground truncate" title={album.artist}>{album.artist}</P>
       </Link>
