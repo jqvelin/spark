@@ -7,8 +7,8 @@ export const TrackCardSkeleton = () => (
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <div className="w-[50px] h-[50px] bg-muted rounded-sm"></div>
           <div className="flex-1 min-w-0">
-            <div className='w-40 h-4 bg-muted mb-2'></div>
-            <div className='w-20 h-4 bg-muted'></div>
+            <div className='w-40 h-[26px] lg:h-[28px] bg-muted mb-2'></div>
+            <div className='w-20 h-[22px] lg:h-[24px] bg-muted'></div>
           </div>
         </div>
         <div className='flex gap-4'>

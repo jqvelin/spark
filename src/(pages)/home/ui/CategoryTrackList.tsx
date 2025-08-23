@@ -15,7 +15,7 @@ export const CategoryTrackList = ({ categoryName, categoryPage, tracks }: Props)
       <H2>{categoryName}</H2>
       <Link href={categoryPage}>
         <Button variant="ghost">
-          View All
+          Показать все
         </Button>
       </Link>
     </div>
