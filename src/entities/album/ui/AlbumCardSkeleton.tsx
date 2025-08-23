@@ -8,8 +8,8 @@ export const AlbumCardSkeleton = () => (
       <div className="mb-2">
         <div className='w-full aspect-square bg-muted rounded-sm'></div>
       </div>
-      <div className='h-4 w-full mb-2 bg-muted rounded-sm'></div>
-      <div className='h-4 w-full bg-muted rounded-sm'></div>
+      <div className='h-[24px] w-full mb-2 bg-muted rounded-sm'></div>
+      <div className='h-[20px] w-full bg-muted rounded-sm'></div>
     </CardContent>
   </Card>
 );
